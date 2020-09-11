@@ -1,0 +1,69 @@
+/*star  from review*/
+#star-1:checked ~ section [for='star-1'] svg, #star-2:checked ~ section [for='star-1'] svg, #star-2:checked ~ section [for='star-2'] svg, #star-3:checked ~ section [for='star-1'] svg, #star-3:checked ~ section [for='star-2'] svg, #star-3:checked ~ section [for='star-3'] svg, #star-4:checked ~ section [for='star-1'] svg, #star-4:checked ~ section [for='star-2'] svg, #star-4:checked ~ section [for='star-3'] svg, #star-4:checked ~ section [for='star-4'] svg, #star-5:checked ~ section [for='star-1'] svg, #star-5:checked ~ section [for='star-2'] svg, #star-5:checked ~ section [for='star-3'] svg, #star-5:checked ~ section [for='star-4'] svg, #star-5:checked ~ section [for='star-5'] svg {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+#star-1:checked ~ section [for='star-1'] svg path, #star-2:checked ~ section [for='star-1'] svg path, #star-2:checked ~ section [for='star-2'] svg path, #star-3:checked ~ section [for='star-1'] svg path, #star-3:checked ~ section [for='star-2'] svg path, #star-3:checked ~ section [for='star-3'] svg path, #star-4:checked ~ section [for='star-1'] svg path, #star-4:checked ~ section [for='star-2'] svg path, #star-4:checked ~ section [for='star-3'] svg path, #star-4:checked ~ section [for='star-4'] svg path, #star-5:checked ~ section [for='star-1'] svg path, #star-5:checked ~ section [for='star-2'] svg path, #star-5:checked ~ section [for='star-3'] svg path, #star-5:checked ~ section [for='star-4'] svg path, #star-5:checked ~ section [for='star-5'] svg path {
+    fill: #E6282B;
+    stroke: #E6282B;
+
+}
+label[for="star-null"] {
+    display: block;
+    margin: 0 auto;
+    color: #999;
+}
+label {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+label svg {
+    width: 100%;
+    height: auto;
+    fill: white;
+    stroke: #CCC;
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    -webkit-transition: -webkit-transform 200ms ease-in-out;
+    transition: -webkit-transform 200ms ease-in-out;
+    transition: transform 200ms ease-in-out;
+    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+}
+
+label svg path {
+    -webkit-transition: fill 200ms ease-in-out, stroke 100ms ease-in-out;
+    transition: fill 200ms ease-in-out, stroke 100ms ease-in-out;
+}
+
+label[for="star-null"] {
+    display: block;
+    margin: 0 auto;
+    color: #999;
+}
+
+div.friend_notify{
+    border: 1px solid #1d2124;
+    margin: 5px 0 5px 0;
+    border-radius: 10px;
+    padding: 0 0 0 10px;
+}
+
+div.fb_btn{
+
+    padding: 2px 0 2px 0;
+
+}
+.friend_container{
+    max-height: 500px;
+    height: 400px;
+    overflow:auto;
+}
+
+hr{
+    margin-top: 3px !important;
+    border-top: 1px solid #000000 !important;
+}

@@ -1,0 +1,1301 @@
+
+.py-4 {
+    padding-top: 0px !important;
+}
+body{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-color: rgb(0, 0, 0);
+}
+
+
+.menu-bar{
+    width: 100vw;
+    height: 90px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0);
+}
+
+.menu-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    position: absolute;
+    padding: 15px;
+    background: white;
+
+    top: 10px;
+
+    width: 65px;
+    height: 60px;
+
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    box-shadow: 0px 5px 1rem rgba(0,0,0,0.125);
+}
+
+.dewl-stats{
+    position: relative;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.menu-name-label{
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    font-size: 17px;
+    font-weight: 800;
+    text-align: center;
+    padding: 5px;
+}
+
+.app-dewler-data .menu-name-label{
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    font-size: 17px;
+    font-weight: 800;
+    text-align: center;
+    padding: 5px;
+    font-size: 30px;
+}
+.dewl-winrate{
+    width: 150px;
+    height: 25px;
+    background-color: #94a0a4;
+    border-radius: 10px;
+    margin: 5px;
+    max-width: 150px;
+
+    cursor: pointer;
+}
+.dewl-winrate h4{
+
+    height: 25px;
+    width: 150px;
+
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    position: relative;
+    top: -20px;
+
+    text-align: center;
+}
+
+.winrate-percent{
+    background-color: #0d95e8;
+    height: 100%;
+
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.menu-stacks-label{
+    position: relative;
+    width: 100%;
+    padding-top: 5px;
+
+    color: #3b5998;
+
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    padding: 0;
+}
+
+.menu-add-stacks{
+    border-radius: 5px;
+    border: none;
+    background-color: #9a9b9b;
+
+    width: 100px;
+    height: 30px;
+
+    font-size: 12px;
+}
+
+.menu-button{
+    padding: 5px;
+    border: none;
+    background: rgba(0,0,0,0);
+    border-radius: 40px;
+
+    font-size: 30px;
+    color: #000000;
+
+    width: 60px;
+    height: 80px;
+
+    transition: all .4s;
+}
+
+.menu-button:hover{
+    background: rgba(0,0,0,0.08);
+}
+
+.menu-button:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none
+}
+
+.menu-img{
+    background-color: rgba(0,0,0,0.1);
+    width: 100%;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu-img-icon{
+    background: url(../img/DWlogo.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    margin: auto;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    width: 80px;
+    height: 80px;
+}
+
+.menu-box{
+    background-color: white;
+    width:300px;
+    height: 100%;
+
+    position: fixed;
+    z-index: 10000;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    transition: all .4s;
+    box-shadow: -5px 0px 2rem rgba(0,0,0,0.4);
+}
+
+.friends-box{
+    background-color: #f5f5f5;
+    width:300px;
+    height: 100%;
+
+    position: fixed;
+    z-index: 10000;
+
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    transition: all .4s;
+    box-shadow: 5px 0px 2rem rgba(0,0,0,0.4);
+}
+
+.friends-button{
+    position: fixed;
+    background-color: #CE3250;
+
+    color:white;
+
+    width: 50px;
+    height: 50px;
+
+    bottom: 15px;
+    right: 15px;
+
+    border-radius: 25px;
+    border:none;
+
+    font-size: 20px;
+
+    box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
+
+    transition: all .25s;
+    z-index: 100;
+}
+
+.friends-button:hover{
+    transform: scale(1.1);
+}
+.friends-button:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+
+    box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
+}
+
+
+.hide-menu-button{
+    padding: 10px;
+    position: absolute;
+    margin-top: 5px;
+    right: 20px;
+    background-color: rgba(0,0,0,0);
+    color: black;
+    border: none;
+
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.hide-menu-button:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.center-mobil {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.dewler-data{
+    margin: auto;
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dewler-data h4{
+    color: rgba(0,0,0,0.6);
+
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+
+    padding: 0px;
+    margin: 0px;
+}
+
+.dewler-data h5{
+    color: black;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.dewler-data img{
+    width: 100px;
+    height: 100px;
+}
+
+.dewler-icon{
+    background: url(../img/DWlogo.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.dewl-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+
+    width: 90vw;
+    max-width: 350px;
+    height: 90vw;
+    max-height: 350px;
+
+    border-radius: 20px;
+
+    background: #22181C;
+}
+
+.dewl-card h4{
+    color: #CE3250;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.gamer-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+
+    width: 90vw;
+    max-width: 350px;
+    height: 90vw;
+    max-height: 350px;
+
+    border-radius: 20px;
+
+    background: #08ADD5;
+}
+.gamer-card h4{
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.menu-list{
+    list-style: none;
+    text-decoration: none;
+
+    margin: 20px;
+}
+
+.menu-item{
+
+    color: #23272b;
+    padding: 5px;
+
+    cursor: pointer;
+    font-family: Poppins-Medium, sans-serif;
+
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.settings{
+    position: absolute;
+    bottom: 25px;
+    left: 30px;
+    font-weight: 700;
+
+    border: none;
+    background: rgba(0,0,0,0);
+}
+
+.logout{
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    font-weight: 700;
+
+    border: none;
+    background: rgba(0,0,0,0);
+}
+
+.app{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    width: 98vw;
+    max-width: 1200px;
+    height: 84vh;
+    max-height: 1100px;
+
+    margin-top: 55px;
+    background: white;
+
+    border-radius: 10px;
+    /*box-shadow: 0px 5px 3rem rgba(0,0,0,0.35);*/
+}
+
+.history{
+    width: 98vw;
+    max-width: 1180px;
+    height: 88vh;
+    max-height: 1050px;
+
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+}
+
+/*.history h4{
+    color: #CE3250;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 50px;
+}*/
+/*
+#home h4{
+    margin-top: 0px;
+    color: #CE3250;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}*/
+.app-dewler-data{
+    margin: 10px;
+    padding-top: 20px;
+}
+.table-dewl{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    max-height: 100%;
+    height: 89%;
+    margin-left: 0;
+    max-height: 100%;
+}
+
+.dewl-h{
+    max-height: 67vh;
+    overflow-y: scroll;
+}
+
+
+
+/*SCROLL CONFIG*/
+.dewl-h::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.dewl-h::-webkit-scrollbar-thumb {
+    background: #CE3250;
+    border-radius: 0px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.dewl-h::-webkit-scrollbar-thumb:hover {
+    background: #cf1d3f;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.dewl-h::-webkit-scrollbar-thumb:active {
+    background-color: #ae1a38;
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.dewl-h::-webkit-scrollbar-track {
+    background: #c5c5c5;
+}
+
+/*SCROLL CONFIG*/
+.friends-body::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.friends-body::-webkit-scrollbar-thumb {
+    background: #CE3250;
+    border-radius: 0px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.friends-body::-webkit-scrollbar-thumb:hover {
+    background: #cf1d3f;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.friends-body::-webkit-scrollbar-thumb:active {
+    background-color: #ae1a38;
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.friends-body::-webkit-scrollbar-track {
+    background: #c5c5c5;
+}
+
+
+/* Cambiamos el fondo cuando esté en active o hover */
+.friends-results::-webkit-scrollbar-track:hover,
+.friends-results::-webkit-scrollbar-track:active {
+    background: #c4c3c3;
+}
+
+/********** REQUETS BODY SCROLL ********/
+/*SCROLL CONFIG*/
+.request-body::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.request-body::-webkit-scrollbar-thumb {
+    background: #CE3250;
+    border-radius: 0px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.request-body::-webkit-scrollbar-thumb:hover {
+    background: #cf1d3f;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.request-body::-webkit-scrollbar-thumb:active {
+    background-color: #ae1a38;
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.request-body::-webkit-scrollbar-track {
+    background: #c5c5c5;
+}
+
+
+/* Cambiamos el fondo cuando esté en active o hover */
+.request-body::-webkit-scrollbar-track:hover,
+.request-body::-webkit-scrollbar-track:active {
+    background: #c4c3c3;
+}
+
+
+
+.card-table{
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+}
+
+.detail-button{
+
+    border-radius: 30px;
+
+    width: 100px;
+    height: 35px;
+    border: none;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    background-color: #0d95e8;
+    color: white;
+}
+
+.detail-button:focus,.create-dewl-button{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.current-card-column,.friends-col,.friends-count-card, .friends-request-count-card,.friend-request-card,.header-search,.request-notification-circle,
+.friends-load{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.detail{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+
+    position: relative;
+    width: 99%;
+    height: auto;
+    background-color: #ffffff;
+    /* border-radius: 10px; */
+    border-top: 1px solid #929191;
+
+    color: white;
+    margin: 5px;
+}
+.detail-data{
+    padding:15px;
+    color: black;
+}
+
+.top-transaction-icon{
+    position: absolute;
+
+    top: 5px;
+    right: 5px;
+}
+
+/*FREINDS MENU ITEMS*/
+.friends-top{
+    background-color: #3b5998;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.dewler-search-label{
+    color:white;
+    font-size: 20px;
+}
+.dewler-search{
+    padding: 10px;
+}
+
+
+.dewler-search-input{
+    background-color: white;
+    color: #4e555b;
+
+    width: 200px;
+    border-radius: 10px;
+
+    border: none;
+    padding: 5px;
+}
+
+.dewler-search-button{
+    background-color: rgba(0,0,0,0);
+    color: white;
+    border: none;
+}
+
+.dewler-search-button,.dewler-search-input,.hide-friends-button,.create-dewl-button-desktop,.create-dewl-button-mobile:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none
+}
+
+.friends-count-card{
+    width: 115px;
+    height: 40px;
+    background-color: #0d95e8;
+    border-radius: 15px;
+}
+
+.friends-count-card p{
+    margin: auto;
+    color:white;
+    font-size: 13px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.friends-request-count-card p{
+    margin: auto;
+    color:white;
+    font-size: 13px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.friends-request-count-card{
+    width: 115px;
+    height: 40px;
+    background-color: #0d95e8;
+    border-radius: 15px;
+}
+
+.friends-request{
+    width: 300px;
+    height: 41vh;
+    max-height: 41vh;
+    padding: 10px;
+    /*background-color: #4e555b;*/
+}
+
+.friends-results{
+    width: 300px;
+    height: 45vh;
+    max-height: 45vh;
+    padding: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*background-color: #3b5998;*/
+}
+
+.create-dewl-button-mobile{
+    border-radius: 10px;
+    border:none;
+    padding: 10px;
+    background-color: rgba(0,0,0,0);
+
+    width: 200px;
+}
+
+.create-dewl-button-desktop{
+    position: absolute;
+    border: 2px solid  #0d95e8;
+    background-color: #0d95e8;
+    color:white;
+    z-index: 1000;
+
+    top: 75px;
+
+    padding: 8px;
+    margin-left: 10px;
+    border-radius: 4px;
+    height: 44px;
+
+    font-weight: 600;
+
+    transition: all .3s;
+}
+/*
+.create-dewl-button-desktop:hover{
+    background-color: #0d95e8;
+    color: white;
+}
+*/
+.create-dewl-button-desktop > svg{
+    color: #CE3250;
+}
+
+
+
+.create-dewl-mobile{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    width: 200px;
+    height: 45px;
+
+    background-color: #0d95e8;
+    color: white;
+
+    margin: auto;
+
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    top: 0;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+    display:none !important;
+}
+
+.circle-plus > svg{
+    color: #CE3250;
+    border: none;
+}
+
+.circle-plus {
+    font-weight: 600;
+    color: white;
+}
+.friend-request-card{
+    width: 280px;
+    height: auto;
+
+    /*padding: 5px;
+    border-radius: 5px;
+    border: solid 1px rgb(38, 46, 64);
+
+    background-color: #f8f8f8;*/
+}
+
+.friend-request-card-button{
+    width: 80px;
+    font-size: 10px;
+}
+
+.card{
+    padding: 0px !important;
+    margin: 10px !important;
+    background-color: #1c2b3b !important;
+    border-radius: 10px !important;
+    border: none;
+    color: white;
+}
+.card button{
+    font-size: 12px;
+}
+
+.full-table{
+    height: 84vh;
+    max-height: 84vh;
+
+}
+
+
+/* FRIENDS BAR NEW STYLE*/
+
+.header-search{
+    position: absolute;
+    height: 80px;
+    background-color: white;
+    width: 100%;
+
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.hide-friends-button{
+    padding: 10px;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+
+    background-color: rgba(0,0,0,0);
+    color: #b0b0b0;
+
+    border: none;
+
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 110;
+}
+
+.dewler-search-input{
+    position: absolute;
+    z-index: 10;
+
+    background-color: white;
+    border-radius: 0px;
+    border: none;
+
+    color: #4d5154;
+    text-align: center;
+
+    width: 250px;
+    padding: 5px;
+
+    border-bottom: solid 1px #b0b0b0;
+
+    bottom: 15px;
+    margin-left: auto;
+}
+
+.friends-body{
+    margin-top: 80px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 300px;
+    height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
+    box-sizing: border-box;
+
+    transition: all .6s;
+}
+
+.request-body{
+    margin-top: 80px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 300px;
+    height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
+    box-sizing: border-box;
+}
+
+/* REQUEST NOTIFICATION STYLE*/
+.friends-request-notification{
+    margin: 10px;
+    width: 275px;
+    height: 50px;
+
+    border: solid 1px #CE3250;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.friends-request-notification:hover{
+    box-shadow: 0px 0px 4px #CE3250;
+}
+
+.request-notification-circle{
+    width: 30px;
+    height: 30px;
+
+    position: relative;
+    margin-top: 10px;
+    margin-left: 5px;
+
+    border-radius: 15px;
+    background-color: #CE3250;
+}
+.request-notification-circle p{
+    margin: auto;
+
+    color: white;
+    font-weight: 600;
+}
+.request-notification-title{
+    position: relative;
+    width: 150px;
+    margin-left: 45px;
+    margin-top: -25px;
+
+    font-size: 14px;
+    font-weight: 500;
+ }
+
+/* FRIENDS CARD STYLE*/
+.friends-info-card{
+    margin: 10px;
+    width: 275px;
+    height: 50px;
+
+    border: solid 1px #a0a0a0;
+    border-radius: 5px;
+    background-color: white;
+
+    transition: all .2s;
+}
+.friends-dewl-button{
+    position: relative;
+    margin-top: 10px;
+
+    margin-left: 120px;
+    width: 80px;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #0d95e8;
+    color: white;
+
+    font-size: 10px;
+    font-weight: 400;
+
+}
+
+.friends-accept-button{
+    position: relative;
+    margin-top: 10px;
+
+    margin-left: 135px;
+    width: 60px;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #08a762;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 400;
+
+}
+
+.friends-remove-button{
+    position: relative;
+    margin-top: 10px;
+
+    margin-left: 5px;
+    width: 56px;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #CE3250;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.friends-body hr{
+    width: 280px;
+    margin-left: 10px;
+}
+.friends-body h5{
+    margin: 10px;
+    margin-top: 20px;
+
+    width: 280px;
+    height: 30px;
+
+    color: #4e555b;
+    font-size: 15px;
+}
+
+.request-body h5{
+    margin: 10px;
+    margin-top: 20px;
+
+    width: 280px;
+    height: 30px;
+
+    color: #4e555b;
+    font-size: 15px;
+
+}
+
+.friends-info-name{
+    position: relative;
+    margin-right: 5px;
+    margin-top:-25px;
+    width: 110px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    color: #4e555b;
+    text-align: center;
+
+}
+
+.return-to-friends-body{
+    margin-top: 10px;
+    margin-left: 8px;
+    padding: 5px;
+    background: rgba(0,0,0,0);
+    border:none;
+}
+
+
+.friends-load{
+    position: absolute;
+    height: 100vh;
+    background-color: #4e555b;
+    z-index: 0;
+
+}
+.friends-load-img{
+    position: relative;
+    background: url("../img/DWlogo.png");
+    background-size: cover;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+}
+
+
+
+/*Witness tabs*/
+.notification-icon{
+    color: #fd7e14;
+}
+.witness-player-selector{
+    /* margin-top: 30px;
+    margin-bottom: 30px; */
+}
+.chwin-content{
+    padding-top: 30px ;
+    padding-bottom: 30px;
+}
+
+.player-1{
+    color: #ffffff !important;
+    border-color: #CE3250 !important;
+    background-color: #CE3250 !important;
+}
+.player-1:hover{
+    color: #CE3250 !important;
+background-color: #fff !important;
+border-color: #CE3250 !important;
+}
+.player-2{
+    color: #fff !important;
+    border-color: #0d95e8 !important;
+    background-color: #0d95e8 !important;
+}
+.player-2:hover{
+    color: #0d95e8 !important;
+    background-color: #fff !important;
+    border-color: #0d95e8 !important;
+}
+.r-u-sure{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: px 0px 0px 0px ;
+
+}
+.txt-blck{
+    color: black;
+}
+.r-u-sure .btn{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.r-u-sure h4{
+   margin-bottom: 8px;
+   color: #ce3250;
+}
+.choose-winner  h4{
+    color: black;
+
+}
+
+#nav-tabContent2 {
+    border-bottom: 1px solid #e9e9e9;
+}
+/*readonly datepicker color*/
+#datepicker {
+    background-color: #fff;
+}
+/* Media query for mobile devices */
+@media only screen and (max-width: 850px) {
+    .nav-link{
+        padding-left: 11px !important;
+        padding-right: 11px !important;
+    }
+    /*Witness tab*/
+    .choose-winner  h5{
+        margin-bottom: 20px;
+    }
+    .choose-winner  h4{
+        margin-bottom: 20px;
+    }
+    .center-mobil {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+    .create-dewl-button-desktop{
+        display: none !important;
+    }
+    .create-dewl-mobile{
+        display: block !important;
+    }
+
+  }
+
+.right-top-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    position: absolute;
+    padding: 5px;
+    background: white;
+
+    top: 40px;
+    right: 60px;
+
+    width: 80px;
+    height: 90px;
+}
+.menu-img-right-icon{
+    background: url(../img/DWlogo.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    margin: auto;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    width: 80px;
+    height: 80px;
+}
+
+@media only screen and (max-width: 850px) {
+    .friends-request{
+        width: 300px;
+        height: 35vh;
+        max-height: 35vh;
+        padding: 10px;
+        /*background-color: #4e555b;*/
+    }
+
+    .friends-results{
+        width: 300px;
+        height: 45vh;
+        max-height: 45vh;
+        padding: 10px;
+       /* background-color: #3b5998;*/
+    }
+
+    .full-table{
+        height: 84vh !important;
+        max-height: 84vh !important;
+    }
+
+    .friends-body{
+        margin-top: 80px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        width: 300px;
+        height: calc(100vh - 140px);
+        max-height: calc(100vh - 140px);
+        box-sizing: border-box;
+
+        transition: all .6s;
+    }
+
+    .request-body{
+        margin-top: 80px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        width: 300px;
+        height: calc(100vh - 140px);
+        max-height: calc(100vh - 140px);
+        box-sizing: border-box;
+    }
+
+
+
+    .right-top-icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        position: absolute;
+        padding: 5px;
+        background: white;
+
+        top: 0px;
+        right: 5px;
+
+        width: 70px;
+        height: 80px;
+    }
+    .menu-img-right-icon{
+        background: url(../img/DWlogo.png) no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        margin: auto;
+        margin-left: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+
+        width: 70px;
+        height: 70px;
+    }
+}
+
+
+
+
+/* ANIMATIONS */

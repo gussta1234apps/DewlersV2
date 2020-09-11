@@ -1,0 +1,70 @@
+/*
+
+   Styles for animated modal
+   =========================
+
+*/
+
+/* Start state */
+.animated-modal {
+	
+  width: 750px;
+  border-radius: 4px;
+  overflow: hidden;
+  
+  transform: translateY(-50px);
+  transition: all .7s;
+}
+
+.animated-modal h4,
+.animated-modal div{
+  transform: translateY(-50px);
+  opacity: 0;
+  
+  transition-property: transform, opacity;
+  transition-duration: .4s;
+}
+
+/* Final state */
+.fancybox-slide--current .animated-modal,
+.fancybox-slide--current .animated-modal h4,
+.fancybox-slide--current .animated-modal div,
+.fancybox-slide--current .animated-modal button {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Reveal content with different delays */
+.fancybox-slide--current .animated-modal h4{
+  transition-delay: .1s;
+}
+
+.fancybox-slide--current .animated-modal div {
+  transition-delay: .3s;
+}
+
+.fancybox-slide--current .animated-modal button {
+    transition-delay: .8s;
+}
+
+.btnAddItem{
+	background-color: rgba(255,255,255,0);
+	color:gray;
+	border:none;
+	position:absolute;
+	right:20px;
+	font-size: 40px;
+	
+}
+
+#lblAdd{
+	transform: rotate(-90deg);
+	font-size:11px;	
+}
+.fa-chevron-right{
+	margin-top:15px;
+}
+
+.fancybox-close-small{
+    color:white;
+}
