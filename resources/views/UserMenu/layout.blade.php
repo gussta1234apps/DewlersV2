@@ -340,14 +340,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($duels as $du)
+
                                 <tr>
-                                    <td>{{$du->id}}</td>
+                                    <td></td>
+                                    <td>ata</td>
                                     <td>Data</td>
                                     <td>Data</td>
                                     <td>Data</td>
                                 </tr>
-                                 @endforeach
+
 
                                 </tbody>
                             </table>
@@ -477,6 +478,46 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                @foreach($duels as $du)
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="card-table-with-witness">
+                                            <div class="short-desc">
+                                                <div class="row"  data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
+                                                    <div class="col-md-3 col-4 current-card-column">
+                                                        @if($du->ctl_user_id_challenger == @Auth::id())
+                                                            {{$du->ctlUser1->username}}
+                                                        @else
+                                                          {{$du->ctlUser0->username}}
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-3 col-4 current-card-column">DATA</div>
+                                                    <div class="col-md-6 col-4 current-card-column">DATA</div>
+                                                </div>
+                                            </div>
+                                            <div class="collapse detail" id="collapseExample1">
+                                                <div class="center-mobil txt-blck all-width">
+                                                    <h4 class="card-view-title">Test Card View</h4>
+                                                    <p class="card-view-description">This is a test card description</p>
+                                                    <p class="card-view-date">Start Date: 2020-09-07</p>
+                                                    <p class="card-view-status">Status: Pending Oponent</p>
+                                                    <div class="card-view-choose-winner center-mobil">
+                                                        <h4 class="card-view-cw-title">Choose Winner</h4>
+                                                        <div class="row">
+                                                            <div class="col center-mobil">
+                                                                <button class="first-player-button">Ariel Zelaya</button>
+                                                            </div>
+                                                            <div class="col center-mobil">
+                                                                <button class="second-player-button">GGomez</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
