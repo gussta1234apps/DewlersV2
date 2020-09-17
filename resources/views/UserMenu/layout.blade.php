@@ -113,98 +113,13 @@
             </div>
             <hr/>
             <h5>Your Friends</h5>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-
-
+            @foreach($challengeds as $friend)
+                <div class="friends-info-card">
+                    <button class="friends-dewl-button" onclick="loadPlayerToDewl({{$friend->id}},'{{$friend->username}}')">Create Dewl</button>
+                    <button class="friends-remove-button">Remove</button>
+                    <p class="friends-info-name">{{$friend->username}}</p>
+                </div>
+            @endforeach
 
         </div>
         <div class="request-body">
@@ -330,24 +245,44 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-win" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="dewl-h">
-                            <table class="table table-bordered table-striped">
-                                <thead style="color: #08ADD5;">
+                            <table class="table table-borderless">
+                                <!--thead style="color: #08ADD5;">
                                 <tr>
                                     <th>Opponent</th>
                                     <th>Stacks</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
-                                </thead>
+                                </--thead-->
                                 <tbody>
-                                @foreach($duels as $du)
-                                <tr>
-                                    <td>{{$du->id}}</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr>
-                                 @endforeach
+                                @foreach($r_winner as $win)
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="card-table-win-dewl">
+                                                <div class="short-desc">
+                                                    <div class="row ">
+                                                        <div class="col-md-4 current-card-column"><strong>{{$win->ctlUser1->username}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$win->pot}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$win->startDate}}</strong></div>
+                                                        <div class="col-md-2 current-card-column">
+                                                            <button class="win-card-info-button" data-toggle="collapse" href="#win-card-{{$win->id}}" role="button" aria-expanded="false" aria-controls="win-card-{{$win->id}}">
+                                                                More info
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="collapse detail" id="win-card-{{$win->id}}">
+                                                    <div class="center-mobil txt-blck all-width">
+                                                        <h4 class="card-view-title">{{$win->tittle}}</h4>
+                                                        <p class="card-view-description">{{$win->Description}}</p>
+                                                        <p class="card-view-date">Start Date: {{$win->startDate}}</p>
+                                                        <p class="card-view-status">Status: {{$win->duelstatus->description}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                                 </tbody>
                             </table>
@@ -355,64 +290,46 @@
                     </div>
                     <div class="tab-pane fade" id="nav-loss" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="dewl-h">
-                            <table class="table table-bordered table-striped">
-                                <thead style="color: #CE3250;">
+                            <table class="table table-borderless">
+                                <!--thead style="color: #CE3250;">
                                 <tr>
                                     <th>Opponent</th>
                                     <th>Stacks</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
-                                </thead>
+                                </thead-->
                                 <tbody>
-                                <tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr>
-                                <tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr>
-                                <tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr>
+                                @foreach($r_loser as $loss)
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="card-table-loss-dewl">
+                                                <div class="short-desc">
+                                                    <div class="row ">
+                                                        <div class="col-md-4 current-card-column"><strong>{{$loss->ctlUser1->username}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$win->pot}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$win->startDate}}</strong></div>
+                                                        <div class="col-md-2 current-card-column">
+                                                            <button class="loss-card-info-button" data-toggle="collapse" href="#loss-card-{{$loss->id}}" role="button" aria-expanded="false" aria-controls="loss-card-{{$loss->id}}">
+                                                                More info
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="collapse detail" id="loss-card-{{$loss->id}}">
+                                                    <div class="center-mobil txt-blck all-width">
+                                                        <h4 class="card-view-title">{{$loss->tittle}}</h4>
+                                                        <p class="card-view-description">{{$loss->Description}}</p>
+                                                        <p class="card-view-date">Start Date: {{$loss->startDate}}</p>
+                                                        <p class="card-view-status">Status: {{$loss->duelstatus->description}}</p>
+                                                        <button class="loss-button">Double or Nothing</button>
+                                                        <button class="loss-button">Review</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -477,6 +394,46 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                @foreach($duels as $du)
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="card-table-with-witness">
+                                            <div class="short-desc">
+                                                <div class="row"  data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
+                                                    <div class="col-md-3 col-4 current-card-column">
+                                                        @if($du->ctl_user_id_challenger == @Auth::id())
+                                                            {{$du->ctlUser1->username}}
+                                                        @else
+                                                          {{$du->ctlUser0->username}}
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-3 col-4 current-card-column">DATA</div>
+                                                    <div class="col-md-6 col-4 current-card-column">DATA</div>
+                                                </div>
+                                            </div>
+                                            <div class="collapse detail" id="collapseExample1">
+                                                <div class="center-mobil txt-blck all-width">
+                                                    <h4 class="card-view-title">Test Card View</h4>
+                                                    <p class="card-view-description">This is a test card description</p>
+                                                    <p class="card-view-date">Start Date: 2020-09-07</p>
+                                                    <p class="card-view-status">Status: Pending Oponent</p>
+                                                    <div class="card-view-choose-winner center-mobil">
+                                                        <h4 class="card-view-cw-title">Choose Winner</h4>
+                                                        <div class="row">
+                                                            <div class="col center-mobil">
+                                                                <button class="first-player-button">Ariel Zelaya</button>
+                                                            </div>
+                                                            <div class="col center-mobil">
+                                                                <button class="second-player-button">GGomez</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -720,6 +677,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <input type="hidden" id="playerID">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Title</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title">
@@ -738,14 +696,11 @@
                         <small id="emailHelp" class="form-text text-muted">10% of this amount goes to Dewlers</small>
                         <div class="form-group">
                             <label for="exampleInputEmail1" style="margin-top: 10px;">VS</label>
-                            <input type="text" class="form-control" autocomplete="off" list="players" id="exampleInputEmail1" aria-describedby="challenger" placeholder="Enter Dewler's Name">
+                            <input type="text" class="form-control" autocomplete="off" list="players" id="playerInput" aria-describedby="challenger" placeholder="Enter Dewler's Name">
                             <datalist id="players">
-                                <option value="Ariel Zelaya">
-                                <option value="Gustavo Gomez">
-                                <option value="Diego Gonzales">
-                                <option value="Marvin Vigin">
-                                <option value="Alex Mendez">
-                                <option value="Sandy Florez"></option>
+                                @foreach($challengeds as $friend)
+                                    <option value="{{$friend->username}}"></option>
+                                @endforeach
                             </datalist>
                         </div>
                         <!-- Start Select witness -->
@@ -758,12 +713,9 @@
                                 <label for="exampleInputEmail1" style="margin-top: 10px;">Witness</label>
                                 <input type="text" class="form-control" autocomplete="off" list="players" id="exampleInputEmail1" aria-describedby="challenger" placeholder="Enter Witness' Name">
                                 <datalist id="players">
-                                    <option value="Ariel Zelaya">
-                                    <option value="Gustavo Gomez">
-                                    <option value="Diego Gonzales">
-                                    <option value="Marvin Vigin">
-                                    <option value="Alex Mendez">
-                                    <option value="Sandy Florez"></option>
+                                    @foreach($challengeds as $friend)
+                                        <option value="{{$friend->username}}"></option>
+                                    @endforeach
                                 </datalist>
                             </div>
                         </div>
