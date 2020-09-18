@@ -231,6 +231,8 @@
                     <div class=winrate-percent style="width: 60%"></div>
                     <h4>60% hype rating</h4>
                 </div>
+
+                <h6 CLASS="wins-label">10 WINS</h6>
             </div>
 
 
@@ -351,6 +353,8 @@
                     <div class=winrate-percent style="width: 60%"></div>
                     <h4>60% hype rating</h4>
                 </div>
+
+                <h6 CLASS="wins-label">10 WINS</h6>
             </div>
             <div class="table-dewl" >
                 <nav>
@@ -371,60 +375,43 @@
                                 </thead>
                                 <tbody>
                                 @foreach($duels as $du)
-                                    <tr>
-                                        <td colspan="4">
-                                            <div class="card-table">
-                                                <div class="short-desc">
-                                                    <div class="row"  data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
-                                                        <div class="col-md-3 col-4 current-card-column">{{$du->ctlUser1->username}}</div>
-                                                        <div class="col-md-3 col-4 current-card-column">DATA</div>
-                                                        <div class="col-md-6 col-4 current-card-column">DATA</div>
-                                                    </div>
-                                                </div>
-                                                <div class="collapse detail" id="collapseExample1">
-                                                    <div class="center-mobil txt-blck">
-                                                        Detail data<br>
-                                                        Detail data<br>
-                                                        Detail data<br>
-                                                        Detail data<br>
-                                                        Detail data
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                @foreach($duels as $du)
                                 <tr>
                                     <td colspan="4">
-                                        <div class="card-table-with-witness">
+                                        <div class="card-table-without-witness">
                                             <div class="short-desc">
-                                                <div class="row"  data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
-                                                    <div class="col-md-3 col-4 current-card-column">
-                                                        @if($du->ctl_user_id_challenger == @Auth::id())
-                                                            {{$du->ctlUser1->username}}
-                                                        @else
-                                                          {{$du->ctlUser0->username}}
-                                                        @endif
+                                                <div class="row"  data-toggle="collapse" href="#card-current-{{$du->id}}" role="button" aria-expanded="false" aria-controls="card-current-{{$du->id}}">
+                                                    <div class="col-2 current-card-column"><h4 class="vs-text-with-witness">VS</h4></div>
+                                                    <div class="col-4 current-card-column">
+                                                        <strong>
+                                                            @if($du->ctl_user_id_challenger == @Auth::id())
+                                                                {{$du->ctlUser1->username}}
+                                                            @else
+                                                                {{$du->ctlUser0->username}}
+                                                            @endif
+                                                        </strong>
                                                     </div>
-                                                    <div class="col-md-3 col-4 current-card-column">DATA</div>
-                                                    <div class="col-md-6 col-4 current-card-column">DATA</div>
+                                                    <div class="col-1 current-card-column">
+                                                        <!--em class="fas fa-clock"></em-->
+                                                        <img src="{{asset('img/Dewlers_iconos_Lo-P2.svg')}}" style="width: 33px; high: 33px;" alt="301">
+
+                                                    </div>
+                                                    <div class="col-4 current-card-column"><strong>{{$du->pot}} Stacks</strong></div>
                                                 </div>
                                             </div>
-                                            <div class="collapse detail" id="collapseExample1">
+                                            <div class="collapse detail" id="card-current-{{$du->id}}">
                                                 <div class="center-mobil txt-blck all-width">
-                                                    <h4 class="card-view-title">Test Card View</h4>
-                                                    <p class="card-view-description">This is a test card description</p>
-                                                    <p class="card-view-date">Start Date: 2020-09-07</p>
-                                                    <p class="card-view-status">Status: Pending Oponent</p>
+                                                    <h4 class="card-view-title">{{$du->tittle}}</h4>
+                                                    <p class="card-view-description">{{$du->Description}}</p>
+                                                    <p class="card-view-date">Start Date: {{$du->startDate}}</p>
+                                                    <p class="card-view-status">Status: {{$du->duelstatus->description}}</p>
                                                     <div class="card-view-choose-winner center-mobil">
                                                         <h4 class="card-view-cw-title">Choose Winner</h4>
                                                         <div class="row">
                                                             <div class="col center-mobil">
-                                                                <button class="first-player-button">Ariel Zelaya</button>
+                                                                <button class="first-player-button">{{$du->ctlUser1->username}}</button>
                                                             </div>
                                                             <div class="col center-mobil">
-                                                                <button class="second-player-button">GGomez</button>
+                                                                <button class="second-player-button">{{$du->ctlUser0->username}}</button>
                                                             </div>
                                                         </div>
                                                     </div>
