@@ -402,15 +402,20 @@
                                                             <p class="card-view-description">{{$du->Description}}</p>
                                                             <p class="card-view-date">Start Date: {{$du->startDate}}</p>
                                                             <p class="card-view-status">Status: {{$du->duelstatus->description}}</p>
-                                                            <div class="card-view-witness-info center-mobil">
+                                                            
+                                                            <div class="card-view-info  center-mobil">
                                                                 <div class="row">
-                                                                    <div class="col center-mobil">
-                                                                        <h5 class="witness-info-title">Witness</h5>
-                                                                        <p class="witness-info-text">{{$du->ctlUser2->username}}</p>
-                                                                    </div>
-                                                                    <div class="col center-mobil">
-                                                                        <h5 class="witness-info-title">Comission</h5>
-                                                                        <p class="witness-info-text">{{$du->witness_comision}}%</p>
+                                                                    <div class="col-6 offset-3">
+                                                                        <div class="row">
+                                                                            <div class="col center-mobil">
+                                                                                <h5 class="witness-info-title">Witness</h5>
+                                                                                <p class="witness-info-text">{{$du->ctlUser2->username}}</p>
+                                                                            </div>
+                                                                            <div class="col center-mobil">
+                                                                                <h5 class="witness-info-title">Comission</h5>
+                                                                                <p class="witness-info-text">{{$du->witness_comision}}%</p>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -449,7 +454,7 @@
                                                             <p class="card-view-description">{{$du->Description}}</p>
                                                             <p class="card-view-date">Start Date: {{$du->startDate}}</p>
                                                             <p class="card-view-status">Status: {{$du->duelstatus->description}}</p>
-                                                            <div class="card-view-choose-winner center-mobil">
+                                                            <!--div class="card-view-choose-winner center-mobil">
                                                                 <h4 class="card-view-cw-title">Choose Winner</h4>
                                                                 <div class="row">
                                                                     <div class="col center-mobil">
@@ -457,6 +462,22 @@
                                                                     </div>
                                                                     <div class="col center-mobil">
                                                                         <button class="second-player-button">{{$du->ctlUser0->username}}</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div-->
+
+                                                            <div class="card-view-info center-mobil">
+                                                                <h4 class="card-view-cw-title">Choose Winner</h4>
+                                                                <div class="row">
+                                                                    <div class="col-4 offset-4">
+                                                                        <div class="row">
+                                                                            <div class="col center-mobil">
+                                                                        <button class="first-player-button">{{$du->ctlUser1->username}}</button>
+                                                                            </div>
+                                                                            <div class="col center-mobil">
+                                                                        <button class="second-player-button">{{$du->ctlUser0->username}}</button>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
