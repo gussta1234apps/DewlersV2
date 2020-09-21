@@ -76,7 +76,7 @@ $(document).ready(function(){
         if(dewlerName.length>0){
             var load = '<div class="spinner-border text-danger" style="padding:5px;" role="status"></div><h5 class="center text-center">Loading</h5>';
             $('#dewler-search-container').html(load);
-            searchFriends(dewlerName);
+            searchDewler(dewlerName);
         }else{
             $('#dewler-search-container').empty();
         }
@@ -133,7 +133,7 @@ let loadPlayerToDewl=(id,name)=>{
 }
 
 
-let searchFriends=(dewlerName)=>{
+let searchDewler=(dewlerName)=>{
     $.ajax({
         url:'/searchDewler/' + dewlerName,
         method:'GET'
@@ -141,7 +141,7 @@ let searchFriends=(dewlerName)=>{
         if(data!="No-users"){
             $('#dewler-search-container').html(data);
         }else{
-            $('#dewler-search-container').empty();
+            $('#dewler-search-container').html('<h5 class="center text-center">0 results</h5>');
         }
     });
 }
