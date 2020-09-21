@@ -592,8 +592,8 @@ body{
     box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
 }
 
-/* ---------------------------------------------------------------------------------------------- */
-.card-table-with-witness{
+/* ---------------------------------DEWL WITHOUT WITNESS --------------------------------------------------- */
+.card-table-without-witness{
     border: 3px goldenrod solid;
     position: relative;
     width: 100%;
@@ -666,7 +666,10 @@ body{
 }
 
 .first-player-button{
-    width: 130px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    width: 110px;
     height: 40px;
     background-color: #0d95e8;
     border: none;
@@ -674,10 +677,14 @@ body{
 
     color: white;
     font-weight: 500;
+    font-size: 14px;
 }
 
 .second-player-button{
-    width: 130px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    width: 110px;
     height: 40px;
     background-color: #CE3250;
     border: none;
@@ -685,8 +692,172 @@ body{
 
     color: white;
     font-weight: 500;
+    font-size: 14px;
 }
 /* ------------------------------------------------------ */
+
+.card-view-info{
+    border: none;
+    border-radius: 8px;
+    width: calc(100% - 20px);
+    max-width: 950px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 0px;
+
+    background-color: rgba(0,0,0,0.0);
+    height: auto;
+    padding-bottom: 15px;
+
+}
+/* ---------------------------------Dewl witness------------------------------------- */
+.card-table-with-witness{
+    border: 3px #0d95e8 solid;
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.card-view-witness-info{
+    border: none;
+    border-radius: 8px;
+    width: calc(100% - 20px);
+    max-width: 950px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 0px;
+
+    background-color: rgba(0,0,0,0.075);
+    height: auto;
+    padding-bottom: 15px;
+}
+
+.witness-info-title{
+    color: #0d95e8;
+    font-weight: 700;
+    margin: 10px;
+}
+
+.witness-info-text{
+    font-weight: 700;
+    font-size: 18px;
+    color: #23272b;
+}
+/* --------------------------- END OF DEWL WITNESS ---------------------------------- */
+
+/* --------------------------- UTIL CSS --------------------------------------------- */
+.vs-text-with-witness{
+    font-size: 17px;
+    font-weight: 800;
+    margin: auto;
+
+    color: darkgoldenrod;
+}
+
+.vs-text-without-witness{
+    font-size: 17px;
+    font-weight: 800;
+    margin: auto;
+
+    color: #0d95e8;
+}
+/* ---------------------- END OF UTIL CSS ------------------------------------------ */
+
+/* --------------------------------- HISTORY CARDS --------------------------------- */
+/* WIN CARD */
+.card-table-win-dewl{
+    border: 3px #08a762 solid;
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.win-card-info-button{
+    background-color: #08a762;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* LOSS CARD */
+.card-table-loss-dewl{
+    border: 3px #CE3250 solid;
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.loss-card-info-button{
+    background-color: #CE3250;
+    height: 30px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.loss-button{
+    background-color: rgba(0,0,0,0.35);
+    color: white;
+    width: 160px;
+    height: 35px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    border: none;
+    border-radius: 5px;
+
+    margin-bottom: 5px;
+}
+/* ------------------------------- END HISTORY CARDS ------------------------------- */
+/* ------------------------------- WINS LABEL -------------------------------------- */
+
+.wins-label{
+    font-weight: 800;
+    font-size: 13px;
+    text-align: center;
+    color: #8e9498;
+}
+
+.menu-wins-label{
+    position: absolute;
+    font-weight: 700;
+    font-size: 11px;
+    text-align: center;
+    color: #8e9498;
+
+    top: 10px;
+    left: 10px;
+}
+/* ------------------------------- END WINS CARDS ---------------------------------- */
+/* --------------------------------------------------------------------------------- */
+.center-left{
+    align-items: left;
+}
+.center-right{
+    margin-right: 10%;
+}
+
 .detail-button{
 
     border-radius: 30px;
@@ -783,15 +954,15 @@ body{
     color: white;
     border: none;
 }
-
-.dewler-search-button,.dewler-search-input,.hide-friends-button,.create-dewl-button-desktop,.create-dewl-button-mobile:focus{
+/*-------------------------- new ---------------------------------------------------------------*/
+.dewler-search-button,.dewler-search-input,.hide-friends-button,.create-dewl-button-desktop,.create-dewl-button-mobile,.win-card-info-button,.loss-card-info-button:focus{
     outline:none !important;
     outline-width: 0 !important;
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none
 }
-
+/*------------------------------------------------------------------------------------------------*/
 .friends-count-card{
     width: 115px;
     height: 40px;
