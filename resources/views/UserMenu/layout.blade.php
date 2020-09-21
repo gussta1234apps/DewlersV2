@@ -112,6 +112,7 @@
                 <p class="request-notification-title">Pending Requests</p>
             </div>
             <hr/>
+            <div id="dewler-search-container" class="center-load"></div>
             <h5>Your Friends</h5>
             @foreach($challengeds as $friend)
                 <div class="friends-info-card">

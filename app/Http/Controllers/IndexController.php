@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use stdClass;
 
 class IndexController extends Controller
 {
@@ -152,5 +153,10 @@ class IndexController extends Controller
 
     }
 
+    public function searchFriend(){
+        $dewlerName = $_REQUEST['dewlerName'];
+        $friends=ctl_users::where('username', 'like', '%' . $dewlerName . '%')->get();
+        return $friends;
+    }
 
 }

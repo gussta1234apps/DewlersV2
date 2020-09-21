@@ -278,8 +278,29 @@ class UserController extends Controller
             $flag=1;
             return view('UserMenu.search')->with("selected",$user_requested)->with('flag',$flag);
         }
-
     }
+
+    //- SEARCH DEWLER FUNCTION
+    public function searchDewler($dewlerName){
+        $name = $dewlerName;
+        $user_requested= User::where('name','LIKE','%'.$name.'%')->orwhere('email','LIKE','%'.$name.'%')->get();
+
+        if($user_requested->isNotempty()){
+            $html = "<h5>Dewler Search Results</h5>";
+            foreach($user_requested as $user)
+            {
+                $html.='<div class="friends-info-card">
+                    <button class="friends-dewl-button">Create Dewl</button>
+                    <button class="friends-remove-button">Remove</button>
+                    <p class="friends-info-name">'.$user->name.'</p>
+                </div>';
+            }
+            echo $html;
+        }else{
+            echo "No-users";
+        }
+    }
+    //- END OF SEARCH DEWLER FUNCTION
     
         public function get_review(Request $request){
         $user = Auth::user();
