@@ -50,9 +50,9 @@
     <div id="app">
 
 
-        <main class="py-4">
+        <!--ain class="py-4"-->
             @yield('content')
-        </main>
+        <!--/main-->
     </div>
 </body>
 </html>

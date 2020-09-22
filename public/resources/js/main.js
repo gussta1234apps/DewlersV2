@@ -74,11 +74,12 @@ $(document).ready(function(){
         var dewlerName = $('.dewler-search-input').val();
 
         if(dewlerName.length>0){
+            $('#friends-container').slideUp(0);
             var load = '<div class="spinner-border text-danger" style="padding:5px;" role="status"></div><h5 class="center text-center">Loading</h5>';
             $('#dewler-search-container').html(load);
             searchDewler(dewlerName);
         }else{
-            $('#dewler-search-container').empty();
+            searchValidation();
         }
     });
 });
@@ -138,10 +139,21 @@ let searchDewler=(dewlerName)=>{
         url:'/searchDewler/' + dewlerName,
         method:'GET'
     }).done(function(data){
-        if(data!="No-users"){
-            $('#dewler-search-container').html(data);
-        }else{
-            $('#dewler-search-container').html('<h5 class="center text-center">0 results</h5>');
+        if(data=="No-users"){
+            data = '<h5 class="center text-center">0 results</h5>';
         }
+        $('#dewler-search-container').html(data);
+        searchValidation();
     });
+    
+}
+
+let searchValidation=()=>{
+    if($('.dewler-search-input').val().length==0){
+        //setTimeout(function(){ FUNCTION }, 0);
+        
+        $('#friends-container').slideDown(300);
+        $('#dewler-search-container').empty();
+        console.log('empty');
+    }
 }
