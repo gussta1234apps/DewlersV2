@@ -399,16 +399,78 @@
 
                                                 @if($du->ctl_user_id_challenged == Auth::user()->id and $du->duelstate==1)
 {{--                                                    If your the challenged and havent accepted the  dewl--}}
-                                                    Please accept or decline this Dewl.(pending opponent)
-1
+
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">Please accept or decline this Dewl</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <div class="row col-8 offset-2">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 @elseif($du->ctl_user_id_challenged==Auth::user()->id and $du->duelstate==2)
 {{--                                                    if your the challenged and you and the witness havent accepted yet--}}
-2                                                   Please accept or decline this Dewl.(pending oponnent and witness)
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">You have been invited to participate on a Dewl.</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <div class="row col-8 offset-2">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @elseif($du->ctl_user_id_winner==Auth::user()->id and $du->duelstate==7)
 {{--                                                    if your are the winner of te first dewl and looser challenge you to double or nothing--}}
-7                                                   You have been invited to double or nothing(pending opponent)
+
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <div class="row col-8 offset-2">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @elseif($du->ctl_user_id_winner==Auth::user()->id and $du->duelstate==10)
-10                                                  You have been invited to double or nothing(pending opponent and witness)
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <div class="row col-8 offset-2">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @else
                                                     <div class="collapse detail" id="card-current-{{$du->id}}">
                                                         <div class="center-mobil txt-blck all-width">
