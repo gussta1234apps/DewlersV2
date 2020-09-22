@@ -882,7 +882,7 @@ body{
 }
 
 .current-card-column,.friends-col,.friends-count-card, .friends-request-count-card,.friend-request-card,.header-search,.request-notification-circle,
-.friends-load,.all-width{
+.friends-load,.all-width,.center-load{
     display: flex;
     align-items: center;
     justify-content: center;

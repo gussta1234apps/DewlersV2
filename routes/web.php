@@ -63,6 +63,10 @@ Route::middleware(['auth'])->group(function (){
     Route::get( '/send_f_request','UserController@send_friend');
     Route::post( '/search_person','UserController@search_person');
     Route::get('/api/{id}', 'IndexController@api')->name('api');
+
+    //-
+    Route::get( '/searchDewler/{dewlerName}','UserController@searchDewler');
+    //-
     //myaccount
     Route::get('/myaccount','UserController@myaccount');
     Route::get('/autocomplete/','AutocompleteController@autocomplete');

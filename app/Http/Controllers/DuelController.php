@@ -81,6 +81,7 @@ class DuelController extends Controller
         //[2] Nombre del retado
         //[3] Titulo del dewl
 
+        /*
         Notification::route('mail', $email_challenged->email)
             ->notify(new StatusUpdate($arr)); //EMAIL FOR CHALLENGED
 
@@ -93,7 +94,7 @@ class DuelController extends Controller
             Notification::route('mail', $email_witness->email)
                 ->notify(new StatusUpdate($arr2)); //EMAIL FOR WITNESS
         }
-
+        */
         DB::table('duels')->insert(["tittle"=>$tittle,
             'ctl_user_id_challenger'=>$user_challenger,
             'ctl_user_id_challenged'=>$user_challenged,
@@ -107,7 +108,7 @@ class DuelController extends Controller
             'duelstate'=>$duel_state,
             'pot'=>$pot,
             'Description'=>$description]);
-
+        
 
 //        return view('UserMenu.index'); che
         return redirect("dashboard");

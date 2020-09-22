@@ -105,22 +105,26 @@
             </div>
         </div>
         <div class="friends-body">
-            <div class="friends-request-notification">
-                <div class="request-notification-circle">
-                    <p>5</p>
+            <div id="request-notifcation-container">
+                <div class="friends-request-notification">
+                    <div class="request-notification-circle">
+                        <p>5</p>
+                    </div>
+                    <p class="request-notification-title">Pending Requests</p>
                 </div>
-                <p class="request-notification-title">Pending Requests</p>
             </div>
             <hr/>
-            <h5>Your Friends</h5>
-            @foreach($challengeds as $friend)
-                <div class="friends-info-card">
-                    <button class="friends-dewl-button" onclick="loadPlayerToDewl({{$friend->id}},'{{$friend->username}}')">Create Dewl</button>
-                    <button class="friends-remove-button">Remove</button>
-                    <p class="friends-info-name">{{$friend->username}}</p>
-                </div>
-            @endforeach
-
+            <div id="dewler-search-container" class="center-load"></div>
+            <div id="friends-container" >
+                <h5>Your Friends</h5>
+                @foreach($challengeds as $friend)
+                    <div class="friends-info-card">
+                        <button class="friends-dewl-button" onclick="loadPlayerToDewl({{$friend->id}},'{{$friend->username}}')">Create Dewl</button>
+                        <button class="friends-remove-button">Remove</button>
+                        <p class="friends-info-name">{{$friend->username}}</p>
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div class="request-body">
             <button class="return-to-friends-body"><em class="fas fa-chevron-left"></em>&nbsp;Return</button>
@@ -415,6 +419,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-1 current-card-column"><em class="fas fa-clock"></em></div>
+                                                        <div class="col-4 current-card-column"><strong>{{$du->pot}} Stacks</strong></div>
                                                     </div>
 
                                                 @elseif($du->ctl_user_id_challenged==Auth::user()->id and $du->duelstate==2)
@@ -761,7 +767,8 @@
     <div class="modal fade" id="createDewlModal" tabindex="-1" aria-labelledby="addStacksModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="">
+                <form action="/saveduel" method="post">
+                @csrf
                     <div class="modal-header" style="background-color: #23272b; color:white;">
                         <h5 class="modal-title" id="createDewlModalLabel">Create Dewl</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -769,10 +776,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
+
                         <input type="hidden" id="playerID">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Title</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="tittle" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
@@ -788,12 +796,14 @@
                         <small id="emailHelp" class="form-text text-muted">10% of this amount goes to Dewlers</small>
                         <div class="form-group">
                             <label for="exampleInputEmail1" style="margin-top: 10px;">VS</label>
-                            <input type="text" class="form-control" autocomplete="off" list="players" id="playerInput" aria-describedby="challenger" placeholder="Enter Dewler's Name">
+                            <input type="text" class="form-control" autocomplete="off" list="players" onchange="prepareToCreateDewl();" id="playerInput" aria-describedby="challenger" placeholder="Enter Dewler's Name">
                             <datalist id="players">
                                 @foreach($challengeds as $friend)
-                                    <option value="{{$friend->username}}"></option>
+                                    <option value="{{$friend->username}}" data-id="{{$friend->id}}">{{$friend->username}}</option>
                                 @endforeach
                             </datalist>
+
+                            <input type="hidden" name="challendged" id="challendged">
                         </div>
                         <!-- Start Select witness -->
                         <div class="custom-control custom-checkbox">
@@ -806,7 +816,7 @@
                                 <input type="text" class="form-control" autocomplete="off" list="players" id="exampleInputEmail1" aria-describedby="challenger" placeholder="Enter Witness' Name">
                                 <datalist id="players">
                                     @foreach($challengeds as $friend)
-                                        <option value="{{$friend->username}}"></option>
+                                        <option value="{{$friend->username}}" data-value="{{$friend->id}}">{{$friend->username}}</option>
                                     @endforeach
                                 </datalist>
                             </div>
@@ -814,11 +824,11 @@
                         <!-- End Select witness -->
                         <div class="form-group" style="margin-bottom: 0px !important;">
                             <label for="exampleInputEmail1" style="margin-top:10px;">Schedule Dewl</label>
-                            <input type="text" class="form-control" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date">
+                            <input type="text" class="form-control" name="startdate" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date">
                         </div>
                         <small id="emailHelp" class="form-text text-muted">Dewls expire after 24 hours of the scheduled date.</small>
                         <div class="text-center" style="margin-top: 25px;">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">DEWL</button>
+                            <input type="submit" class="btn btn-success" value="DEWL"></button>
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
