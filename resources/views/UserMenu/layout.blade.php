@@ -416,22 +416,32 @@
                                                             <p class="card-view-description">{{$du->Description}}</p>
                                                             <p class="card-view-date">Start Date: {{$du->startDate}}</p>
                                                             <p class="card-view-status">Status: {{$du->duelstatus->description}}</p>
-                                                            <div class="card-view-info  center-mobil">
-                                                                <div class="row">
-                                                                    <div class="col-6 offset-3">
-                                                                        <div class="row">
-                                                                            <div class="col center-mobil">
-                                                                                <h5 class="witness-info-title">Witness</h5>
-                                                                                <p class="witness-info-text">{{$du->ctlUser2->username}}</p>
-                                                                            </div>
-                                                                            <div class="col center-mobil">
-                                                                                <h5 class="witness-info-title">Comission</h5>
-                                                                                <p class="witness-info-text">{{$du->witness_comision}}%</p>
+                                                            @if($du->ctl_user_id_witness or $du->ctl_user_id_challenged==Auth::user()->id)
+{{--                                                            If your the challenger or challenged--}}
+                                                                @if($du->ctl_user_id_witness)
+{{--                                                                    if the dewl has witness--}}
+                                                                <div class="card-view-info  center-mobil">
+                                                                    <div class="row">
+                                                                        <div class="col-6 offset-3">
+                                                                            <div class="row">
+                                                                                <div class="col center-mobil">
+                                                                                    <h5 class="witness-info-title">Witness</h5>
+                                                                                    <p class="witness-info-text">{{$du->ctlUser2->username}}</p>
+                                                                                </div>
+                                                                                <div class="col center-mobil">
+                                                                                    <h5 class="witness-info-title">Comission</h5>
+                                                                                    <p class="witness-info-text">{{$du->witness_comision}}%</p>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                                @endif
+                                                                {{--                                                              End      if the dewl has witness--}}
+                                                            @elseif($du->ctl_user_id_challenger==Auth::user()->id and $du->duelstate==4 or $du->duelstate==9)
+{{--                                                            if your the challenger or challenged and the dewl is running--}}
+                                                                    <h1>dewling, choose winner</h1>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 @endif
