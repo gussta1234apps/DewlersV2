@@ -157,3 +157,9 @@ let searchValidation=()=>{
         console.log('empty');
     }
 }
+
+let prepareToCreateDewl=()=>{
+    var id = $('#players option[value="' + $('#playerInput').val() + '"]').data('id');
+    console.log(id);
+    $('#challendged').val(id);
+}
