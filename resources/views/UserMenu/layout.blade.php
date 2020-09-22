@@ -439,8 +439,22 @@
                                                                 @endif
                                                                 {{--                                                              End      if the dewl has witness--}}
                                                             @elseif($du->ctl_user_id_challenger==Auth::user()->id and $du->duelstate==4 or $du->duelstate==9)
-{{--                                                            if your the challenger or challenged and the dewl is running--}}
-                                                                    <h1>dewling, choose winner</h1>
+{{--                                                            if your the challenger or challenged and the dewl is running shows --}}
+                                                                <div class="card-view-info center-mobil">
+                                                                    <h4 class="card-view-cw-title">Choose Winner</h4>
+                                                                    <div class="row">
+                                                                        <div class="col-4 offset-4">
+                                                                            <div class="row">
+                                                                                <div class="col center-mobil">
+                                                                                    <button class="first-player-button">{{$du->ctlUser1->username}}</button>
+                                                                                </div>
+                                                                                <div class="col center-mobil">
+                                                                                    <button class="second-player-button">{{$du->ctlUser0->username}}</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             @endif
                                                         </div>
                                                     </div>
