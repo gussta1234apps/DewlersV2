@@ -305,7 +305,7 @@ class UserController extends Controller
                     $buttons = '<button class="friends-dewl-button">Create Dewl</button>
                     <button class="friends-remove-button">Remove</button>';
                 }else{
-                    $buttons = '<button class="friends-dewl-button">Add</button>';
+                    $buttons = '<button class="friends-add-button">Add</button>';
                 }
 
                 $html       .='<div class="friends-info-card">'.$buttons.'<p class="friends-info-name">'.$user->name.'</p>

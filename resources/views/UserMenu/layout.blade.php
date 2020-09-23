@@ -412,11 +412,11 @@
                                                                 <form action="#" method="post">
                                                                     @csrf
                                                                     <input type="text" value="{{$du->id}}" name="id" hidden>
-                                                                <div class="row col-8 offset-2">
-                                                                    <div class="col center-mobil">
+                                                                <div class="row col-6 offset-3">
+                                                                    <div class="col">
                                                                         <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
                                                                     </div>
-                                                                    <div class="col center-mobil">
+                                                                    <div class="col">
                                                                         <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
                                                                     </div>
                                                                 </div>
@@ -437,7 +437,7 @@
                                                                 <form action="#" method="post">
                                                                     @csrf
                                                                     <input type="text" value="{{$du->id}}" name="id" hidden>
-                                                                <div class="row col-8 offset-2">
+                                                                <div class="row col-6 offset-3">
                                                                     <div class="col center-mobil">
                                                                         <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
                                                                     </div>
@@ -476,12 +476,11 @@
                                                     <div class="collapse detail" id="card-current-{{$du->id}}">
                                                         <div class="center-mobil txt-blck all-width">
                                                             <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
-                                                            <div class="card-view-info center-mobil">
-                                                                <br>
-                                                                <form action="#" method="post">
+                                                            <br>
+                                                            <form action="#" method="post" class="card-view-info center-mobil">
                                                                     @csrf
                                                                     <input type="text" value="{{$du->id}}" name="id" hidden>
-                                                                <div class="row col-8 offset-2">
+                                                                <div class="row col-6 offset-3">
                                                                     <div class="col center-mobil">
                                                                         <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
                                                                     </div>
@@ -489,8 +488,7 @@
                                                                         <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
                                                                     </div>
                                                                 </div>
-                                                                </form>
-                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 @else
@@ -524,26 +522,17 @@
                                                                 {{--                                                              End      if the dewl has witness--}}
                                                             @elseif($du->ctl_user_id_challenger==Auth::user()->id and $du->duelstate==4 or $du->duelstate==9)
 {{--                                                            if your the challenger or challenged and the dewl is running shows --}}
-                                                                <form action="#" method="GET">
+                                                                <form action="#" method="GET" class="card-view-info center-mobil">
                                                                     @csrf
-                                                                <div class="card-view-info center-mobil">
                                                                     <h4 class="card-view-cw-title">Choose Winner</h4>
-                                                                    <div class="row">
-                                                                        <div class="col-4 offset-4">
-                                                                            <div class="row">
-
-                                                                                <div class="col center-mobil">
-
-                                                                                    <button class="first-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenged}}/{{$du->ctl_user_id_challenger}}">{{$du->ctlUser1->username}}</button>
-                                                                                </div>
-                                                                                <div class="col center-mobil">
-                                                                                    <button class="second-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenger}}/{{$du->ctl_user_id_challenged}}" >{{$du->ctlUser0->username}}</button>
-                                                                                </div>
-
-                                                                            </div>
+                                                                    <div class="row col-6 offset-3">
+                                                                        <div class="col center-mobil">
+                                                                            <button class="first-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenged}}/{{$du->ctl_user_id_challenger}}">{{$du->ctlUser1->username}}</button>
+                                                                        </div>
+                                                                        <div class="col center-mobil">
+                                                                            <button class="second-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenger}}/{{$du->ctl_user_id_challenged}}" >{{$du->ctlUser0->username}}</button>
                                                                         </div>
                                                                     </div>
-                                                                </div>
                                                                 </form>
                                                             @endif
                                                         </div>

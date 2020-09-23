@@ -709,7 +709,6 @@ body{
     background-color: rgba(0,0,0,0.0);
     height: auto;
     padding-bottom: 15px;
-
 }
 /* ---------------------------------Dewl witness------------------------------------- */
 .card-table-with-witness{
@@ -1279,7 +1278,6 @@ body{
 
     font-size: 11px;
     font-weight: 400;
-
 }
 
 .friends-remove-button{
@@ -1298,6 +1296,25 @@ body{
 
     font-size: 11px;
     font-weight: 400;
+}
+
+.friends-add-button{
+    position: relative;
+    margin-top: 10px;
+
+    margin-left: 165px;
+    width: 70px;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #08a762;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 500;
+
 }
 
 .friends-body hr{
