@@ -298,18 +298,19 @@ class DuelController extends Controller
 
         //Creation of reviews and user_category
         //Winner Review
-        DB::table("Reviews")->insert(['description'=>'The witness was very good','stars'=>4,'created_at'=>date('y-m-d H:i:s'),'rol'=>'Winner','duel'=>$idduel,'user'=>$idwinner]);
+       // DB::table("Reviews")->insert(['description'=>'The witness was very good','stars'=>4,'created_at'=>date('y-m-d H:i:s'),'rol'=>'Winner','duel'=>$idduel,'user'=>$idwinner]);
 
         //Winner Review Count
-        $winner_review_count=DB::table('Reviews')->where('user','=',$idwinner)->avg('stars');
-        DB::table('category_users')->where('user',$idwinner)->update(['avg'=>$winner_review_count]);
+        //$winner_review_count=DB::table('Reviews')->where('user','=',$idwinner)->avg('stars');
+       // DB::table('category_users')->where('user',$idwinner)->update(['avg'=>$winner_review_count]);
 
         //Loser Review
-        DB::table("Reviews")->insert(['description'=>'The witness was very bad','stars'=>2,'created_at'=>date('y-m-d H:i:s'),'rol'=>'Loser','duel'=>$idduel,'user'=>$idlosser]);
+       // DB::table("Reviews")->insert(['description'=>'The witness was very bad','stars'=>2,'created_at'=>date('y-m-d H:i:s'),'rol'=>'Loser','duel'=>$idduel,'user'=>$idlosser]);
         //Loser Review Count
-        $loser_review_count=DB::table('Reviews')->where('user','=',$idlosser)->avg('stars');
-        DB::table('category_users')->where('user',$idlosser)->update(['avg'=>$loser_review_count]);
+        //$loser_review_count=DB::table('Reviews')->where('user','=',$idlosser)->avg('stars');
+        //DB::table('category_users')->where('user',$idlosser)->update(['avg'=>$loser_review_count]);
 
+        return redirect('/dashboard');
 
     }
 

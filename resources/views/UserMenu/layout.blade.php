@@ -434,14 +434,18 @@
                                                             <h4 class="card-view-title">You have been invited to participate on a Dewl.</h4>
                                                             <div class="card-view-info center-mobil">
                                                                 <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
                                                                 <div class="row col-8 offset-2">
                                                                     <div class="col center-mobil">
-                                                                        <button class="first-player-button">Accept</button>
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
                                                                     </div>
                                                                     <div class="col center-mobil">
-                                                                        <button class="second-player-button">Decline</button>
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
                                                                     </div>
                                                                 </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -520,21 +524,27 @@
                                                                 {{--                                                              End      if the dewl has witness--}}
                                                             @elseif($du->ctl_user_id_challenger==Auth::user()->id and $du->duelstate==4 or $du->duelstate==9)
 {{--                                                            if your the challenger or challenged and the dewl is running shows --}}
+                                                                <form action="#" method="GET">
+                                                                    @csrf
                                                                 <div class="card-view-info center-mobil">
                                                                     <h4 class="card-view-cw-title">Choose Winner</h4>
                                                                     <div class="row">
                                                                         <div class="col-4 offset-4">
                                                                             <div class="row">
+
                                                                                 <div class="col center-mobil">
-                                                                                    <button class="first-player-button">{{$du->ctlUser1->username}}</button>
+
+                                                                                    <button class="first-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenged}}/{{$du->ctl_user_id_challenger}}">{{$du->ctlUser1->username}}</button>
                                                                                 </div>
                                                                                 <div class="col center-mobil">
-                                                                                    <button class="second-player-button">{{$du->ctlUser0->username}}</button>
+                                                                                    <button class="second-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenger}}/{{$du->ctl_user_id_challenged}}" >{{$du->ctlUser0->username}}</button>
                                                                                 </div>
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                </form>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -819,7 +829,7 @@
                         </div>
                         <!-- Start Select witness -->
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" data-toggle="collapse" name="witness_validate" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <label class="custom-control-label" for="customCheck1">Select Witness</label>
                         </div>
                         <div class="collapse" id="collapseExample">
