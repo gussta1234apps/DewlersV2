@@ -402,16 +402,86 @@
 
                                                 @if($du->ctl_user_id_challenged == Auth::user()->id and $du->duelstate==1)
 {{--                                                    If your the challenged and havent accepted the  dewl--}}
+<<<<<<< Updated upstream
                                                     Please accept or decline this Dewl.(pending opponent)
 1
                                                 @elseif($du->ctl_user_id_challenged==Auth::user()->id and $du->duelstate==2)
 {{--                                                    if your the challenged and you and the witness havent accepted yet--}}
 2                                                   Please accept or decline this Dewl.(pending oponnent and witness)
+=======
+
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">Please accept or decline this Dewl</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
+                                                                <div class="row col-6 offset-3">
+                                                                    <div class="col">
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-1 current-card-column"><em class="fas fa-clock"></em></div>
+                                                        <div class="col-4 current-card-column"><strong>{{$du->pot}} Stacks</strong></div>
+                                                    </div>
+
+                                                @elseif($du->ctl_user_id_challenged==Auth::user()->id and $du->duelstate==2)
+{{--                                                    if your the challenged and you and the witness havent accepted yet--}}
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">You have been invited to participate on a Dewl.</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
+                                                                <div class="row col-6 offset-3">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+>>>>>>> Stashed changes
                                                 @elseif($du->ctl_user_id_winner==Auth::user()->id and $du->duelstate==7)
 {{--                                                    if your are the winner of te first dewl and looser challenge you to double or nothing--}}
 7                                                   You have been invited to double or nothing(pending opponent)
                                                 @elseif($du->ctl_user_id_winner==Auth::user()->id and $du->duelstate==10)
+<<<<<<< Updated upstream
 10                                                  You have been invited to double or nothing(pending opponent and witness)
+=======
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
+                                                            <br>
+                                                            <form action="#" method="post" class="card-view-info center-mobil">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
+                                                                <div class="row col-6 offset-3">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+>>>>>>> Stashed changes
                                                 @else
                                                     <div class="collapse detail" id="card-current-{{$du->id}}">
                                                         <div class="center-mobil txt-blck all-width">
@@ -427,6 +497,7 @@
                                                                                 <h5 class="witness-info-title">Witness</h5>
                                                                                 <p class="witness-info-text"></p>
                                                                             </div>
+<<<<<<< Updated upstream
                                                                             <div class="col center-mobil">
                                                                                 <h5 class="witness-info-title">Comission</h5>
                                                                                 <p class="witness-info-text">{{$du->witness_comision}}%</p>
@@ -435,6 +506,28 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+=======
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                {{--                                                              End      if the dewl has witness--}}
+                                                            @elseif($du->ctl_user_id_challenger==Auth::user()->id and $du->duelstate==4 or $du->duelstate==9)
+{{--                                                            if your the challenger or challenged and the dewl is running shows --}}
+                                                                <form action="#" method="GET" class="card-view-info center-mobil">
+                                                                    @csrf
+                                                                    <h4 class="card-view-cw-title">Choose Winner</h4>
+                                                                    <div class="row col-6 offset-3">
+                                                                        <div class="col center-mobil">
+                                                                            <button class="first-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenged}}/{{$du->ctl_user_id_challenger}}">{{$du->ctlUser1->username}}</button>
+                                                                        </div>
+                                                                        <div class="col center-mobil">
+                                                                            <button class="second-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenger}}/{{$du->ctl_user_id_challenged}}" >{{$du->ctlUser0->username}}</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            @endif
+>>>>>>> Stashed changes
                                                         </div>
                                                     </div>
                                                 @endif
