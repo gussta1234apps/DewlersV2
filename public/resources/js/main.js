@@ -128,7 +128,7 @@ let togglewinnerChooser=()=>{
 }
 
 let loadPlayerToDewl=(id,name)=>{
-    $('#playerID').val(id);
+    $('#challendged').val(id);
     $('#playerInput').val(name);
     $('#createDewlModalButton').click();
 }
@@ -165,8 +165,15 @@ let prepareToCreateDewl=()=>{
 }
 
 let prepareWitnessToCreateDewl=()=>{
-    
     var id = $('#witnessList option[value="' + $('#witnessInput').val() + '"]').data('id');
     console.log(id);
     $('#witness').val(id);
+}
+
+let createDewlValidations=()=>{
+    if(true){
+        return true;
+    }else{
+        return false;
+    }
 }
