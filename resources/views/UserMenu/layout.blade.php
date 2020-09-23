@@ -409,14 +409,18 @@
                                                             <h4 class="card-view-title">Please accept or decline this Dewl</h4>
                                                             <div class="card-view-info center-mobil">
                                                                 <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
                                                                 <div class="row col-8 offset-2">
                                                                     <div class="col center-mobil">
-                                                                        <button class="first-player-button">Accept</button>
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
                                                                     </div>
                                                                     <div class="col center-mobil">
-                                                                        <button class="second-player-button">Decline</button>
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
                                                                     </div>
                                                                 </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                         <div class="col-1 current-card-column"><em class="fas fa-clock"></em></div>
@@ -449,14 +453,18 @@
                                                             <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
                                                             <div class="card-view-info center-mobil">
                                                                 <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
                                                                 <div class="row col-8 offset-2">
                                                                     <div class="col center-mobil">
-                                                                        <button class="first-player-button">Accept</button>
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
                                                                     </div>
                                                                     <div class="col center-mobil">
-                                                                        <button class="second-player-button">Decline</button>
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -466,14 +474,18 @@
                                                             <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
                                                             <div class="card-view-info center-mobil">
                                                                 <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
                                                                 <div class="row col-8 offset-2">
                                                                     <div class="col center-mobil">
-                                                                        <button class="first-player-button">Accept</button>
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
                                                                     </div>
                                                                     <div class="col center-mobil">
-                                                                        <button class="second-player-button">Decline</button>
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
                                                                     </div>
                                                                 </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
