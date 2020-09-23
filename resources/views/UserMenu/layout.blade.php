@@ -724,12 +724,13 @@
                         <div class="collapse" id="collapseExample">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" style="margin-top: 10px;">Witness</label>
-                                <input type="text" class="form-control" autocomplete="off" list="players" id="exampleInputEmail1" aria-describedby="challenger" placeholder="Enter Witness' Name">
-                                <datalist id="players">
+                                <input type="text" class="form-control" autocomplete="off" list="witnessList" id="witnessInput" onchange="prepareWitnessToCreateDewl();" aria-describedby="challenger" placeholder="Enter Witness' Name">
+                                <datalist id="witnessList" >
                                     @foreach($challengeds as $friend)
-                                        <option value="{{$friend->username}}" data-value="{{$friend->id}}">{{$friend->username}}</option>
+                                        <option value="{{$friend->username}}" data-id="{{$friend->id}}">{{$friend->username}}</option>
                                     @endforeach
                                 </datalist>
+                                <input type="hidden" name="witness" id="witness">
                             </div>
                         </div>
                         <!-- End Select witness -->

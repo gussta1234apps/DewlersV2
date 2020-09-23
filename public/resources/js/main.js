@@ -163,3 +163,10 @@ let prepareToCreateDewl=()=>{
     console.log(id);
     $('#challendged').val(id);
 }
+
+let prepareWitnessToCreateDewl=()=>{
+    
+    var id = $('#witnessList option[value="' + $('#witnessInput').val() + '"]').data('id');
+    console.log(id);
+    $('#witness').val(id);
+}
