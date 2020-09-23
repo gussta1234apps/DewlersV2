@@ -789,7 +789,7 @@
     <div class="modal fade" id="createDewlModal" tabindex="-1" aria-labelledby="addStacksModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/saveduel" method="post">
+                <form action="/saveduel" method="post" onsubmit="return createDewlValidations()">
                 @csrf
                     <div class="modal-header" style="background-color: #23272b; color:white;">
                         <h5 class="modal-title" id="createDewlModalLabel">Create Dewl</h5>
