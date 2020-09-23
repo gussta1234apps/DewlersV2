@@ -26,7 +26,7 @@ $(document).ready(function(){
     $('.r-u-sure .btn').click(function(){
         togglewinnerChooser();
     });
-    
+
     $('.dewler-search-input').keyup(function(){
         if($('.dewler-search-input').val().length>0){
             $('.friends-request').slideUp(300);
@@ -34,7 +34,7 @@ $(document).ready(function(){
         }else{
             $('.friends-request').slideDown(300);
             $('.friends-results').removeClass("full-table");
-  
+
 
         }
     });
@@ -67,6 +67,20 @@ $(document).ready(function(){
     $('.dewl-winrate').click(function(){
         if(showMenuBox){toggleMenu();}else if(showFriendsBox){toggleFriendBox();}
         $('#showFancyBox').click();
+    });
+
+    $('.dewler-search-input').keyup(function(){
+        console.log('typping');
+        var dewlerName = $('.dewler-search-input').val();
+
+        if(dewlerName.length>0){
+            $('#friends-container').slideUp(0);
+            var load = '<div class="spinner-border text-danger" style="padding:5px;" role="status"></div><h5 class="center text-center">Loading</h5>';
+            $('#dewler-search-container').html(load);
+            searchDewler(dewlerName);
+        }else{
+            searchValidation();
+        }
     });
 });
 
@@ -111,5 +125,55 @@ let toggleFriendBox=()=>{
 let togglewinnerChooser=()=>{
     $('.choose-winner').toggle();
     $('.r-u-sure').toggle();
+}
 
+let loadPlayerToDewl=(id,name)=>{
+    $('#challendged').val(id);
+    $('#playerInput').val(name);
+    $('#createDewlModalButton').click();
+}
+
+
+let searchDewler=(dewlerName)=>{
+    $.ajax({
+        url:'/searchDewler/' + dewlerName,
+        method:'GET'
+    }).done(function(data){
+        if(data=="No-users"){
+            data = '<h5 class="center text-center">0 results</h5>';
+        }
+        $('#dewler-search-container').html(data);
+        searchValidation();
+    });
+    
+}
+
+let searchValidation=()=>{
+    if($('.dewler-search-input').val().length==0){
+        //setTimeout(function(){ FUNCTION }, 0);
+        
+        $('#friends-container').slideDown(300);
+        $('#dewler-search-container').empty();
+        console.log('empty');
+    }
+}
+
+let prepareToCreateDewl=()=>{
+    var id = $('#players option[value="' + $('#playerInput').val() + '"]').data('id');
+    console.log(id);
+    $('#challendged').val(id);
+}
+
+let prepareWitnessToCreateDewl=()=>{
+    var id = $('#witnessList option[value="' + $('#witnessInput').val() + '"]').data('id');
+    console.log(id);
+    $('#witness').val(id);
+}
+
+let createDewlValidations=()=>{
+    if(true){
+        return true;
+    }else{
+        return false;
+    }
 }

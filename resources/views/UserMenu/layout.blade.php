@@ -105,107 +105,26 @@
             </div>
         </div>
         <div class="friends-body">
-            <div class="friends-request-notification">
-                <div class="request-notification-circle">
-                    <p>5</p>
+            <div id="request-notifcation-container">
+                <div class="friends-request-notification">
+                    <div class="request-notification-circle">
+                        <p>5</p>
+                    </div>
+                    <p class="request-notification-title">Pending Requests</p>
                 </div>
-                <p class="request-notification-title">Pending Requests</p>
             </div>
             <hr/>
-            <h5>Your Friends</h5>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
+            <div id="dewler-search-container" class="center-load"></div>
+            <div id="friends-container" >
+                <h5>Your Friends</h5>
+                @foreach($challengeds as $friend)
+                    <div class="friends-info-card">
+                        <button class="friends-dewl-button" onclick="loadPlayerToDewl({{$friend->id}},'{{$friend->username}}')">Create Dewl</button>
+                        <button class="friends-remove-button">Remove</button>
+                        <p class="friends-info-name">{{$friend->username}}</p>
+                    </div>
+                @endforeach
             </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-dewl-button">Create Dewl</button>
-                <button class="friends-remove-button">Remove</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
-
-
-
         </div>
         <div class="request-body">
             <button class="return-to-friends-body"><em class="fas fa-chevron-left"></em>&nbsp;Return</button>
@@ -316,6 +235,8 @@
                     <div class=winrate-percent style="width: 60%"></div>
                     <h4>60% hype rating</h4>
                 </div>
+
+                <h6 CLASS="wins-label">10 WINS</h6>
             </div>
 
 
@@ -330,24 +251,45 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-win" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="dewl-h">
-                            <table class="table table-bordered table-striped">
-                                <thead style="color: #08ADD5;">
+                            <table class="table table-borderless">
+                                <!--thead style="color: #08ADD5;">
                                 <tr>
                                     <th>Opponent</th>
                                     <th>Stacks</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
-                                </thead>
+                                </--thead-->
                                 <tbody>
-                                @foreach($duels as $du)
-                                <tr>
-                                    <td>{{$du->id}}</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr>
-                                 @endforeach
+                                @foreach($r_winner as $win)
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="card-table-win-dewl">
+                                                <div class="short-desc">
+                                                    <div class="row ">
+                                                        <div class="col-md-4 current-card-column"><strong>{{$win->ctlUser1->username}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$win->pot}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$win->startDate}}</strong></div>
+                                                        <div class="col-md-2 current-card-column">
+                                                            <button class="win-card-info-button" data-toggle="collapse" href="#win-card-{{$win->id}}" role="button" aria-expanded="false" aria-controls="win-card-{{$win->id}}">
+                                                                More info
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="collapse detail" id="win-card-{{$win->id}}">
+                                                    <div class="center-mobil txt-blck all-width">
+                                                        <h4 class="card-view-title">{{$win->tittle}}</h4>
+                                                        <p class="card-view-description">{{$win->Description}}</p>
+                                                        <p class="card-view-date">Start Date: {{$win->startDate}}</p>
+                                                        <p class="card-view-status">Status: {{$win->duelstatus->description}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
 
                                 </tbody>
                             </table>
@@ -355,64 +297,46 @@
                     </div>
                     <div class="tab-pane fade" id="nav-loss" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="dewl-h">
-                            <table class="table table-bordered table-striped">
-                                <thead style="color: #CE3250;">
+                            <table class="table table-borderless">
+                                <!--thead style="color: #CE3250;">
                                 <tr>
                                     <th>Opponent</th>
                                     <th>Stacks</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
-                                </thead>
+                                </thead-->
                                 <tbody>
-                                <tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr>
-                                <tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr>
-                                <tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr><tr>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                    <td>Data</td>
-                                </tr>
+                                @foreach($r_loser as $loss)
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="card-table-loss-dewl">
+                                                <div class="short-desc">
+                                                    <div class="row ">
+                                                        <div class="col-md-4 current-card-column"><strong>{{$loss->ctlUser1->username}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$win->pot}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$win->startDate}}</strong></div>
+                                                        <div class="col-md-2 current-card-column">
+                                                            <button class="loss-card-info-button" data-toggle="collapse" href="#loss-card-{{$loss->id}}" role="button" aria-expanded="false" aria-controls="loss-card-{{$loss->id}}">
+                                                                More info
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="collapse detail" id="loss-card-{{$loss->id}}">
+                                                    <div class="center-mobil txt-blck all-width">
+                                                        <h4 class="card-view-title">{{$loss->tittle}}</h4>
+                                                        <p class="card-view-description">{{$loss->Description}}</p>
+                                                        <p class="card-view-date">Start Date: {{$loss->startDate}}</p>
+                                                        <p class="card-view-status">Status: {{$loss->duelstatus->description}}</p>
+                                                        <button class="loss-button">Double or Nothing</button>
+                                                        <button class="loss-button">Review</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -434,6 +358,8 @@
                     <div class=winrate-percent style="width: 60%"></div>
                     <h4>60% hype rating</h4>
                 </div>
+
+                <h6 CLASS="wins-label">10 WINS</h6>
             </div>
             <div class="table-dewl" >
                 <nav>
@@ -456,27 +382,178 @@
                                 @foreach($duels as $du)
                                     <tr>
                                         <td colspan="4">
-                                            <div class="card-table">
+                                            <div  @if($du->ctl_user_id_witness) class="card-table-with-witness" @else class="card-table-without-witness" @endif>
                                                 <div class="short-desc">
-                                                    <div class="row"  data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
-                                                        <div class="col-md-3 col-4 current-card-column">{{$du->ctlUser1->username}}</div>
-                                                        <div class="col-md-3 col-4 current-card-column">DATA</div>
-                                                        <div class="col-md-6 col-4 current-card-column">DATA</div>
+                                                    <div class="row"  data-toggle="collapse" href="#card-current-{{$du->id}}" role="button" aria-expanded="false" aria-controls="card-current-{{$du->id}}">
+                                                        <div class="col-2 current-card-column"><h4 class="vs-text-without-witness">VS</h4></div>
+                                                        <div class="col-4 current-card-column">
+                                                            <strong>
+                                                                @if($du->ctl_user_id_challenger == @Auth::id())
+                                                                    {{$du->ctlUser1->username}}
+                                                                @else
+                                                                    {{$du->ctlUser0->username}}
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-1 current-card-column"><em class="fas fa-clock"></em></div>
+                                                        <div class="col-4 current-card-column"><strong>{{$du->pot}} Stacks</strong></div>
                                                     </div>
                                                 </div>
-                                                <div class="collapse detail" id="collapseExample1">
-                                                    <div class="center-mobil txt-blck">
-                                                        Detail data<br>
-                                                        Detail data<br>
-                                                        Detail data<br>
-                                                        Detail data<br>
-                                                        Detail data
+{{--                                               Variations stars here--}}
+
+                                                @if($du->ctl_user_id_challenged == Auth::user()->id and $du->duelstate==1)
+{{--                                                    If your the challenged and havent accepted the  dewl--}}
+
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">Please accept or decline this Dewl</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
+                                                                <div class="row col-8 offset-2">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-1 current-card-column"><em class="fas fa-clock"></em></div>
+                                                        <div class="col-4 current-card-column"><strong>{{$du->pot}} Stacks</strong></div>
                                                     </div>
-                                                </div>
+
+                                                @elseif($du->ctl_user_id_challenged==Auth::user()->id and $du->duelstate==2)
+{{--                                                    if your the challenged and you and the witness havent accepted yet--}}
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">You have been invited to participate on a Dewl.</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
+                                                                <div class="row col-8 offset-2">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @elseif($du->ctl_user_id_winner==Auth::user()->id and $du->duelstate==7)
+{{--                                                    if your are the winner of te first dewl and looser challenge you to double or nothing--}}
+
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
+                                                                <div class="row col-8 offset-2">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @elseif($du->ctl_user_id_winner==Auth::user()->id and $du->duelstate==10)
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
+                                                            <div class="card-view-info center-mobil">
+                                                                <br>
+                                                                <form action="#" method="post">
+                                                                    @csrf
+                                                                    <input type="text" value="{{$du->id}}" name="id" hidden>
+                                                                <div class="row col-8 offset-2">
+                                                                    <div class="col center-mobil">
+                                                                        <button class="first-player-button" id="acept{{$du->id}}" type="submit" formaction="/acept_duel">Accept</button>
+                                                                    </div>
+                                                                    <div class="col center-mobil">
+                                                                        <button class="second-player-button" id="refuse{{$du->id}}" type="submit" formaction="/delete_duel">Decline</button>
+                                                                    </div>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="collapse detail" id="card-current-{{$du->id}}">
+                                                        <div class="center-mobil txt-blck all-width">
+                                                            <h4 class="card-view-title">{{$du->tittle}}</h4>
+                                                            <p class="card-view-description">{{$du->Description}}</p>
+                                                            <p class="card-view-date">Start Date: {{$du->startDate}}</p>
+                                                            <p class="card-view-status">Status: {{$du->duelstatus->description}}</p>
+                                                            @if($du->ctl_user_id_witness or $du->ctl_user_id_challenged==Auth::user()->id)
+{{--                                                            If your the challenger or challenged--}}
+                                                                @if($du->ctl_user_id_witness)
+{{--                                                                    if the dewl has witness--}}
+                                                                <div class="card-view-info  center-mobil">
+                                                                    <div class="row">
+                                                                        <div class="col-6 offset-3">
+                                                                            <div class="row">
+                                                                                <div class="col center-mobil">
+                                                                                    <h5 class="witness-info-title">Witness</h5>
+                                                                                    <p class="witness-info-text">{{$du->ctlUser2->username}}</p>
+                                                                                </div>
+                                                                                <div class="col center-mobil">
+                                                                                    <h5 class="witness-info-title">Comission</h5>
+                                                                                    <p class="witness-info-text">{{$du->witness_comision}}%</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                                {{--                                                              End      if the dewl has witness--}}
+                                                            @elseif($du->ctl_user_id_challenger==Auth::user()->id and $du->duelstate==4 or $du->duelstate==9)
+{{--                                                            if your the challenger or challenged and the dewl is running shows --}}
+                                                                <form action="#" method="GET">
+                                                                    @csrf
+                                                                <div class="card-view-info center-mobil">
+                                                                    <h4 class="card-view-cw-title">Choose Winner</h4>
+                                                                    <div class="row">
+                                                                        <div class="col-4 offset-4">
+                                                                            <div class="row">
+
+                                                                                <div class="col center-mobil">
+
+                                                                                    <button class="first-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenged}}/{{$du->ctl_user_id_challenger}}">{{$du->ctlUser1->username}}</button>
+                                                                                </div>
+                                                                                <div class="col center-mobil">
+                                                                                    <button class="second-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenger}}/{{$du->ctl_user_id_challenged}}" >{{$du->ctlUser0->username}}</button>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                </form>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                @endif
+{{--                                                Variations ends here--}}
                                             </div>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -712,7 +789,8 @@
     <div class="modal fade" id="createDewlModal" tabindex="-1" aria-labelledby="addStacksModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="">
+                <form action="/saveduel" method="post" onsubmit="return createDewlValidations()">
+                @csrf
                     <div class="modal-header" style="background-color: #23272b; color:white;">
                         <h5 class="modal-title" id="createDewlModalLabel">Create Dewl</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -720,9 +798,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
+
+                        <input type="hidden" id="playerID">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Title</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="tittle" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
@@ -738,43 +818,40 @@
                         <small id="emailHelp" class="form-text text-muted">10% of this amount goes to Dewlers</small>
                         <div class="form-group">
                             <label for="exampleInputEmail1" style="margin-top: 10px;">VS</label>
-                            <input type="text" class="form-control" autocomplete="off" list="players" id="exampleInputEmail1" aria-describedby="challenger" placeholder="Enter Dewler's Name">
+                            <input type="text" class="form-control" autocomplete="off" list="players" onchange="prepareToCreateDewl();" id="playerInput" aria-describedby="challenger" placeholder="Enter Dewler's Name">
                             <datalist id="players">
-                                <option value="Ariel Zelaya">
-                                <option value="Gustavo Gomez">
-                                <option value="Diego Gonzales">
-                                <option value="Marvin Vigin">
-                                <option value="Alex Mendez">
-                                <option value="Sandy Florez"></option>
+                                @foreach($challengeds as $friend)
+                                    <option value="{{$friend->username}}" data-id="{{$friend->id}}">{{$friend->username}}</option>
+                                @endforeach
                             </datalist>
+
+                            <input type="hidden" name="challendged" id="challendged">
                         </div>
                         <!-- Start Select witness -->
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" data-toggle="collapse" name="witness_validate" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <label class="custom-control-label" for="customCheck1">Select Witness</label>
                         </div>
                         <div class="collapse" id="collapseExample">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" style="margin-top: 10px;">Witness</label>
-                                <input type="text" class="form-control" autocomplete="off" list="players" id="exampleInputEmail1" aria-describedby="challenger" placeholder="Enter Witness' Name">
-                                <datalist id="players">
-                                    <option value="Ariel Zelaya">
-                                    <option value="Gustavo Gomez">
-                                    <option value="Diego Gonzales">
-                                    <option value="Marvin Vigin">
-                                    <option value="Alex Mendez">
-                                    <option value="Sandy Florez"></option>
+                                <input type="text" class="form-control" autocomplete="off" list="witnessList" id="witnessInput" onchange="prepareWitnessToCreateDewl();" aria-describedby="challenger" placeholder="Enter Witness' Name">
+                                <datalist id="witnessList" >
+                                    @foreach($challengeds as $friend)
+                                        <option value="{{$friend->username}}" data-id="{{$friend->id}}">{{$friend->username}}</option>
+                                    @endforeach
                                 </datalist>
+                                <input type="hidden" name="witness" id="witness">
                             </div>
                         </div>
                         <!-- End Select witness -->
                         <div class="form-group" style="margin-bottom: 0px !important;">
                             <label for="exampleInputEmail1" style="margin-top:10px;">Schedule Dewl</label>
-                            <input type="text" class="form-control" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date">
+                            <input type="text" class="form-control" name="startdate" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date">
                         </div>
                         <small id="emailHelp" class="form-text text-muted">Dewls expire after 24 hours of the scheduled date.</small>
                         <div class="text-center" style="margin-top: 25px;">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">DEWL</button>
+                            <input type="submit" class="btn btn-success" value="DEWL"></button>
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>

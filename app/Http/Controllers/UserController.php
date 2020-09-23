@@ -278,8 +278,46 @@ class UserController extends Controller
             $flag=1;
             return view('UserMenu.search')->with("selected",$user_requested)->with('flag',$flag);
         }
-
     }
+
+    //- SEARCH DEWLER FUNCTION
+    public function searchDewler($dewlerName){
+        $name = $dewlerName;
+        $user_requested= User::where('name','LIKE','%'.$name.'%')->orwhere('email','LIKE','%'.$name.'%')->get();
+
+        //- get friends
+        $id_auth=Auth::user();
+        $me_user=ctl_users::where('id',$id_auth->id)->first();
+        $friends=$me_user->getFriends();
+
+        if($user_requested->isNotempty()){
+            $html = "<h5>Dewler Search Results</h5>";
+            foreach($user_requested as $user)
+            {
+                $isFriend   = false;
+                foreach($friends as $friend){
+                    if($user->id == $friend->id){$isFriend=true;}
+                }
+
+                $buttons = "";
+
+                if($isFriend){
+                    $buttons = '<button class="friends-dewl-button">Create Dewl</button>
+                    <button class="friends-remove-button">Remove</button>';
+                }else{
+                    $buttons = '<button class="friends-dewl-button">Add</button>';
+                }
+
+                $html       .='<div class="friends-info-card">'.$buttons.'<p class="friends-info-name">'.$user->name.'</p>
+                </div>';
+            }
+
+            echo $html;
+        }else{
+            echo "No-users";
+        }
+    }
+    //- END OF SEARCH DEWLER FUNCTION
     
         public function get_review(Request $request){
         $user = Auth::user();

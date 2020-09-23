@@ -81,17 +81,18 @@ class DuelController extends Controller
         //[2] Nombre del retado
         //[3] Titulo del dewl
 
+        /*
         Notification::route('mail', $email_challenged->email)
             ->notify(new StatusUpdate($arr)); //EMAIL FOR CHALLENGED
-
+ */
 
         if($witness_validate!="on"){
             $user_witness=null;
             $duel_state=1;
         }else{
             $arr2=[$user->name,1,$email_witness->name,$tittle]; //DATA FOR EMAIL TEMPLATE WITNESS
-            Notification::route('mail', $email_witness->email)
-                ->notify(new StatusUpdate($arr2)); //EMAIL FOR WITNESS
+           /* Notification::route('mail', $email_witness->email)
+                ->notify(new StatusUpdate($arr2)); //EMAIL FOR WITNESS*/
         }
 
         DB::table('duels')->insert(["tittle"=>$tittle,
@@ -256,7 +257,7 @@ class DuelController extends Controller
             $pot_witness= $pot*$comision; // se multiplica el dinero que viene poor la comision que esta
 
             $pot_winner= $pot*$winner_double; // se multiplica la cantidad total del pot por el 85%
-            
+
             if($duels_pot_data->duelstate==7){
 
                 DB::table('duels')->where('id', $duel_id)->update(['winner_review'=>1, 'loser_review'=>1]);
@@ -297,18 +298,19 @@ class DuelController extends Controller
 
         //Creation of reviews and user_category
         //Winner Review
-        DB::table("Reviews")->insert(['description'=>'The witness was very good','stars'=>4,'created_at'=>date('y-m-d H:i:s'),'rol'=>'Winner','duel'=>$idduel,'user'=>$idwinner]);
+       // DB::table("Reviews")->insert(['description'=>'The witness was very good','stars'=>4,'created_at'=>date('y-m-d H:i:s'),'rol'=>'Winner','duel'=>$idduel,'user'=>$idwinner]);
 
         //Winner Review Count
-        $winner_review_count=DB::table('Reviews')->where('user','=',$idwinner)->avg('stars');
-        DB::table('category_users')->where('user',$idwinner)->update(['avg'=>$winner_review_count]);
+        //$winner_review_count=DB::table('Reviews')->where('user','=',$idwinner)->avg('stars');
+       // DB::table('category_users')->where('user',$idwinner)->update(['avg'=>$winner_review_count]);
 
         //Loser Review
-        DB::table("Reviews")->insert(['description'=>'The witness was very bad','stars'=>2,'created_at'=>date('y-m-d H:i:s'),'rol'=>'Loser','duel'=>$idduel,'user'=>$idlosser]);
+       // DB::table("Reviews")->insert(['description'=>'The witness was very bad','stars'=>2,'created_at'=>date('y-m-d H:i:s'),'rol'=>'Loser','duel'=>$idduel,'user'=>$idlosser]);
         //Loser Review Count
-        $loser_review_count=DB::table('Reviews')->where('user','=',$idlosser)->avg('stars');
-        DB::table('category_users')->where('user',$idlosser)->update(['avg'=>$loser_review_count]);
+        //$loser_review_count=DB::table('Reviews')->where('user','=',$idlosser)->avg('stars');
+        //DB::table('category_users')->where('user',$idlosser)->update(['avg'=>$loser_review_count]);
 
+        return redirect('/dashboard');
 
     }
 
@@ -343,13 +345,13 @@ class DuelController extends Controller
         return redirect('/dashboard');
 
     }
-    
+
         public function delete_dewl(Request $request){
 
         $id_duel=$request->post('id');
 
         $to_delete= duels::find($id_duel);
-        
+
         $to_delete_don= double_or_nothing::where('duel_id',$id_duel)->get();
 
         if ($to_delete){
@@ -361,8 +363,8 @@ class DuelController extends Controller
 
         }
 
-        
-        
+
+
         $to_chellenger=User::find($to_delete->ctl_user_id_challenger);  //retador
         $to_chellendeg=User::find($to_delete->ctl_user_id_challenged); //desafiado
 
