@@ -257,10 +257,10 @@ class UserController extends Controller
         $me_user->befriend($recipient);
 
         $arr5=[$me_user->username]; //DATA FOR EMAIL TEMPLATE WINNER
-        Notification::route('mail', $frien_email->email)
-            ->notify(new send_req_friend($arr5)); //EMAIL FOR WINNER
+        //Notification::route('mail', $frien_email->email)
+        //    ->notify(new send_req_friend($arr5)); //EMAIL FOR WINNER
 
-        return redirect('/myaccount');
+        return redirect('/dashboard');
 //        return view('test')->with('like',$container);/
 
     }
