@@ -156,7 +156,7 @@
 {{--                        <div class="btn btn-primary" onclick="accept_request()">Acept</div>--}}
 {{--                    </div>--}}
 {{--                    <div class="col-md-4 fb_btn">--}}
-{{--                        <div class="btn btn-danger" onclick="refuse_request({{$friend->sender->id}})">Decline</div>--}}
+{{--                        <div cla    ss="btn btn-danger" onclick="refuse_request({{$friend->sender->id}})">Decline</div>--}}
 {{--                    </div>--}}
 {{--                </div>--}}
 {{--                <script type="application/javascript">--}}
@@ -653,13 +653,20 @@
                                             <div class="collapse detail" id="witness-collapse-{{$witness->id}}">
                                                 <div class="center-mobil text-center chwin-content">
                                 @if($witness->duelstate==2 or $witness->duelstate==3 or $witness->duelstate==10 or $witness->duelstate==11)
-                                <h4 class="card-view-title" style="color:black;">Please select your Witness Percentage.</h4>
+                                <h4 class="card-view-title" style="color:black;font-size:18px;">
+                                You have been invited as a Witness to this Dewl. <br>
+                                Please select your Witness Percentage.
+                                </h4>
                                 <form action="#" method="post" class="choose-winner">
                                     @csrf
                                     @if($witness->ctlUser1->review_avg<2.5 )
-                                    <p style="border: 1px solid #761b18; background-color: #761b18"> {{$witness->ctlUser1->username}} is a sore loser</p>
+                                    <p style="border: 0px solid #761b18; color: #761b18;border-radius:5px;margin:5px;font-size:15px;font-weight:800;padding:3px;">
+                                        {{$witness->ctlUser1->username}} is a sore loser
+                                    </p>
                                     @elseif($witness->ctlUser0->review_avg<2.5)
-                                    <p style="border: 1px solid #761b18; background-color: #761b18"> {{$witness->ctlUser0->username}} is a sore loser</p>
+                                    <p style="border: 0px solid #761b18; color: #761b18;border-radius:5px;margin:5px;font-size:15px;font-weight:800;padding:3px;">
+                                        {{$witness->ctlUser0->username}} is a sore loser
+                                    </p>
                                     @endif
 
                                     <div class="row ">
