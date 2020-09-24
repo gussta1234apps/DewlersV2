@@ -92,7 +92,7 @@
                                                             case "2":
                                                                 // code block
                                                                 icono{{$du->id}}.innerHTML='<img src="/public/img/Dewlers_iconos_Lo-P2-Wi.svg" style="width: 33px; high: 33px;" alt="302">';
-                                                                
+
                                                                 break;
                                                             case "3":
                                                                 // code block
@@ -217,7 +217,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        
+
                                         @elseif($du->ctl_user_id_winner==Auth::user()->id and $du->duelstate==7)
 
                                         <div class="collapse collapse-pending-dewl" data-toggle="tooltip" title="Refresh to see any updates" id="{{$du->id}}" style="margin-top: -8px;margin-bottom: 8px;border-top: 1px solid #ffffff;">
@@ -254,7 +254,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        
+
                                                                             @elseif($du->ctl_user_id_winner==Auth::user()->id and $du->duelstate==10)
 
                                         <div class="collapse collapse-pending-dewl" data-toggle="tooltip" title="Refresh to see any updates" id="{{$du->id}}" style="margin-top: -8px;margin-bottom: 8px;border-top: 1px solid #ffffff;">
@@ -317,7 +317,7 @@
                                                 @endif
 
                                     </div>
-                                   
+
                                     @elseif($du->ctl_user_id_challenger==Auth::user()->id and $du->duelstate==4 or $du->duelstate==9)
                                         <button class="btn btn-outline-warning" type="button" data-toggle="collapse" onclick="hideinfo{{$du->id}}()"  aria-expanded="false" aria-controls="collapseExampledewlwinner">
                                             Choose winner
@@ -527,8 +527,8 @@
                                                         <p class="pending-dewl-description">{{$loser->Description}} </p>
                                                         <p class="pending-dewl-info">Start date: {{$loser->startDate }}</p>
                                                         <p class="pending-dewl-info">Stacks: {{$loser->pot }}</p>
-                                                        
-                                                                    
+
+
                                                         @if($loser->loser_review==0 and $loser->don==1)
 
                                                             <a href="/public/double_or_nothing/{{$loser->id}}" class="btn btn-dark"><p class="pending-dewl-info">Double or nothing</p></a>
@@ -601,7 +601,7 @@
                                                                                 <br> Please select your Witness Percentage.</p></div>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                  @if($wit->ctlUser1->review_avg<2.5 )
 
                                                                     <p style="border: 1px solid #761b18; background-color: #761b18"> {{$wit->ctlUser1->username}} is a sore loser</p>
@@ -671,7 +671,7 @@
                                                     <div class="col-md-2 text-dewl-green">{{$wit->pot}}</div>
                                                     <div class="col-md-1 text-dewl-gold" style="padding-left: 5px !important;">{{$wit->witness_comision}}%</div>
                                                 </div>
-                                                
+
                                                 @if($wit->duelstate==4 or $wit->duelstate==9)
 
                                                 {{--                                    Choose winner collapse--}}

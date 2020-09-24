@@ -103,8 +103,12 @@ class IndexController extends Controller
 
         $friends=$me_user->getFriends();
 
+        //Friends request
+        $ctl_log_user= ctl_users::where('id','=',$id_auth->id)->first();
+
+        $resquet_pending= $ctl_log_user->getFriendRequests();
         //return view('UserMenu.index')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness);
-        return view('UserMenu.layout')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness);
+        return view('UserMenu.layout')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness)->with('pending_f_req',$resquet_pending);
 
     }
 

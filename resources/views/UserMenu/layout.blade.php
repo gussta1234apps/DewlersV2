@@ -108,7 +108,9 @@
             <div id="request-notifcation-container">
                 <div class="friends-request-notification">
                     <div class="request-notification-circle">
-                        <p>5</p>
+                        <p> @php
+                                echo count($pending_f_req);
+                            @endphp</p>
                     </div>
                     <p class="request-notification-title">Pending Requests</p>
                 </div>
@@ -129,16 +131,35 @@
         <div class="request-body">
             <button class="return-to-friends-body"><em class="fas fa-chevron-left"></em>&nbsp;Return</button>
             <h5>Pending Requests</h5>
-            <div class="friends-info-card">
-                <button class="friends-accept-button">Accept</button>
-                <button class="friends-remove-button">Decline</button>
-                <p class="friends-info-name">Ariel Zelaya</p>
-            </div>
-            <div class="friends-info-card">
-                <button class="friends-accept-button">Accept</button>
-                <button class="friends-remove-button">Decline</button>
-                <p class="friends-info-name">Diego Gonzales</p>
-            </div>
+{{--            <div class="friends-info-card">--}}
+{{--                <button class="friends-accept-button">Accept</button>--}}
+{{--                <button class="friends-remove-button">Decline</button>--}}
+{{--                <p class="friends-info-name">Ariel Zelaya</p>--}}
+{{--            </div>--}}
+{{--            <div class="friends-info-card">--}}
+{{--                <button class="friends-accept-button">Accept</button>--}}
+{{--                <button class="friends-remove-button">Decline</button>--}}
+{{--                <p class="friends-info-name">Diego Gonzales</p>--}}
+{{--            </div>--}}
+
+            @foreach($pending_f_req as $friend)
+                <div class="friends-info-card">
+                    <button class="friends-accept-button">Accept</button>
+                    <button class="friends-remove-button">Decline</button>
+                    <p class="friends-info-name"> {{$friend->sender->username}}</p>
+                </div>
+
+{{--                      --}}
+{{--                        <div class="btn btn-primary" onclick="accept_request()">Acept</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-4 fb_btn">--}}
+{{--                        <div class="btn btn-danger" onclick="refuse_request({{$friend->sender->id}})">Decline</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <script type="application/javascript">--}}
+
+{{--                </script>--}}
+            @endforeach
         </div>
         <!--div class="friends-top">
             <h4 class="dewler-search-label">Dewler Seacrh</h4>

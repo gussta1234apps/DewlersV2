@@ -291,7 +291,8 @@ class UserController extends Controller
         $friends=$me_user->getFriends();
 
         if($user_requested->isNotempty()){
-            $html = "<h5>Dewler Search Results</h5>";
+
+            $html = '<h5>Dewler Search Results</h5>';
             foreach($user_requested as $user)
             {
                 $isFriend   = false;
@@ -308,8 +309,8 @@ class UserController extends Controller
                     $buttons = '<button class="friends-add-button">Add</button>';
                 }
 
-                $html       .='<div class="friends-info-card">'.$buttons.'<p class="friends-info-name">'.$user->name.'</p>
-                </div>';
+                $html       .='<div class="friends-info-card"><form action="/send_f_request"> <input type="text" name="user_id" id="id_user" value="'.$user->id.'" hidden>'.$buttons.'<p class="friends-info-name">'.$user->name.'</p>
+               </form></div>';
             }
 
             echo $html;
@@ -318,7 +319,7 @@ class UserController extends Controller
         }
     }
     //- END OF SEARCH DEWLER FUNCTION
-    
+
         public function get_review(Request $request){
         $user = Auth::user();
         $review= new Reviews;
@@ -327,15 +328,15 @@ class UserController extends Controller
         $review->rol= $request->input('id');
         $review->user = $user->id;
         $review->save();
-        
+
         $average = DB::table('reviews')->where('user',$user->id)->groupBy('user')->avg('stars');
-        
+
         DB::table('ctl_users')->where('id', $user->id)->update(['review_avg'=>$average]);
-        
+
         $duelid=$request->input('id');
 
         $du=duels::where('id',$duelid)->first();
-        
+
 if($user->id==$du->ctl_user_id_winner){
 
             DB::table('duels')
@@ -347,7 +348,7 @@ if($user->id==$du->ctl_user_id_winner){
                 ->where('id','=',$du->id)
                 ->update(['loser_review'=>1]);
         }
-        
+
         return redirect('/dashboard');
     }
 
