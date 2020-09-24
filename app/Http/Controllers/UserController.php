@@ -194,7 +194,7 @@ class UserController extends Controller
         $arr5=[$duels_data->tittle,6,$email_challenger->name, $email_witness->name]; //DATA FOR EMAIL TEMPLATE WINNER
         //Notification::route('mail', $email_challenger->email)
           //  ->notify(new StatusUpdate($arr5)); //EMAIL FOR WINNER
-            
+
         $arr5=[$duels_data->tittle,6,$email_challenger->name, $email_witness->name]; //DATA FOR EMAIL TEMPLATE WINNER
        // Notification::route('mail', $email_challenged->email)
             //->notify(new StatusUpdate($arr5)); //EMAIL FOR WINNER
@@ -296,6 +296,7 @@ class UserController extends Controller
         if($user_requested->isNotempty()){
 
             $html = '<h5>Dewler Search Results</h5>';
+            $collections = '';
             foreach($user_requested as $user)
             {
                 $isFriend   = false;
@@ -306,6 +307,8 @@ class UserController extends Controller
 
                 foreach($resquet_pending as $pending){
                     if($user->id == $pending->sender->id){$isPending=true;}
+                    $collections += '<h6>user->id'.$user->id.'pending->sender->id'.$pending->sender->id.'</h6>';
+
                 }
 
                 $buttons = "";

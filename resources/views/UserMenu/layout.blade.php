@@ -146,8 +146,8 @@
                 <div class="friends-info-card">
                 <form action="#" method="get">
                 @csrf
-                    <button class="friends-accept-button" type="submit" formaction="/acept_friend/{{$friend->id}}">Accept</button>
-                    <button class="friends-remove-button" type="submit" formaction="/refuse_friend/{{$friend->id}}">Decline</button>
+                    <button class="friends-accept-button" type="submit" formaction="/acept_friend/{{$friend->sender->id}}">Accept</button>
+                    <button class="friends-remove-button" type="submit" formaction="/refuse_friend/{{$friend->sender->id}}">Decline</button>
                     <p class="friends-info-name"> {{$friend->sender->username}}</p>
                 </form>
                 </div>
@@ -637,7 +637,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                
+
                                 @foreach($dash_witness as $witness)
                                 <tr>
                                     <td colspan="4">
@@ -748,7 +748,7 @@
                                     </td>
                                 </tr-->
                                 @endforeach
-                                
+
 
                                 <!--tr>
                                     <td colspan="4">
