@@ -144,9 +144,12 @@
 
             @foreach($pending_f_req as $friend)
                 <div class="friends-info-card">
-                    <button class="friends-accept-button">Accept</button>
-                    <button class="friends-remove-button">Decline</button>
+                <form action="#" method="get">
+                @csrf
+                    <button class="friends-accept-button" type="submit" formaction="/acept_friend/{{$friend->id}}">Accept</button>
+                    <button class="friends-remove-button" type="submit" formaction="/refuse_friend/{{$friend->id}}">Decline</button>
                     <p class="friends-info-name"> {{$friend->sender->username}}</p>
+                </form>
                 </div>
 
 {{--                      --}}
