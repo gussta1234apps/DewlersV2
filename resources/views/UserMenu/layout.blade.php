@@ -613,26 +613,81 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                
+                                @foreach($dash_witness as $witness)
                                 <tr>
                                     <td colspan="4">
                                         <div class="card-table">
                                             <div class="short-desc">
-                                                <div class="row"  data-toggle="collapse" href="#witness-collapse-1" role="button" aria-expanded="false" aria-controls="witness-collapse-1">
-                                                    <div class="col-md-5 current-card-column"><strong>Ariel VS Alex</strong></div>
-                                                    <div class="col-md-3 col-7 current-card-column"><strong>2500 stacks</strong></div>
+                                                <div class="row"  data-toggle="collapse" href="#witness-collapse-{{$witness->id}}" role="button" aria-expanded="false" aria-controls="witness-collapse-{{$witness->id}}">
+                                                    <div class="col-md-5 current-card-column"><strong>{{$witness->ctlUser0->username}} VS {{$witness->ctlUser1->username}}</strong></div>
+                                                    <div class="col-md-3 col-7 current-card-column"><strong>{{$witness->pot}} stacks</strong></div>
                                                     <div class="col-md-2 col-3 current-card-column"><strong>DATA</strong></div>
                                                     <div class="col-md-1 col-2 current-card-column"><i class="fas fa-exclamation notification-icon"></i></div>
                                                 </div>
                                             </div>
-                                            <div class="collapse detail" id="witness-collapse-1">
+                                            <div class="collapse detail" id="witness-collapse-{{$witness->id}}">
                                                 <div class="center-mobil text-center chwin-content">
-                                                    <div class="choose-winner ">
-                                                        <h4>Choose the winner</h4>
+                                @if($witness->duelstate==2 or $witness->duelstate==3 or $witness->duelstate==10 or $witness->duelstate==11)
+                                <h4 class="card-view-title" style="color:black;">Please select your Witness Percentage.</h4>
+                                <form action="#" method="post" class="choose-winner">
+                                    @csrf
+                                    @if($witness->ctlUser1->review_avg<2.5 )
+                                    <p style="border: 1px solid #761b18; background-color: #761b18"> {{$witness->ctlUser1->username}} is a sore loser</p>
+                                    @elseif($witness->ctlUser0->review_avg<2.5)
+                                    <p style="border: 1px solid #761b18; background-color: #761b18"> {{$witness->ctlUser0->username}} is a sore loser</p>
+                                    @endif
+
+                                    <div class="row ">
+                                        {{--<div class="row text-center">--}}
+                                        <div class=" col-lg-12 ">
+                                            <input type="number" name="percentage" min="1" max="7" id="input{{$witness->id}}">
+                                            <input type="text" value="{{$witness->id}}" name="id" hidden>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        {{--<div class="row text-center">--}}
+                                        <div class="col-lg-6">
+                                            <button class="btn-primary btn-primary btn btn{{$witness->id}}" style="background-color: #00B6E3;" id="acept{{$witness->id}}" type="submit" formaction="/witn_validate">Accept</button>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <button class="btn btn-danger" style="background-color: #D5130B" id="refuse{{$witness->id}}" type="submit" formaction="/nowith">Decline</button>
+
+                                        </div>
+                                        {{-- </div>--}}
+                                    </div>
+                                </form>
+                                @else
+                                    @if($witness->duelstate==4 or $witness->duelstate==9)
+                                    <form action="#" method="post" class="choose-winner">
+                                        <h4>Choose the winner</h4>
+                                        <div class="col-md-8 offset-md-2 col-12">
+                                            <div class="row choose-winner-row">
+                                                <div class="col-md-5 col-5 witness-player-selector">
+                                                    <button type="button" class="btn btn-primary player-1">{{$witness->ctlUser0->username}}</button>
+                                                </div>
+                                                <div class="col-md-2 col-2 d-flex align-items-center justify-content-center">
+                                                    <h4 cl>VS</h4>
+                                                </div>
+                                                <div class="col-md-5 col-2 witness-player-selector">
+                                                    <button type="button" class="btn btn-primary player-2">{{$witness->ctlUser1->username}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    @endif
+                                @endif
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                                    <!--div class="choose-winner ">
+                                                    <h4>Choose the winner</h4>
                                                         <div class="col-md-8 offset-md-2 col-12">
                                                             <div class="row choose-winner-row">
                                                                 <div class="col-md-5 col-5 witness-player-selector">
                                                                     <button type="button"
-                                                                            class="btn btn-primary player-1">Ariel</button>
+                                                                            class="btn btn-primary player-1">{{$witness->ctlUser0->username}}</button>
                                                                 </div>
                                                                 <div
                                                                     class="col-md-2 col-2 d-flex align-items-center justify-content-center">
@@ -640,7 +695,7 @@
                                                                 </div>
                                                                 <div class="col-md-5 col-2 witness-player-selector">
                                                                     <button type="button"
-                                                                            class="btn btn-primary player-2">Alex</button>
+                                                                            class="btn btn-primary player-2">{{$witness->ctlUser1->username}}</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -660,9 +715,11 @@
                                             </div>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr-->
+                                @endforeach
+                                
 
-                                <tr>
+                                <!--tr>
                                     <td colspan="4">
                                         <div class="card-table">
                                             <div class="short-desc">
@@ -709,7 +766,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr-->
                                 </tbody>
                             </table>
                         </div>
