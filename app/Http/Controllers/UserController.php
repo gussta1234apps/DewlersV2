@@ -121,8 +121,8 @@ class UserController extends Controller
         $email_witness=User::where('id','=',$duels_data->ctl_user_id_witness)->first();//LOSS
 
         $arr5=[$duels_data->tittle,5,$email_challenger->name, $email_witness->name]; //DATA FOR EMAIL TEMPLATE WINNER
-        Notification::route('mail', $email_challenger->email)
-            ->notify(new StatusUpdate($arr5)); //EMAIL FOR WINNER
+        ///Notification::route('mail', $email_challenger->email)
+        //    ->notify(new StatusUpdate($arr5)); //EMAIL FOR WINNER
 
 
         return redirect('/dashboard');
@@ -192,12 +192,12 @@ class UserController extends Controller
         $email_witness=User::where('id','=',$duels_data->ctl_user_id_witness)->first();//LOSS
 
         $arr5=[$duels_data->tittle,6,$email_challenger->name, $email_witness->name]; //DATA FOR EMAIL TEMPLATE WINNER
-        Notification::route('mail', $email_challenger->email)
-            ->notify(new StatusUpdate($arr5)); //EMAIL FOR WINNER
-
+        //Notification::route('mail', $email_challenger->email)
+          //  ->notify(new StatusUpdate($arr5)); //EMAIL FOR WINNER
+            
         $arr5=[$duels_data->tittle,6,$email_challenger->name, $email_witness->name]; //DATA FOR EMAIL TEMPLATE WINNER
-        Notification::route('mail', $email_challenged->email)
-            ->notify(new StatusUpdate($arr5)); //EMAIL FOR WINNER
+       // Notification::route('mail', $email_challenged->email)
+            //->notify(new StatusUpdate($arr5)); //EMAIL FOR WINNER
 
         return redirect('/dashboard');
 
