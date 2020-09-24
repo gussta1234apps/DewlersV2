@@ -290,14 +290,22 @@ class UserController extends Controller
         $me_user=ctl_users::where('id',$id_auth->id)->first();
         $friends=$me_user->getFriends();
 
+
+        $resquet_pending= $me_user->getFriendRequests();
+
         if($user_requested->isNotempty()){
 
             $html = '<h5>Dewler Search Results</h5>';
             foreach($user_requested as $user)
             {
                 $isFriend   = false;
+                $isPending  = false;
                 foreach($friends as $friend){
                     if($user->id == $friend->id){$isFriend=true;}
+                }
+
+                foreach($resquet_pending as $pending){
+                    if($user->id == $pending->sender->id){$isPending=true;}
                 }
 
                 $buttons = "";
@@ -305,6 +313,8 @@ class UserController extends Controller
                 if($isFriend){
                     $buttons = '<button class="friends-dewl-button">Create Dewl</button>
                     <button class="friends-remove-button">Remove</button>';
+                }else if($isPending){
+                    $buttons = '<h4 class="friends-add-button">Pending</h4>';
                 }else{
                     $buttons = '<button class="friends-add-button">Add</button>';
                 }
