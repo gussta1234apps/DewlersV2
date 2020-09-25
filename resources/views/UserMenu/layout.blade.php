@@ -371,7 +371,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                   <h1>{{$loss->id}}</h1>
+
                                                     <!-- Star System -->
                                                     <div class="text-center underline" style="margin-top: 30px; ">
                                                         <input type="radio" class="hidden" name="stars" id="star-null" hidden/>
@@ -411,7 +411,7 @@
                                                         </div>
                                                         <!-- End Start System -->
                                                     <div class="text-center" style="margin-top: 25px;">
-                                                        <button type="submit" class="btn btn-success" value="">SEND</button>
+                                                        <button type="submit" class="btn btn-success" value="">Send</button>
                                                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
