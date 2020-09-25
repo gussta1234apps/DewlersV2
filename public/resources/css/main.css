@@ -1316,7 +1316,24 @@ body{
     font-weight: 500;
 
 }
+.pending-button{
+    position: relative;
+    margin-top: 10px;
 
+    margin-left: 165px;
+    width: 70px;
+    height: 30px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #918c8c;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 500;
+
+}
 .friends-body hr{
     width: 280px;
     margin-left: 10px;

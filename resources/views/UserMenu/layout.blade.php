@@ -307,11 +307,80 @@
                                                         <p class="card-view-description">{{$win->Description}}</p>
                                                         <p class="card-view-date">Start Date: {{$win->startDate}}</p>
                                                         <p class="card-view-status">Status: {{$win->duelstatus->description}}</p>
+                                                        @if($win->winner_review==0)
+                                                            <div class="col-md-3 history-info text-center btn">
+                                                                <button class="loss-button" data-toggle="modal" data-target="#createwitnessreviewwinner{{$win->id}}">Review</button>
+                                                            </div>
+                                                        @endif
                                                     </div>
+{{--                                                    @else--}}
+{{--                                                        <div class="col-md-3 history-info">More info</div>--}}
+
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
+                                    <!-- Review Modal for loser-->
+                                    <div class="modal fade" id="createwitnessreviewwinner{{$win->id}}" tabindex="-1" aria-labelledby="create witness review" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background-color: #23272b; color:white;">
+                                                    <h5 class="modal-title" id="createDewlModalLabel">Witness review</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <em class="fas fa-times" style="color: white;"></em>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/send_rev" method="post" id="witnees_review{{$win->id}}">
+                                                    @csrf
+                                                    <!-- Star System -->
+                                                        <div class="text-center underline" style="margin-top: 30px; ">
+                                                            <input type="radio" class="hidden" name="stars" id="star-null" hidden/>
+                                                            <input type="radio" class="hidden" name="stars" value="1" id="star-1" hidden/>
+                                                            <input type="radio" class="hidden" name="stars" value="2" id="star-2" hidden/>
+                                                            <input type="radio" class="hidden" name="stars" value="3" id="star-3" hidden/>
+                                                            <input type="radio" class="hidden" name="stars" value="4" id="star-4" hidden/>
+                                                            <input type="radio" class="hidden" name="stars" value="5" id="star-5"  checked  hidden/>   <!-- checked hace que este activo -->
+                                                            <section>
+                                                                <h4>Rate the witness</h4>
+                                                                <label  for="star-1"> <svg width="10%" class="star1" id="star1" onclick="ani1()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                        <path  d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                    </svg> </label>
+                                                                <label  for="star-2"> <svg width="10%" class="star2" id="star2" onclick="ani2()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                    </svg> </label>
+                                                                <label  for="star-3"> <svg width="10%" class="star3" id="star3" onclick="ani3()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                    </svg> </label>
+                                                                <label  for="star-4"> <svg width="10%" class="star4" id="star4" onclick="ani4()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                    </svg> </label>
+                                                                <label  for="star-5"> <svg width="10%" class="star5" id="star5" onclick="ani5()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                    </svg> </label>
+                                                                <!-- <label for="star-null"> Clear </label> -->    <!-- Esto es para reset las estrellas -->
+
+                                                            </section>
+                                                            <input type="text" value="{{$win->id}}" name="id"   hidden>
+
+                                                            <br>
+                                                            <br>
+
+                                                            <div class="text-center">
+                                                                <h4>Leave a review</h4>
+                                                                <textarea id="txtarea" name="review" class="textareastyle" rows="10" style="margin-top:5px; max-width:90%; width:570px;"required></textarea>
+                                                            </div>
+                                                            <!-- End Start System -->
+                                                            <div class="text-center" style="margin-top: 25px;">
+                                                                <button type="submit" class="btn btn-success" value="">Send</button>
+                                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Review Modal -->
                                 @endforeach
 
 
@@ -338,7 +407,7 @@
                                                 <div class="short-desc">
                                                     <div class="row ">
                                                         <div class="col-md-4 current-card-column"><strong>{{$loss->ctlUser1->username}}</strong></div>
-                                                        <div class="col-md-3 current-card-column"><strong>{{$win->pot}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$loss->pot}}</strong></div>
                                                         <div class="col-md-3 current-card-column"><strong>{{$win->startDate}}</strong></div>
                                                         <div class="col-md-2 current-card-column">
                                                             <button class="loss-card-info-button" data-toggle="collapse" href="#loss-card-{{$loss->id}}" role="button" aria-expanded="false" aria-controls="loss-card-{{$loss->id}}">
@@ -353,15 +422,23 @@
                                                         <p class="card-view-description">{{$loss->Description}}</p>
                                                         <p class="card-view-date">Start Date: {{$loss->startDate}}</p>
                                                         <p class="card-view-status">Status: {{$loss->duelstatus->description}}</p>
-                                                        <button class="loss-button">Double or Nothing</button>
-                                                        <button class="loss-button" data-toggle="modal" data-target="#createwitnessreview{{$loss->id}}">Review</button>
+{{--                                                        <button class="loss-button">Double or Nothing</button>--}}
+{{--                                                        <button class="loss-button" data-toggle="modal" data-target="#createwitnessreview{{$loss->id}}">Review</button>--}}
+                                                        @if($loss->loser_review==0 and $loss->don==1)
+                                                            <button class="loss-button" href="/double_or_nothing/{{$loss->id}}">Double or Nothing</button>
+                                                            <button class="loss-button" data-toggle="modal" data-target="#createwitnessreviewloser{{$loss->id}}">Review</button>
+                                                        @elseif($loss->loser_review==0 and $loss->don==2)
+                                                            <button class="loss-button" data-toggle="modal" data-target="#createwitnessreviewloser{{$loss->id}}">Review</button>
+                                                        @elseif($loss->loser_review==1 and $loss->don==1)
+                                                            <button class="loss-button" href="/double_or_nothing/{{$loss->id}}">Double or Nothing</button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Review Modal-->
-                                    <div class="modal fade" id="createwitnessreview{{$loss->id}}" tabindex="-1" aria-labelledby="create witness review" aria-hidden="true">
+                                    <!-- Review Modal for loser-->
+                                    <div class="modal fade" id="createwitnessreviewloser{{$loss->id}}" tabindex="-1" aria-labelledby="create witness review" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header" style="background-color: #23272b; color:white;">
@@ -371,7 +448,8 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-
+                                                    <form action="/send_rev" method="post" id="witnees_review{{$loss->id}}">
+                                                    @csrf
                                                     <!-- Star System -->
                                                     <div class="text-center underline" style="margin-top: 30px; ">
                                                         <input type="radio" class="hidden" name="stars" id="star-null" hidden/>
@@ -382,25 +460,25 @@
                                                         <input type="radio" class="hidden" name="stars" value="5" id="star-5"  checked  hidden/>   <!-- checked hace que este activo -->
                                                         <section>
                                                                     <h4>Rate the witness</h4>
-                                                            <label  for="star-1"> <svg width="10%" id="star1" onclick="ani1()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                            <label  for="star-1"> <svg width="10%" class="star1" id="star1" onclick="ani1()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
                                                                     <path  d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                                                 </svg> </label>
-                                                            <label  for="star-2"> <svg width="10%" id="star2" onclick="ani2()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                            <label  for="star-2"> <svg width="10%" class="star2" id="star2" onclick="ani2()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
                                                                     <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                                                 </svg> </label>
-                                                            <label  for="star-3"> <svg width="10%" id="star3" onclick="ani3()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                            <label  for="star-3"> <svg width="10%" class="star3" id="star3" onclick="ani3()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
                                                                     <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                                                 </svg> </label>
-                                                            <label  for="star-4"> <svg width="10%" id="star4" onclick="ani4()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                            <label  for="star-4"> <svg width="10%" class="star4" id="star4" onclick="ani4()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
                                                                     <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                                                 </svg> </label>
-                                                            <label  for="star-5"> <svg width="10%" id="star5" onclick="ani5()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                            <label  for="star-5"> <svg width="10%" class="star5" id="star5" onclick="ani5()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
                                                                     <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                                                 </svg> </label>
                                                             <!-- <label for="star-null"> Clear </label> -->    <!-- Esto es para reset las estrellas -->
 
                                                         </section>
-                                                        <input type="text" value="" name="id" hidden>
+                                                        <input type="text" value="{{$loss->id}}" name="id"   hidden>
 
                                                         <br>
                                                         <br>
@@ -415,6 +493,7 @@
                                                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
                                                     </div>
                                                 </div>
+                                                    </form>
                                             </div>
                                         </div>
                                     </div>
