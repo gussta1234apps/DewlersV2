@@ -381,7 +381,7 @@
                                                         <input type="radio" class="hidden" name="stars" value="4" id="star-4" hidden/>
                                                         <input type="radio" class="hidden" name="stars" value="5" id="star-5"  checked  hidden/>   <!-- checked hace que este activo -->
                                                         <section>
-                                                                    <h3>Rate the witness</h3>
+                                                                    <h4>Rate the witness</h4>
                                                             <label  for="star-1"> <svg width="10%" id="star1" onclick="ani1()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
                                                                     <path  d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
                                                                 </svg> </label>
@@ -406,7 +406,7 @@
                                                         <br>
 
                                                         <div class="text-center">
-                                                            <h3>Leave a review</h3>
+                                                            <h4>Leave a review</h4>
                                                             <textarea id="txtarea" name="review" class="textareastyle" rows="10" style="margin-top:5px; max-width:90%; width:570px;"required></textarea>
                                                         </div>
                                                         <!-- End Start System -->
