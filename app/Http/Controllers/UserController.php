@@ -296,6 +296,7 @@ class UserController extends Controller
         if($user_requested->isNotempty()){
 
             $html = '<h5>Dewler Search Results</h5>';
+            $collections = '';
             foreach($user_requested as $user)
             {
                 $isFriend   = false;
@@ -317,7 +318,7 @@ class UserController extends Controller
                     $buttons = '<button class="friends-dewl-button">Create Dewl</button>
                     <button class="friends-remove-button">Remove</button>';
                 }else if($isPending){
-                    $buttons = '<button class="friends-add-button" enabled="false">Pending</button>';
+                    $buttons = '<button class="btn btn-primary" disabled>Pending</button>';
                 }else{
                     $buttons = '<button class="friends-add-button" type="submit" formaction="/send_f_request">Add</button>';
                 }

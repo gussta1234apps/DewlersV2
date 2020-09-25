@@ -79,8 +79,8 @@
         </ul>
 
         <button class="settings">Settings</button>
-        <a class="logout"  href="{{ route('logout') }}">Logout</a>
-         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+         <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+             <button class="logout"  type="submit">Logout</button>
         @csrf
         </form>
     </div>
@@ -146,8 +146,8 @@
                 <div class="friends-info-card">
                 <form action="#" method="get">
                 @csrf
-                    <button class="friends-accept-button" type="submit" formaction="/acept_friend/{{$friend->id}}">Accept</button>
-                    <button class="friends-remove-button" type="submit" formaction="/refuse_friend/{{$friend->id}}">Decline</button>
+                    <button class="friends-accept-button" type="submit" formaction="/acept_friend/{{$friend->sender->id}}">Accept</button>
+                    <button class="friends-remove-button" type="submit" formaction="/refuse_friend/{{$friend->sender->id}}">Decline</button>
                     <p class="friends-info-name"> {{$friend->sender->username}}</p>
                 </form>
                 </div>
@@ -354,12 +354,72 @@
                                                         <p class="card-view-date">Start Date: {{$loss->startDate}}</p>
                                                         <p class="card-view-status">Status: {{$loss->duelstatus->description}}</p>
                                                         <button class="loss-button">Double or Nothing</button>
-                                                        <button class="loss-button">Review</button>
+                                                        <button class="loss-button" data-toggle="modal" data-target="#createwitnessreview{{$loss->id}}">Review</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
+                                    <!-- Review Modal-->
+                                    <div class="modal fade" id="createwitnessreview{{$loss->id}}" tabindex="-1" aria-labelledby="create witness review" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background-color: #23272b; color:white;">
+                                                    <h5 class="modal-title" id="createDewlModalLabel">Witness review</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <em class="fas fa-times" style="color: white;"></em>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <!-- Star System -->
+                                                    <div class="text-center underline" style="margin-top: 30px; ">
+                                                        <input type="radio" class="hidden" name="stars" id="star-null" hidden/>
+                                                        <input type="radio" class="hidden" name="stars" value="1" id="star-1" hidden/>
+                                                        <input type="radio" class="hidden" name="stars" value="2" id="star-2" hidden/>
+                                                        <input type="radio" class="hidden" name="stars" value="3" id="star-3" hidden/>
+                                                        <input type="radio" class="hidden" name="stars" value="4" id="star-4" hidden/>
+                                                        <input type="radio" class="hidden" name="stars" value="5" id="star-5"  checked  hidden/>   <!-- checked hace que este activo -->
+                                                        <section>
+                                                                    <h4>Rate the witness</h4>
+                                                            <label  for="star-1"> <svg width="10%" id="star1" onclick="ani1()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                    <path  d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                </svg> </label>
+                                                            <label  for="star-2"> <svg width="10%" id="star2" onclick="ani2()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                    <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                </svg> </label>
+                                                            <label  for="star-3"> <svg width="10%" id="star3" onclick="ani3()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                    <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                </svg> </label>
+                                                            <label  for="star-4"> <svg width="10%" id="star4" onclick="ani4()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                    <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                </svg> </label>
+                                                            <label  for="star-5"> <svg width="10%" id="star5" onclick="ani5()" height="10%" style="fill:#eeeeee;" viewBox="0 0 51 48">
+                                                                    <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                                                                </svg> </label>
+                                                            <!-- <label for="star-null"> Clear </label> -->    <!-- Esto es para reset las estrellas -->
+
+                                                        </section>
+                                                        <input type="text" value="" name="id" hidden>
+
+                                                        <br>
+                                                        <br>
+
+                                                        <div class="text-center">
+                                                            <h4>Leave a review</h4>
+                                                            <textarea id="txtarea" name="review" class="textareastyle" rows="10" style="margin-top:5px; max-width:90%; width:570px;"required></textarea>
+                                                        </div>
+                                                        <!-- End Start System -->
+                                                    <div class="text-center" style="margin-top: 25px;">
+                                                        <button type="submit" class="btn btn-success" value="">Send</button>
+                                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Review Modal -->
+
                                 @endforeach
                                 </tbody>
                             </table>
@@ -395,11 +455,24 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent2">
                     <div class="tab-pane fade show active" id="nav-current" role="tabpanel" aria-labelledby="nav-home-tab">
+                        
                         <div class="dewl-h">
+                            
                             <table class="table table-borderless">
                                 <thead style="color: #08ADD5;">
                                 <tr>
-                                    <th colspan="4 center">Current Dewls</th>
+                                    <th colspan="4 center">Current Dewls
+                                    <div class="card-style-identifier desktop-identifier">
+                                        <span style="color:#0d95e8"><em class="fas fa-grip-lines"></em> With witness</span>&nbsp;&nbsp;<span style="color:goldenrod"><em class="fas fa-grip-lines"></em> Without witness</span>
+                                    </div>
+                                    </th>
+                                </tr>
+                                <tr class="tr-card-identifier-mobil">
+                                    <td>
+                                    <div class="card-style-identifier">
+                                        <span style="color:#0d95e8"><em class="fas fa-grip-lines"></em> With witness</span>&nbsp;&nbsp;<span style="color:goldenrod"><em class="fas fa-grip-lines"></em> Without witness</span>
+                                    </div>
+                                    </td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -637,7 +710,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                
+
                                 @foreach($dash_witness as $witness)
                                 <tr>
                                     <td colspan="4">
@@ -676,14 +749,18 @@
                                             <input type="text" value="{{$witness->id}}" name="id" hidden>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row text-center">
                                         {{--<div class="row text-center">--}}
-                                        <div class="col-lg-6">
-                                            <button class="btn-primary btn-primary btn btn{{$witness->id}}" style="background-color: #00B6E3;" id="acept{{$witness->id}}" type="submit" formaction="/witn_validate">Accept</button>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <button class="btn btn-danger" style="background-color: #D5130B" id="refuse{{$witness->id}}" type="submit" formaction="/nowith">Decline</button>
+                                        
+                                        <div class="row col-6 offset-3">
+                                            <div class="col-6">
+                                                <button class="btn-primary btn-primary btn btn{{$witness->id}}" style="background-color: #00B6E3;" id="acept{{$witness->id}}" type="submit" formaction="/witn_validate">Accept</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-danger" style="background-color: #D5130B" id="refuse{{$witness->id}}" type="submit" formaction="/nowith">Decline</button>
 
+                                            </div>
                                         </div>
                                         {{-- </div>--}}
                                     </div>
@@ -748,7 +825,7 @@
                                     </td>
                                 </tr-->
                                 @endforeach
-                                
+
 
                                 <!--tr>
                                     <td colspan="4">
@@ -941,6 +1018,7 @@
             </div>
         </div>
     </div>
+
 
 
 
