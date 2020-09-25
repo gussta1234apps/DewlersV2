@@ -1490,6 +1490,13 @@ body{
         display: block !important;
     }
 
+    
+
+    .card-style-identifier{
+        
+        font-weight: 600;
+        font-size: 12px;
+    }
 }
 
 .right-top-icon{
@@ -1597,8 +1604,51 @@ body{
         width: 70px;
         height: 70px;
     }
+
+    .tr-card-identifier-mobil{
+        display: block !important;
+    }
+    .desktop-identifier{
+        display: none !important;
+    }
 }
 
+/* style identifier*/
+.card-style-identifier{
+    float: right;
+    
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/*star  from review*/
+#star-1:checked ~ section [for='star-1'] svg, #star-2:checked ~ section [for='star-1'] svg, #star-2:checked ~ section [for='star-2'] svg, #star-3:checked ~ section [for='star-1'] svg, #star-3:checked ~ section [for='star-2'] svg, #star-3:checked ~ section [for='star-3'] svg, #star-4:checked ~ section [for='star-1'] svg, #star-4:checked ~ section [for='star-2'] svg, #star-4:checked ~ section [for='star-3'] svg, #star-4:checked ~ section [for='star-4'] svg, #star-5:checked ~ section [for='star-1'] svg, #star-5:checked ~ section [for='star-2'] svg, #star-5:checked ~ section [for='star-3'] svg, #star-5:checked ~ section [for='star-4'] svg, #star-5:checked ~ section [for='star-5'] svg {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.tr-card-identifier-mobil{
+    display: none;
+}
+
+#star-1:checked ~ section [for='star-1'] svg path, #star-2:checked ~ section [for='star-1'] svg path, #star-2:checked ~ section [for='star-2'] svg path, #star-3:checked ~ section [for='star-1'] svg path, #star-3:checked ~ section [for='star-2'] svg path, #star-3:checked ~ section [for='star-3'] svg path, #star-4:checked ~ section [for='star-1'] svg path, #star-4:checked ~ section [for='star-2'] svg path, #star-4:checked ~ section [for='star-3'] svg path, #star-4:checked ~ section [for='star-4'] svg path, #star-5:checked ~ section [for='star-1'] svg path, #star-5:checked ~ section [for='star-2'] svg path, #star-5:checked ~ section [for='star-3'] svg path, #star-5:checked ~ section [for='star-4'] svg path, #star-5:checked ~ section [for='star-5'] svg path {
+    fill: #E6282B;
+    stroke: #E6282B;
+.desktop-identifier{
+    display: block;
+}
+
+}
+label[for="star-null"] {
+    display: block;
+    margin: 0 auto;
+    color: #999;
+}
+label {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
 
 /*star  from review*/
 #star-1:checked ~ section [for='star-1'] svg, #star-2:checked ~ section [for='star-1'] svg, #star-2:checked ~ section [for='star-2'] svg, #star-3:checked ~ section [for='star-1'] svg, #star-3:checked ~ section [for='star-2'] svg, #star-3:checked ~ section [for='star-3'] svg, #star-4:checked ~ section [for='star-1'] svg, #star-4:checked ~ section [for='star-2'] svg, #star-4:checked ~ section [for='star-3'] svg, #star-4:checked ~ section [for='star-4'] svg, #star-5:checked ~ section [for='star-1'] svg, #star-5:checked ~ section [for='star-2'] svg, #star-5:checked ~ section [for='star-3'] svg, #star-5:checked ~ section [for='star-4'] svg, #star-5:checked ~ section [for='star-5'] svg {

@@ -534,11 +534,24 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent2">
                     <div class="tab-pane fade show active" id="nav-current" role="tabpanel" aria-labelledby="nav-home-tab">
+                        
                         <div class="dewl-h">
+                            
                             <table class="table table-borderless">
                                 <thead style="color: #08ADD5;">
                                 <tr>
-                                    <th colspan="4 center">Current Dewls</th>
+                                    <th colspan="4 center">Current Dewls
+                                    <div class="card-style-identifier desktop-identifier">
+                                        <span style="color:#0d95e8"><em class="fas fa-grip-lines"></em> With witness</span>&nbsp;&nbsp;<span style="color:goldenrod"><em class="fas fa-grip-lines"></em> Without witness</span>
+                                    </div>
+                                    </th>
+                                </tr>
+                                <tr class="tr-card-identifier-mobil">
+                                    <td>
+                                    <div class="card-style-identifier">
+                                        <span style="color:#0d95e8"><em class="fas fa-grip-lines"></em> With witness</span>&nbsp;&nbsp;<span style="color:goldenrod"><em class="fas fa-grip-lines"></em> Without witness</span>
+                                    </div>
+                                    </td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -815,14 +828,18 @@
                                             <input type="text" value="{{$witness->id}}" name="id" hidden>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row text-center">
                                         {{--<div class="row text-center">--}}
-                                        <div class="col-lg-6">
-                                            <button class="btn-primary btn-primary btn btn{{$witness->id}}" style="background-color: #00B6E3;" id="acept{{$witness->id}}" type="submit" formaction="/witn_validate">Accept</button>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <button class="btn btn-danger" style="background-color: #D5130B" id="refuse{{$witness->id}}" type="submit" formaction="/nowith">Decline</button>
+                                        
+                                        <div class="row col-6 offset-3">
+                                            <div class="col-6">
+                                                <button class="btn-primary btn-primary btn btn{{$witness->id}}" style="background-color: #00B6E3;" id="acept{{$witness->id}}" type="submit" formaction="/witn_validate">Accept</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-danger" style="background-color: #D5130B" id="refuse{{$witness->id}}" type="submit" formaction="/nowith">Decline</button>
 
+                                            </div>
                                         </div>
                                         {{-- </div>--}}
                                     </div>
