@@ -305,10 +305,11 @@ class UserController extends Controller
                     if($user->id == $friend->id){$isFriend=true;}
                 }
 
-                foreach($resquet_pending as $pending){
-                    if($user->id == $pending->sender->id){$isPending=true;}
-                    $collections += '<h6>user->id'.$user->id.'pending->sender->id'.$pending->sender->id.'</h6>';
+                $search_requests=ctl_users::where('id',$user->id)->first();
+                $resquet_pending= $search_requests->getFriendRequests();
 
+                foreach($resquet_pending as $pending){
+                    if($id_auth->id == $pending->sender->id){$isPending=true;}
                 }
 
                 $buttons = "";
@@ -317,12 +318,12 @@ class UserController extends Controller
                     $buttons = '<button class="friends-dewl-button">Create Dewl</button>
                     <button class="friends-remove-button">Remove</button>';
                 }else if($isPending){
-                    $buttons = '<h4 class="friends-add-button">Pending</h4>';
+                    $buttons = '<button class="friends-add-button" enabled="false">Pending</button>';
                 }else{
-                    $buttons = '<button class="friends-add-button">Add</button>';
+                    $buttons = '<button class="friends-add-button" type="submit" formaction="/send_f_request">Add</button>';
                 }
 
-                $html       .='<div class="friends-info-card"><form action="/send_f_request"> <input type="text" name="user_id" id="id_user" value="'.$user->id.'" hidden>'.$buttons.'<p class="friends-info-name">'.$user->name.'</p>
+                $html       .='<div class="friends-info-card"><form action="#"> <input type="text" name="user_id" id="id_user" value="'.$user->id.'" hidden>'.$buttons.'<p class="friends-info-name">'.$user->name.'</p>
                </form></div>';
             }
 
