@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\ctl_users;
 use App\double_or_nothing;
 use App\duels;
+use App\Reviews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Exception;
 use stdClass;
 
 class IndexController extends Controller
@@ -79,6 +81,8 @@ class IndexController extends Controller
         //if duelstatus == finish codigo 6  y  ctl_user_winner == usuariologueado
         $record_winner=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where( [['ctl_user_id_winner','=',$id_auth->id],['duelstate','=',6]])->orWhere([['ctl_user_id_winner','=',$id_auth->id],['duelstate','=',8]])->orderBy('id', 'desc')->get();
 
+
+
         //Lost
         //if duelstatus == finish codigo 6  y  ctl_user_winner != usuariologueado y ctl_user_witness != usuario logeado
         $record_loser=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_loser','=',$id_auth->id],['duelstate','=',6]])->orWhere([['ctl_user_id_loser','=',$id_auth->id],['duelstate','=',6]])->orWhere([['ctl_user_id_loser','=',$id_auth->id],['duelstate','=',8]])->orWhere([['ctl_user_id_loser','=',$id_auth->id],['duelstate','=',8]])->orderBy('id', 'desc')->get();
@@ -95,6 +99,36 @@ class IndexController extends Controller
         //if duelstatus == finish codigo 6  y ctl_user_witness == usuariologueado
         $dash_witness=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','!=',6],['duelstate','!=',8]])->orderBy('id', 'desc')->get();
 
+        //- Witness finished dewls        
+        $finished_witness_dewls = duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',6]])->orWhere([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',8]])->orderBy('id', 'desc')->get();
+        //-
+        $reviews        = 0.00; 
+        $reviewsCount   = 0; 
+        $hypeRating     = 0.0; 
+        $hype           = 0.0;     
+        $haveHypeRating = true;
+        //-
+        foreach($finished_witness_dewls as $dewl){
+            try{
+                $result     = DB::table('reviews')->where('rol', $dewl->id)->first();
+                $reviewsCount++;
+                $reviews    += $result->stars;
+            }catch(Exception $e){
+                $reviews    = $e->getMessage();
+            }
+        }
+        //- Hype rating avg
+        try{
+            $hype           = $reviews/$reviewsCount;
+            $hypeRating     = ($hype*100)/5;
+        }catch(Exception $ex){
+            $haveHypeRating = false;
+        }
+
+        //- WINNER COUNT
+        $winnerCount = count($record_winner);
+
+
         //WITNESS
 
         //if duelstatus != finish codigo 4  y ctl_user_witness == usuariologueado
@@ -107,8 +141,13 @@ class IndexController extends Controller
         $ctl_log_user= ctl_users::where('id','=',$id_auth->id)->first();
 
         $resquet_pending= $ctl_log_user->getFriendRequests();
+
+        if($haveHypeRating){
+            return view('UserMenu.layout')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness)->with('pending_f_req',$resquet_pending)->with('hypeRating',$hypeRating)->with('noHypeRating',false)->with('winnerCount',$winnerCount);
+        }else{
+            return view('UserMenu.layout')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness)->with('pending_f_req',$resquet_pending)->with('noHypeRating',true)->with('winnerCount',$winnerCount);
+        }
         //return view('UserMenu.index')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness);
-        return view('UserMenu.layout')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness)->with('pending_f_req',$resquet_pending);
 
     }
 
