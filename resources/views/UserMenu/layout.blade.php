@@ -60,8 +60,18 @@
                 <h5 class="menu-name-label"> {{ Auth::user()->name }}</h5>
 
                 <div class="dewl-winrate center">
-                    <div class=winrate-percent style="width: 60%"></div>
-                    <h4>60% hype rating</h4>
+                    @if($noHypeRating)
+                        <div class="winrate-percent" style="width: 0%"></div>
+                        <h4>No records found</h4>
+                    @else
+                        @if($hypeRating<50)
+                            <div class="winrate-percent" style="width: {{$hypeRating}}%; background-color: #E6282B;"></div>
+                            <h4>{{$hypeRating}}% hype rating</h4>
+                        @else
+                            <div class="winrate-percent" style="width: {{$hypeRating}}%;"></div>
+                            <h4>{{$hypeRating}}% hype rating</h4>
+                        @endif
+                    @endif
                 </div>
 
                 <h5 class="menu-stacks-label"><strong>{{ $amount  = \Illuminate\Support\Facades\DB::table('internalaccounts')->where('id','=',Auth::user()->id)->first()->balance}}</strong>&nbsp;Stacks</h5>
@@ -256,11 +266,21 @@
                 <h5 class="menu-name-label"> {{ Auth::user()->name }}</h5>
 
                 <div class="dewl-winrate center">
-                    <div class=winrate-percent style="width: 60%"></div>
-                    <h4>60% hype rating</h4>
+                    @if($noHypeRating)
+                        <div class="winrate-percent" style="width: 0%"></div>
+                        <h4>No records found</h4>
+                    @else
+                        @if($hypeRating<50)
+                            <div class="winrate-percent" style="width: {{$hypeRating}}%; background-color: #E6282B;"></div>
+                            <h4>{{$hypeRating}}% hype rating</h4>
+                        @else
+                            <div class="winrate-percent" style="width: {{$hypeRating}}%;"></div>
+                            <h4>{{$hypeRating}}% hype rating</h4>
+                        @endif
+                    @endif
                 </div>
 
-                <h6 CLASS="wins-label">10 WINS</h6>
+                <h6 CLASS="wins-label">{{$winnerCount}} WINS</h6>
             </div>
 
 
@@ -439,11 +459,21 @@
                 <h5 class="menu-name-label"> {{ Auth::user()->name }}</h5>
 
                 <div class="dewl-winrate center">
-                    <div class=winrate-percent style="width: 60%"></div>
-                    <h4>60% hype rating</h4>
+                    @if($noHypeRating)
+                    <div class="winrate-percent" style="width: 0%"></div>
+                    <h4>No records found</h4>
+                    @else
+                        @if($hypeRating<50)
+                            <div class="winrate-percent" style="width: {{$hypeRating}}%; background-color: #E6282B;"></div>
+                            <h4>{{$hypeRating}}% hype rating</h4>
+                        @else
+                            <div class="winrate-percent" style="width: {{$hypeRating}}%;"></div>
+                            <h4>{{$hypeRating}}% hype rating</h4>
+                        @endif
+                    @endif
                 </div>
 
-                <h6 CLASS="wins-label">10 WINS</h6>
+                <h6 CLASS="wins-label">{{$winnerCount}} WINS</h6>
             </div>
             <div class="table-dewl" >
                 <nav>
