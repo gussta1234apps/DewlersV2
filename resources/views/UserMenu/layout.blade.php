@@ -429,7 +429,7 @@
                                                     <div class="row ">
                                                         <div class="col-md-4 current-card-column"><strong>{{$loss->ctlUser1->username}}</strong></div>
                                                         <div class="col-md-3 current-card-column"><strong>{{$loss->pot}}</strong></div>
-                                                        <div class="col-md-3 current-card-column"><strong>{{$win->startDate}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$loss->startDate}}</strong></div>
                                                         <div class="col-md-2 current-card-column">
                                                             <button class="loss-card-info-button" data-toggle="collapse" href="#loss-card-{{$loss->id}}" role="button" aria-expanded="false" aria-controls="loss-card-{{$loss->id}}">
                                                                 More info
@@ -446,12 +446,12 @@
 {{--                                                        <button class="loss-button">Double or Nothing</button>--}}
 {{--                                                        <button class="loss-button" data-toggle="modal" data-target="#createwitnessreview{{$loss->id}}">Review</button>--}}
                                                         @if($loss->loser_review==0 and $loss->don==1)
-                                                            <button class="loss-button" href="/double_or_nothing/{{$loss->id}}">Double or Nothing</button>
+                                                            <button class="loss-button" href="/double_or_nothing/{{$loss->id}}" data-toggle="modal" data-target="#CreateDoubleOrNothing" onclick="loadDoubleOrNothingPlayer('{{$loss->tittle}}',{{$loss->pot}},'{{$loss->ctlUser1->username}}',{{$loss->id}},'{{$loss->ctlUser1->username}}')">Double or Nothing</button>
                                                             <button class="loss-button" data-toggle="modal" onclick="createwitnessreview({{$loss->id}});" data-target="#createreview">Review</button>
                                                         @elseif($loss->loser_review==0 and $loss->don==2)
                                                             <button class="loss-button" data-toggle="modal" onclick="createwitnessreview({{$loss->id}});"  data-target="#createreview">Review</button>
                                                         @elseif($loss->loser_review==1 and $loss->don==1)
-                                                            <button class="loss-button" href="/double_or_nothing/{{$loss->id}}">Double or Nothing</button>
+                                                            <button class="loss-button" href="/double_or_nothing/{{$loss->id}}" data-toggle="modal" data-target="#CreateDoubleOrNothing" onclick="loadDoubleOrNothingPlayer('{{$loss->tittle}}',{{$loss->pot}},'{{$loss->ctlUser1->username}}',{{$loss->id}},'{{$loss->ctlUser1->username}}')">Double or Nothing</button>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -1129,7 +1129,89 @@
             </div>
         </div>
     </div>
+<!-- Double or nothing review -->
+    <div class="modal fade" id="CreateDoubleOrNothing"  aria-labelledby="doubleOrNothing" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/re_duel" method="post" onsubmit="return createDewlValidations()">
+                    @csrf
+                    <div class="modal-header" style="background-color: #23272b; color:white;">
+                        <h5 class="modal-title" id="createDewlModalLabel">Create Dewl</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <em class="fas fa-times" style="color: white;"></em>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
+                        <input type="hidden" id="playerID">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Title</label>
+                            <input type="text" class="form-control" id="dontitle" name="tittle" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Description</label>
+                            <textarea name="description" id="descriptio" class="form-control" cols="30" rows="3" placeholder="Enter a description" maxlength="140" required=""></textarea>
+                        </div>
+                        <label for="exampleInputEmail1">Stacks</label>
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">$</span>
+                            </div>
+                            <input type="number" id="donpot" name="pot" class="form-control" placeholder="10.00" aria-label="pot" aria-describedby="pot" required="" min="10" disabled>
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted">10% of this amount goes to Dewlers</small>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" style="margin-top: 10px;">VS</label>
+                            <input type="text" class="form-control" id="donchallendged" name="challendged" disabled>
+{{--                            <datalist id="players">--}}
+{{--                                @foreach($challengeds as $friend)--}}
+{{--                                    <option value="{{$friend->username}}" data-id="{{$friend->id}}">{{$friend->username}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </datalist>--}}
+
+{{--                            <input type="hidden" name="challendged" id="challendged">--}}
+                        </div>
+                        <!-- Start Select witness -->
+{{--                        <div class="custom-control custom-checkbox">--}}
+{{--                            <input type="checkbox" class="custom-control-input" id="customCheck1" data-toggle="collapse" name="witness_validate" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">--}}
+{{--                            <label class="custom-control-label" for="customCheck1">Select Witness</label>--}}
+{{--                        </div>--}}
+                        <label for="exampleInputEmail1" style="margin-top: 10px;">Witness</label>
+                        <input type="text" class="form-control" autocomplete="off" list="witnessList" id="donwitnessInput" onchange="prepareWitnessToCreateDewl();" aria-describedby="challenger" disabled>
+{{--                        <div class="collapse" id="collapseExample">--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="exampleInputEmail1" style="margin-top: 10px;">Witness</label>--}}
+{{--                                <input type="text" class="form-control" autocomplete="off" list="witnessList" id="witnessInput" onchange="prepareWitnessToCreateDewl();" aria-describedby="challenger" placeholder="Enter Witness' Name">--}}
+{{--                                <datalist id="witnessList" >--}}
+{{--                                    @foreach($challengeds as $friend)--}}
+{{--                                        <option value="{{$friend->username}}" data-id="{{$friend->id}}">{{$friend->username}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </datalist>--}}
+{{--                                <input type="hidden" name="witness" id="witness">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        <!-- End Select witness -->
+                        <input type="text" class="form-control" id="donduel" name="duel" value="110 "aria-describedby="duel"  >
+{{--                        <div class="form-group" style="margin-bottom: 0px !important;">--}}
+{{--                            <label for="exampleInputEmail1" style="margin-top:10px;">Schedule Dewl</label>--}}
+{{--                            <input type="text" class="form-control" name="startdate" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date">--}}
+{{--                        </div>--}}
+{{--                        <small id="emailHelp" class="form-text text-muted">Dewls expire after 24 hours of the scheduled date.</small>--}}
+                        <div class="text-center" style="margin-top: 25px;">
+                            <input type="submit" class="btn btn-success" value="DEWL"></button>
+                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="button" class="btn btn-success" value="Confirm">
+                    </div> -->
+
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- end double or nothing modal -->
 
     <!-- Review Modal for loser-->
     <div class="modal fade" id="createreview" tabindex="-1" aria-labelledby="create witness review" aria-hidden="true">

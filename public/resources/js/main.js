@@ -133,7 +133,6 @@ let loadPlayerToDewl=(id,name)=>{
     $('#createDewlModalButton').click();
 }
 
-
 let searchDewler=(dewlerName)=>{
     $.ajax({
         url:'/searchDewler/' + dewlerName,
@@ -188,4 +187,19 @@ let createwitnessreview=(id)=>{
     }
     $('<input>').attr({type:'hidden',name:'id',value:id,id:'witness_review_id'}).appendTo('#witness_review');
     //console.log(id)
+}
+
+let loadDoubleOrNothingPlayer=(title,pot,witness,id,name)=>{
+     console.log("title"+title);
+     console.log("pot"+pot);
+     console.log("witness"+witness);
+     console.log("id"+id);
+     console.log("name"+name);
+     $('#dontitle').val(title);
+    $('#donpot').val(pot*2);
+    $('#donwitnessInput').val(witness);
+    $('#donduel').val(id);
+    $('#donchallendged').val(name);
+    // $('#playerInput').val(name);
+
 }

@@ -75,7 +75,7 @@ class DuelController extends Controller
         $email_challenged=User::where('id','=',$user_challenged)->first(); //CHALLENGED data from user FOR EMAIL
         $email_witness=User::where('id','=',$user_witness)->first(); //WITNESS DATA FROM USER(MODEL) FOR EMAIL
 
-        $arr=[$user->name,0,$email_challenged->name,$tittle]; //DATA FOR EMAIL TEMPLATE CHALLENGER
+       // $arr=[$user->name,0,$email_challenged->name,$tittle]; //DATA FOR EMAIL TEMPLATE CHALLENGER
         //[0] Nombre del retador
         //[1] Identificador dentro de status update
         //[2] Nombre del retado
