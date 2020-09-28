@@ -145,13 +145,13 @@ let searchDewler=(dewlerName)=>{
         $('#dewler-search-container').html(data);
         searchValidation();
     });
-    
+
 }
 
 let searchValidation=()=>{
     if($('.dewler-search-input').val().length==0){
         //setTimeout(function(){ FUNCTION }, 0);
-        
+
         $('#friends-container').slideDown(300);
         $('#dewler-search-container').empty();
         console.log('empty');
@@ -176,4 +176,16 @@ let createDewlValidations=()=>{
     }else{
         return false;
     }
+}
+
+let createwitnessreview=(id)=>{
+    //console.log($('#witness_review_id').length);
+    if($('#witness_review_id').length==0){
+        //console.log("no existe");
+    }else{
+        //console.log("ya existe y se tratara de borrar");
+        $('#witness_review_id').remove();
+    }
+    $('<input>').attr({type:'hidden',name:'id',value:id,id:'witness_review_id'}).appendTo('#witness_review');
+    //console.log(id)
 }
