@@ -195,6 +195,13 @@ let loadDoubleOrNothingPlayer=(title,pot,witness,id,name)=>{
      console.log("witness"+witness);
      console.log("id"+id);
      console.log("name"+name);
+    if($('#donduel').length==0){
+        //console.log("no existe");
+    }else{
+        //console.log("ya existe y se tratara de borrar");
+        $('#donduel').remove();
+    }
+    $('<input>').attr({type:'hidden',name:'duel',value:id,id:'donduel'}).appendTo('#donmodalform');
      $('#dontitle').val(title);
     $('#donpot').val(pot*2);
     $('#donwitnessInput').val(witness);

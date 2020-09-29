@@ -1133,7 +1133,7 @@
     <div class="modal fade" id="CreateDoubleOrNothing"  aria-labelledby="doubleOrNothing" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/re_duel" method="post" onsubmit="return createDewlValidations()">
+                <form action="/re_duel" method="post" id="donmodalform" onsubmit="return createDewlValidations()">
                     @csrf
                     <div class="modal-header" style="background-color: #23272b; color:white;">
                         <h5 class="modal-title" id="createDewlModalLabel">Create Dewl</h5>
@@ -1191,7 +1191,7 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
                         <!-- End Select witness -->
-                        <input type="text" class="form-control" id="donduel" name="duel" value="110 "aria-describedby="duel"  >
+{{--                        <input type="text" class="form-control" id="donduel" name="duel" value="110 "aria-describedby="duel"  >--}}
 {{--                        <div class="form-group" style="margin-bottom: 0px !important;">--}}
 {{--                            <label for="exampleInputEmail1" style="margin-top:10px;">Schedule Dewl</label>--}}
 {{--                            <input type="text" class="form-control" name="startdate" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date">--}}
