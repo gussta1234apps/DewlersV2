@@ -99,26 +99,26 @@ class IndexController extends Controller
         //if duelstatus == finish codigo 6  y ctl_user_witness == usuariologueado
         $dash_witness=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','!=',6],['duelstate','!=',8]])->orderBy('id', 'desc')->get();
 
-        //- Witness finished dewls        
+        //- Witness finished dewls
         $finished_witness_dewls = duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',6]])->orWhere([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',8]])->orderBy('id', 'desc')->get();
         //-
-        $reviews        = 0.00; 
-        $reviewsCount   = 0; 
-        $hypeRating     = 0.0; 
-        $hype           = 0.0;     
+        $reviews        = 0.00;
+        $reviewsCount   = 0;
+        $hypeRating     = 0.0;
+        $hype           = 0.0;
         $haveHypeRating = true;
         //- Stars counts
-        $starsCount[0]  = 0; 
-        $starsCount[1]  = 0; 
-        $starsCount[2]  = 0; 
-        $starsCount[3]  = 0; 
-        $starsCount[4]  = 0;   
+        $starsCount[0]  = 0;
+        $starsCount[1]  = 0;
+        $starsCount[2]  = 0;
+        $starsCount[3]  = 0;
+        $starsCount[4]  = 0;
         //- Stars percent
-        $starsPercent[0]  = 0; 
-        $starsPercent[1]  = 0; 
-        $starsPercent[2]  = 0; 
-        $starsPercent[3]  = 0; 
-        $starsPercent[4]  = 0;   
+        $starsPercent[0]  = 0;
+        $starsPercent[1]  = 0;
+        $starsPercent[2]  = 0;
+        $starsPercent[3]  = 0;
+        $starsPercent[4]  = 0;
         //-
         foreach($finished_witness_dewls as $dewl){
             try{
@@ -134,22 +134,25 @@ class IndexController extends Controller
                 else if($result->stars==1){ $starsCount[0]++; }
             }catch(Exception $e){ /* nothing */}
         }
-        $starsCount[3]+=1;$reviewsCount+=1;
+       // $starsCount[3]+=1;$reviewsCount+=1;
 
         //- Hype rating avg
         try{
             $hype           = $reviews/$reviewsCount;
             $hypeRating     = ($hype*100)/5;
+
         }catch(Exception $ex){
             $haveHypeRating = false;
         }
 
-        //- Stars percent calc
-        $starsPercent[0] = ($starsCount[0]*100)/$reviewsCount;
-        $starsPercent[1] = ($starsCount[1]*100)/$reviewsCount;
-        $starsPercent[2] = ($starsCount[2]*100)/$reviewsCount;
-        $starsPercent[3] = ($starsCount[3]*100)/$reviewsCount;
-        $starsPercent[4] = ($starsCount[4]*100)/$reviewsCount;
+        try{
+            $starsPercent[0] = ($starsCount[0]*100)/$reviewsCount;
+            $starsPercent[1] = ($starsCount[1]*100)/$reviewsCount;
+            $starsPercent[2] = ($starsCount[2]*100)/$reviewsCount;
+            $starsPercent[3] = ($starsCount[3]*100)/$reviewsCount;
+            $starsPercent[4] = ($starsCount[4]*100)/$reviewsCount;
+        }catch(Exception $e){
+        }
 
         //- WINNER COUNT
         $winnerCount = count($record_winner);
@@ -255,7 +258,7 @@ class IndexController extends Controller
         foreach($duels as $duel){
             $html.='<tr> <td colspan="4">
                     <div  ';
-            //-                    
+            //-
             if($duel->ctl_user_id_witness){ $html.='class="card-table-with-witness"'; }
             else{$html.='class="card-table-without-witness"';}
             //-
@@ -273,7 +276,7 @@ class IndexController extends Controller
                                 <div class="col-4 current-card-column"><strong>'.$duel->pot.' Stacks</strong></div>
                             </div>
                         </div>';
-                        
+
             //If your the challenged and havent accepted the  dewl
             if($duel->ctl_user_id_challenged == $id_auth->id and $duel->duelstate==1)
             {
