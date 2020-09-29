@@ -14,7 +14,7 @@ $(document).ready(function(){
 
     $('.menu-box').css('left','-350px');
     $('.friends-box').css('right','-350px');
-    $('.r-u-sure').hide();
+   // $('.r-u-sure').hide();
 
     $('.menu-button').click(function(){
         toggleMenu()
@@ -122,10 +122,10 @@ let toggleFriendBox=()=>{
     }
 }
 
-let togglewinnerChooser=()=>{
-    $('.choose-winner').toggle();
-    $('.r-u-sure').toggle();
-}
+// let togglewinnerChooser=()=>{
+//     $('.choose-winner').toggle();
+//     $('.r-u-sure').toggle();
+// }
 
 let loadPlayerToDewl=(id,name)=>{
     $('#challendged').val(id);
@@ -204,7 +204,7 @@ let loadDoubleOrNothingPlayer=(title,pot,witness,id,name)=>{
     $('<input>').attr({type:'hidden',name:'duel',value:id,id:'donduel'}).appendTo('#donmodalform');
      $('#dontitle').val(title);
     $('#donpot').val(pot*2);
-    $('#donwitnessInput').val(witness);
+   // $('#donwitnessInput').val(witness);
     $('#donduel').val(id);
     $('#donchallendged').val(name);
     // $('#playerInput').val(name);

@@ -114,28 +114,28 @@
             @if(!$noHypeRating)
                 <div class="stars">
                     <div class="stars-percent" style="width:{{$starsPercent[4]}}%"></div>
-                    <span class="stars-number">5 stars</span> 
+                    <span class="stars-number">5 stars</span>
                     <span class="stars-count">{{$stars[4]}}</span>
                 </div>
                 <div class="stars">
                     <div class="stars-percent" style="width:{{$starsPercent[3]}}%"></div>
-                    <span class="stars-number">4 stars</span> 
+                    <span class="stars-number">4 stars</span>
                     <span class="stars-count">{{$stars[3]}}</span>
                 </div>
                 <div class="stars">
                     <div class="stars-percent" style="width:{{$starsPercent[2]}}%"></div>
-                    <span class="stars-number">3 stars</span> 
-                    <span class="stars-count">{{$stars[2]}}</span> 
+                    <span class="stars-number">3 stars</span>
+                    <span class="stars-count">{{$stars[2]}}</span>
                 </div>
                 <div class="stars">
                     <div class="stars-percent" style="width:{{$starsPercent[2]}}%"></div>
-                    <span class="stars-number">2 stars</span> 
+                    <span class="stars-number">2 stars</span>
                     <span class="stars-count">{{$stars[1]}}</span>
                 </div>
                 <div class="stars">
                     <div class="stars-percent" style="width:{{$starsPercent[1]}}%"></div>
-                    <span class="stars-number">1 star</span> 
-                    <span class="stars-count">{{$stars[0]}}</span> 
+                    <span class="stars-number">1 star</span>
+                    <span class="stars-count">{{$stars[0]}}</span>
                 </div>
             @else
                 <h4>No records found</h4>
@@ -474,11 +474,21 @@
 {{--                                                        <button class="loss-button">Double or Nothing</button>--}}
 {{--                                                        <button class="loss-button" data-toggle="modal" data-target="#createwitnessreview{{$loss->id}}">Review</button>--}}
                                                         @if($loss->loser_review==0 and $loss->don==1)
+                                                            @if($loss->ctlUser2)
+                                                                <h1>Tiene witness</h1>
+                                                                @else
+                                                                <h1>No Tiene witness</h1>
+                                                                @endif
                                                             <button class="loss-button" href="/double_or_nothing/{{$loss->id}}" data-toggle="modal" data-target="#CreateDoubleOrNothing" onclick="loadDoubleOrNothingPlayer('{{$loss->tittle}}',{{$loss->pot}},'{{$loss->ctlUser1->username}}',{{$loss->id}},'{{$loss->ctlUser1->username}}')">Double or Nothing</button>
                                                             <button class="loss-button" data-toggle="modal" onclick="createwitnessreview({{$loss->id}});" data-target="#createreview">Review</button>
                                                         @elseif($loss->loser_review==0 and $loss->don==2)
                                                             <button class="loss-button" data-toggle="modal" onclick="createwitnessreview({{$loss->id}});"  data-target="#createreview">Review</button>
                                                         @elseif($loss->loser_review==1 and $loss->don==1)
+                                                            @if($loss->ctlUser2)
+                                                                <h1>Tiene witness</h1>
+                                                            @else
+                                                                <h1>No Tiene witness</h1>
+                                                            @endif
                                                             <button class="loss-button" href="/double_or_nothing/{{$loss->id}}" data-toggle="modal" data-target="#CreateDoubleOrNothing" onclick="loadDoubleOrNothingPlayer('{{$loss->tittle}}',{{$loss->pot}},'{{$loss->ctlUser1->username}}',{{$loss->id}},'{{$loss->ctlUser1->username}}')">Double or Nothing</button>
                                                         @endif
                                                     </div>
@@ -913,18 +923,19 @@
                                     </div>
                                 @else
                                     @if($witness->duelstate==4 or $witness->duelstate==9)
-                                    <form action="#" method="post" class="choose-winner">
+                                    <form action="#" method="get" class="choose-winner">
+                                        @csrf
                                         <h4>Choose the winner</h4>
                                         <div class="col-md-8 offset-md-2 col-12">
                                             <div class="row choose-winner-row">
                                                 <div class="col-md-5 col-5 witness-player-selector">
-                                                    <button type="button" class="btn btn-primary player-1">{{$witness->ctlUser0->username}}</button>
+                                                    <button class="btn btn-primary player-1" type="submit" formaction="/update_balance/{{$witness->id}}/{{$witness->ctlUser0->id}}/{{$witness->ctlUser1->id}}">{{$witness->ctlUser0->username}}</button>
                                                 </div>
                                                 <div class="col-md-2 col-2 d-flex align-items-center justify-content-center">
                                                     <h4 cl>VS</h4>
                                                 </div>
                                                 <div class="col-md-5 col-2 witness-player-selector">
-                                                    <button type="button" class="btn btn-primary player-2">{{$witness->ctlUser1->username}}</button>
+                                                    <button class="btn btn-primary player-2" type="submit" formaction="/update_balance/{{$witness->id}}/{{$witness->ctlUser1->id}}/{{$witness->ctlUser0->id}}">{{$witness->ctlUser1->username}}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1211,8 +1222,8 @@
 {{--                            <input type="checkbox" class="custom-control-input" id="customCheck1" data-toggle="collapse" name="witness_validate" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">--}}
 {{--                            <label class="custom-control-label" for="customCheck1">Select Witness</label>--}}
 {{--                        </div>--}}
-                        <label for="exampleInputEmail1" style="margin-top: 10px;">Witness</label>
-                        <input type="text" class="form-control" autocomplete="off" list="witnessList" id="donwitnessInput" onchange="prepareWitnessToCreateDewl();" aria-describedby="challenger" disabled>
+{{--                        <label for="exampleInputEmail1" style="margin-top: 10px;">Witness</label>--}}
+{{--                        <input type="text" class="form-control" autocomplete="off" list="witnessList" id="donwitnessInput" onchange="prepareWitnessToCreateDewl();" aria-describedby="challenger" disabled>--}}
 {{--                        <div class="collapse" id="collapseExample">--}}
 {{--                            <div class="form-group">--}}
 {{--                                <label for="exampleInputEmail1" style="margin-top: 10px;">Witness</label>--}}

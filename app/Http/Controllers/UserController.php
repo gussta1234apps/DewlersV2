@@ -231,7 +231,7 @@ class UserController extends Controller
         Notification::route('mail', $frien_email->email)
             ->notify(new addfriend($arr5)); //EMAIL FOR WINNER
 
-        return redirect('/myaccount');
+        return redirect('/dashboard');
     }
 
     public function refuse_friend($id_accept){
@@ -242,7 +242,7 @@ class UserController extends Controller
 
         $me_user->denyFriendRequest($sender_friend);
 
-        return redirect('/myaccount');
+        return redirect('/dashboard');
     }
 
     public function send_friend(Request $request){
