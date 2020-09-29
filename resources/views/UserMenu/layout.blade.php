@@ -604,9 +604,9 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent2">
                     <div class="tab-pane fade show active" id="nav-current" role="tabpanel" aria-labelledby="nav-home-tab">
-
-                        <div class="dewl-h">
-
+                        
+                        <div class="dewl-h" id="currentDewlInformation">
+                            
                             <table class="table table-borderless">
                                 <thead style="color: #08ADD5;">
                                 <tr>
