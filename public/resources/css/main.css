@@ -1673,6 +1673,17 @@ label[for="star-null"] {
     border-top-left-radius: 30px;
 }
 
+.stars-percent{
+    position: absolute;
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 30%;
+    height: 100%;
+    background-color: rgba(36, 60, 105, 0.15);
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
 .stars-number{
     margin-left: 20px;
     margin-right: 20px;

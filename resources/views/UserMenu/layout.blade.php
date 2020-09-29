@@ -113,23 +113,28 @@
             <div>
             @if(!$noHypeRating)
                 <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[4]}}%"></div>
                     <span class="stars-number">5 stars</span> 
                     <span class="stars-count">{{$stars[4]}}</span>
                 </div>
                 <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[3]}}%"></div>
                     <span class="stars-number">4 stars</span> 
                     <span class="stars-count">{{$stars[3]}}</span>
                 </div>
                 <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[2]}}%"></div>
                     <span class="stars-number">3 stars</span> 
                     <span class="stars-count">{{$stars[2]}}</span> 
                 </div>
                 <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[2]}}%"></div>
                     <span class="stars-number">2 stars</span> 
                     <span class="stars-count">{{$stars[1]}}</span>
                 </div>
                 <div class="stars">
-                    <span class="stars-number">1 stars</span> 
+                    <div class="stars-percent" style="width:{{$starsPercent[1]}}%"></div>
+                    <span class="stars-number">1 star</span> 
                     <span class="stars-count">{{$stars[0]}}</span> 
                 </div>
             @else
