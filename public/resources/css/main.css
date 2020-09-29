@@ -1697,4 +1697,48 @@ label[for="star-null"] {
     color: #999;
 }
 
-/* ANIMATIONS */
+/* HYPE RATING STARS */
+.stars{
+    width: calc(100% - 30px);
+    height: 60px;
+    padding: 15px;
+    margin: 15px;
+
+    background-color: rgba(43, 55, 78, 0.15);
+
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.stars-percent{
+    position: absolute;
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 30%;
+    height: 100%;
+    background-color: rgba(36, 60, 105, 0.15);
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.stars-number{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 80px;
+    height: 30px;
+
+    font-size: 20px;
+    font-weight: 700;
+    color: #003a52;
+}
+
+.stars-count{
+    margin-top: -8px;
+    float: right;
+    width: auto;
+    height: 30px;
+
+    font-size: 30px;
+    font-weight: 700;
+    color: #cf1d3f;
+}

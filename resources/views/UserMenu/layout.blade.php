@@ -111,7 +111,35 @@
             <h4>Hype Rating&nbsp;<!--em class="fas fa-user-circle"></em--></h4>
             <br/>
             <div>
-                Here is the hype rating information
+            @if(!$noHypeRating)
+                <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[4]}}%"></div>
+                    <span class="stars-number">5 stars</span> 
+                    <span class="stars-count">{{$stars[4]}}</span>
+                </div>
+                <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[3]}}%"></div>
+                    <span class="stars-number">4 stars</span> 
+                    <span class="stars-count">{{$stars[3]}}</span>
+                </div>
+                <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[2]}}%"></div>
+                    <span class="stars-number">3 stars</span> 
+                    <span class="stars-count">{{$stars[2]}}</span> 
+                </div>
+                <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[2]}}%"></div>
+                    <span class="stars-number">2 stars</span> 
+                    <span class="stars-count">{{$stars[1]}}</span>
+                </div>
+                <div class="stars">
+                    <div class="stars-percent" style="width:{{$starsPercent[1]}}%"></div>
+                    <span class="stars-number">1 star</span> 
+                    <span class="stars-count">{{$stars[0]}}</span> 
+                </div>
+            @else
+                <h4>No records found</h4>
+            @endif
             </div>
         </div>
         <div class="friends-body">
@@ -876,6 +904,13 @@
                                         {{-- </div>--}}
                                     </div>
                                 </form>
+                                @elseif($witness->duelstate==1)
+                                    <div class="center-mobil txt-blck all-width">
+                                        <h4 class="card-view-title">{{$witness->tittle}}</h4>
+                                        <p class="card-view-description">{{$witness->Description}}</p>
+                                        <p class="card-view-date">Start Date: {{$witness->startDate}}</p>
+                                        <p class="card-view-status">Status: {{$witness->duelstatus->description}}</p>
+                                    </div>
                                 @else
                                     @if($witness->duelstate==4 or $witness->duelstate==9)
                                     <form action="#" method="post" class="choose-winner">

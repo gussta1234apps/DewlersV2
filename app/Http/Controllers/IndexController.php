@@ -107,16 +107,35 @@ class IndexController extends Controller
         $hypeRating     = 0.0; 
         $hype           = 0.0;     
         $haveHypeRating = true;
+        //- Stars counts
+        $starsCount[0]  = 0; 
+        $starsCount[1]  = 0; 
+        $starsCount[2]  = 0; 
+        $starsCount[3]  = 0; 
+        $starsCount[4]  = 0;   
+        //- Stars percent
+        $starsPercent[0]  = 0; 
+        $starsPercent[1]  = 0; 
+        $starsPercent[2]  = 0; 
+        $starsPercent[3]  = 0; 
+        $starsPercent[4]  = 0;   
         //-
         foreach($finished_witness_dewls as $dewl){
             try{
                 $result     = DB::table('reviews')->where('rol', $dewl->id)->first();
                 $reviewsCount++;
                 $reviews    += $result->stars;
-            }catch(Exception $e){
-                $reviews    = $e->getMessage();
-            }
+
+                //- Star count validations and upper
+                if($result->stars==5){ $starsCount[4]++; }
+                else if($result->stars==4){ $starsCount[3]++; }
+                else if($result->stars==3){ $starsCount[2]++; }
+                else if($result->stars==2){ $starsCount[1]++; }
+                else if($result->stars==1){ $starsCount[0]++; }
+            }catch(Exception $e){ /* nothing */}
         }
+        $starsCount[3]+=1;$reviewsCount+=1;
+
         //- Hype rating avg
         try{
             $hype           = $reviews/$reviewsCount;
@@ -124,6 +143,13 @@ class IndexController extends Controller
         }catch(Exception $ex){
             $haveHypeRating = false;
         }
+
+        //- Stars percent calc
+        $starsPercent[0] = ($starsCount[0]*100)/$reviewsCount;
+        $starsPercent[1] = ($starsCount[1]*100)/$reviewsCount;
+        $starsPercent[2] = ($starsCount[2]*100)/$reviewsCount;
+        $starsPercent[3] = ($starsCount[3]*100)/$reviewsCount;
+        $starsPercent[4] = ($starsCount[4]*100)/$reviewsCount;
 
         //- WINNER COUNT
         $winnerCount = count($record_winner);
@@ -143,7 +169,7 @@ class IndexController extends Controller
         $resquet_pending= $ctl_log_user->getFriendRequests();
 
         if($haveHypeRating){
-            return view('UserMenu.layout')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness)->with('pending_f_req',$resquet_pending)->with('hypeRating',$hypeRating)->with('noHypeRating',false)->with('winnerCount',$winnerCount);
+            return view('UserMenu.layout')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness)->with('pending_f_req',$resquet_pending)->with('hypeRating',$hypeRating)->with('noHypeRating',false)->with('winnerCount',$winnerCount)->with('stars',$starsCount)->with('starsPercent',$starsPercent);
         }else{
             return view('UserMenu.layout')->with('duels',$due2)->with('challengeds',$friends)->with('r_winner', $record_winner)->with('r_loser',$record_loser)->with('r_witness',$record_witness)->with('dash_witness',$dash_witness)->with('pending_f_req',$resquet_pending)->with('noHypeRating',true)->with('winnerCount',$winnerCount);
         }
