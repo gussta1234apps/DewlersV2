@@ -760,7 +760,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-witness" role="tabpanel" aria-labelledby="nav-witness-tab">
-                        <div class="dewl-h">
+                        <div class="dewl-h"  id="witnessDewls">
                             <table class="table table-borderless">
                                 <thead style="color: #08ADD5;">
                                 <tr>
@@ -790,7 +790,7 @@
                                 </h4>
                                 <form action="#" method="post" class="choose-winner">
                                     @csrf
-                                    @if($witness->ctlUser1->review_avg<2.5 )
+                                    @if($witness->ctlUser1->review_avg<2.5)
                                     <p style="border: 0px solid #761b18; color: #761b18;border-radius:5px;margin:5px;font-size:15px;font-weight:800;padding:3px;">
                                         {{$witness->ctlUser1->username}} is a sore loser
                                     </p>

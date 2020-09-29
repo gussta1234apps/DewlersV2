@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function (){
     //-
     Route::get( '/searchDewler/{dewlerName}','UserController@searchDewler');
     Route::get('/updateCurrentDewls','IndexController@updateCurrentDewls');
+    Route::get('/updateWitnessDewls','IndexController@updateWitnessDewls');
     //-
     //myaccount
     Route::get('/myaccount','UserController@myaccount');

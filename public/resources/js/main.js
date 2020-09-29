@@ -1,6 +1,7 @@
 var showMenuBox = true;
 var showFriendsBox = false;
 var currentDewls = '';
+var witnessDewls = '';
 
 $(document).ready(function(){
    /*  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -8,6 +9,7 @@ $(document).ready(function(){
     }else{
         $('.create-dewl-mobile').hide();
     } */
+    updateCurrentDewls();
     setInterval(updateCurrentDewls,15000);
     $('.request-body').slideUp();
     showHome()
@@ -180,7 +182,7 @@ let createDewlValidations=()=>{
 }
 
 let updateCurrentDewls=()=>{
-    console.log("actualizando");
+    console.log("actualizando current");
     $.ajax({
         url:'/updateCurrentDewls',
         data:{
@@ -196,5 +198,23 @@ let updateCurrentDewls=()=>{
             console.log('no hay cambios');
         }
         currentDewls = data;
+    });
+
+    console.log("actualizando witness");
+    $.ajax({
+        url:'/updateWitnessDewls',
+        data:{
+            getData:true
+        }
+    }).done(function(data){
+
+        if(data!=witnessDewls){
+            console.log("Se actualizó");
+            $('#witnessDewls').html(data);
+        }
+        else{
+            console.log('no hay cambios');
+        }
+        witnessDewls = data;
     });
 }
