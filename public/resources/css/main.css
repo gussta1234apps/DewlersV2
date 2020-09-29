@@ -1671,6 +1671,12 @@ label[for="star-null"] {
 
     border-bottom-left-radius: 30px;
     border-top-left-radius: 30px;
+
+    transition: all .4s;
+}
+.stars:hover{
+    margin-left: 20px;
+
 }
 
 .stars-percent{

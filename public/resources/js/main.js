@@ -1,5 +1,6 @@
 var showMenuBox = true;
 var showFriendsBox = false;
+var currentDewls = '';
 
 $(document).ready(function(){
    /*  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -7,7 +8,7 @@ $(document).ready(function(){
     }else{
         $('.create-dewl-mobile').hide();
     } */
-
+    setInterval(updateCurrentDewls,15000);
     $('.request-body').slideUp();
     showHome()
 
@@ -176,4 +177,24 @@ let createDewlValidations=()=>{
     }else{
         return false;
     }
+}
+
+let updateCurrentDewls=()=>{
+    console.log("actualizando");
+    $.ajax({
+        url:'/updateCurrentDewls',
+        data:{
+            getData:true
+        }
+    }).done(function(data){
+
+        if(data!=currentDewls){
+            console.log("Se actualizó");
+            $('#currentDewlInformation').html(data);
+        }
+        else{
+            console.log('no hay cambios');
+        }
+        currentDewls = data;
+    });
 }
