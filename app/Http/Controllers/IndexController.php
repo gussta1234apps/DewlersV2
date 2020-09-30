@@ -132,9 +132,8 @@ class IndexController extends Controller
                 else if($result->stars==3){ $starsCount[2]++; }
                 else if($result->stars==2){ $starsCount[1]++; }
                 else if($result->stars==1){ $starsCount[0]++; }
-            }catch(Exception $e){ /* nothing */}
+            }catch(Exception $e){ /* nothing */ }
         }
-       // $starsCount[3]+=1;$reviewsCount+=1;
 
         //- Hype rating avg
         try{
@@ -145,6 +144,7 @@ class IndexController extends Controller
             $haveHypeRating = false;
         }
 
+        //- Stars percent calc
         try{
             $starsPercent[0] = ($starsCount[0]*100)/$reviewsCount;
             $starsPercent[1] = ($starsCount[1]*100)/$reviewsCount;
@@ -152,6 +152,7 @@ class IndexController extends Controller
             $starsPercent[3] = ($starsCount[3]*100)/$reviewsCount;
             $starsPercent[4] = ($starsCount[4]*100)/$reviewsCount;
         }catch(Exception $e){
+
         }
 
         //- WINNER COUNT
@@ -286,7 +287,7 @@ class IndexController extends Controller
                         <div class="card-view-info center-mobil">
                             <br>
                             <form action="#" method="post">
-                                @csrf
+                            <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
                             <div class="row col-6 offset-3">
                                 <div class="col">
@@ -311,7 +312,7 @@ class IndexController extends Controller
                         <div class="card-view-info center-mobil">
                             <br>
                             <form action="#" method="post">
-                                @csrf
+                            <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
                             <div class="row col-6 offset-3">
                                 <div class="col center-mobil">
@@ -334,7 +335,7 @@ class IndexController extends Controller
                         <div class="card-view-info center-mobil">
                             <br>
                             <form action="#" method="post">
-                                @csrf
+                            <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
                             <div class="row col-8 offset-2">
                                 <div class="col center-mobil">
@@ -356,7 +357,7 @@ class IndexController extends Controller
                         <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
                         <br>
                         <form action="#" method="post" class="card-view-info center-mobil">
-                                @csrf
+                            <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
                             <div class="row col-6 offset-3">
                                 <div class="col center-mobil">
@@ -403,7 +404,7 @@ class IndexController extends Controller
                 else if($duel->ctl_user_id_challenger==$id_auth->id && $duel->duelstate==4 || $duel->duelstate==9)
                 {
                     $html.='<form action="#" method="GET" class="card-view-info center-mobil">
-                        @csrf
+                        <input type="hidden" name="_token" value="'.csrf_token().'">
                         <h4 class="card-view-cw-title">Choose Winner</h4>
                         <div class="row col-6 offset-3">
                             <div class="col center-mobil">
@@ -426,4 +427,151 @@ class IndexController extends Controller
         echo $html;
     }
     //----------------- END OF CURRENT DEWLS UPDATE FUNCTION ------------
+
+    //----------------- WITNESS DEWLS UPDATE FUNCTION -------------------
+    public function updateWitnessDewls(){
+        $id_auth=Auth::user();
+        $record_witness=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',6]])->orWhere([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',8]])->orderBy('id', 'desc')->get();
+        
+        $html = '<table class="table table-borderless">
+            <thead style="color: #08ADD5;">
+                <tr>
+                    <th colspan="4 center" style="color:#000"><strong>Serving as Witness</strong></th>
+                </tr>
+            </thead>
+            <tbody>';
+
+        foreach($record_witness as $witness){
+            $html.='<tr>
+            <td colspan="4">
+                <div class="card-table">
+                    <div class="short-desc">
+                        <div class="row"  data-toggle="collapse" href="#witness-collapse-'.$witness->id.'" role="button" aria-expanded="false" aria-controls="witness-collapse-'.$witness->id.'">
+                            <div class="col-md-5 current-card-column"><strong>'.$witness->ctlUser0->username.' VS '.$witness->ctlUser1->username.'</strong></div>
+                            <div class="col-md-3 col-7 current-card-column"><strong>'.$witness->pot.' stacks</strong></div>
+                            <div class="col-md-2 col-3 current-card-column"><strong>DATA</strong></div>
+                            <div class="col-md-1 col-2 current-card-column"><i class="fas fa-exclamation notification-icon"></i></div>
+                        </div>
+                    </div>
+                    <div class="collapse detail" id="witness-collapse-'.$witness->id.'">
+                        <div class="center-mobil text-center chwin-content">';
+            if($witness->duelstate==2 || $witness->duelstate==3 || $witness->duelstate==10 || $witness->duelstate==11)
+            {
+                $html.='<h4 class="card-view-title" style="color:black;font-size:18px;">
+                You have been invited as a Witness to this Dewl. <br>
+                Please select your Witness Percentage.
+                </h4>
+                <form action="#" method="post" class="choose-winner">
+                <input type="hidden" name="_token" value="'.csrf_token().'">';
+
+                if($witness->ctlUser1->review_avg<2.5)
+                {
+                    $html.='<p style="border: 0px solid #761b18; color: #761b18;border-radius:5px;margin:5px;font-size:15px;font-weight:800;padding:3px;">
+                        '.$witness->ctlUser1->username.' is a sore loser
+                    </p>';
+                }
+                else if($witness->ctlUser0->review_avg<2.5)
+                {
+                    $html.='<p style="border: 0px solid #761b18; color: #761b18;border-radius:5px;margin:5px;font-size:15px;font-weight:800;padding:3px;">
+                        '.$witness->ctlUser0->username.' is a sore loser
+                    </p>';
+                }
+                
+                $html.='<div class="row ">
+                        <div class=" col-lg-12 ">
+                            <input type="number" name="percentage" min="1" max="7" id="input'.$witness->id.'">
+                            <input type="text" value="'.$witness->id.'" name="id" hidden>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row text-center">
+                        <div class="row col-6 offset-3">
+                            <div class="col-6">
+                                <button class="btn-primary btn-primary btn btn'.$witness->id.'" style="background-color: #00B6E3;" id="acept'.$witness->id.'" type="submit" formaction="/witn_validate">Accept</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-danger" style="background-color: #D5130B" id="refuse'.$witness->id.'" type="submit" formaction="/nowith">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>';
+            }
+            else if($witness->duelstate==1)
+            {
+                $html.='<div class="center-mobil txt-blck all-width">
+                    <h4 class="card-view-title">'.$witness->tittle.'</h4>
+                    <p class="card-view-description">'.$witness->Description.'</p>
+                    <p class="card-view-date">Start Date: '.$witness->startDate.'</p>
+                    <p class="card-view-status">Status: '.$witness->duelstatus->description.'</p>
+                </div>';
+            }
+            else
+            {
+                if($witness->duelstate==4 or $witness->duelstate==9)
+                {
+                    $html.='<form action="#" method="post" class="choose-winner">
+                        <h4>Choose the winner</h4>
+                        <div class="col-md-8 offset-md-2 col-12">
+                            <div class="row choose-winner-row">
+                                <div class="col-md-5 col-5 witness-player-selector">
+                                    <button type="button" class="btn btn-primary player-1">'.$witness->ctlUser0->username.'</button>
+                                </div>
+                                <div class="col-md-2 col-2 d-flex align-items-center justify-content-center">
+                                    <h4 cl>VS</h4>
+                                </div>
+                                <div class="col-md-5 col-2 witness-player-selector">
+                                    <button type="button" class="btn btn-primary player-2">'.$witness->ctlUser1->username.'</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>';
+                }
+            }
+
+            $html.='</div>
+                    </div>
+                </td>
+            </tr>
+                                <!--div class="choose-winner ">
+                                <h4>Choose the winner</h4>
+                                    <div class="col-md-8 offset-md-2 col-12">
+                                        <div class="row choose-winner-row">
+                                            <div class="col-md-5 col-5 witness-player-selector">
+                                                <button type="button"
+                                                        class="btn btn-primary player-1">'.$witness->ctlUser0->username.'</button>
+                                            </div>
+                                            <div
+                                                class="col-md-2 col-2 d-flex align-items-center justify-content-center">
+                                                <h4 cl>VS</h4>
+                                            </div>
+                                            <div class="col-md-5 col-2 witness-player-selector">
+                                                <button type="button"
+                                                        class="btn btn-primary player-2">'.$witness->ctlUser1->username.'</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="r-u-sure ">
+                                    <h4>Confirm Alex Won the Dewl?</h4>
+                                    <div class="col-md-8 offset-md-2 col-12">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6 col-6"><button type="button" class="btn btn-success">Yes</button></div>
+                                            <div class="col-md-6 col-6"> <button type="button" class="btn btn-danger">No</button></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr-->';
+        }
+
+        $html.='</tbody>
+        </table>';
+
+        echo $html;
+    }
 }

@@ -299,32 +299,34 @@ class UserController extends Controller
             $collections = '';
             foreach($user_requested as $user)
             {
-                $isFriend   = false;
-                $isPending  = false;
-                foreach($friends as $friend){
-                    if($user->id == $friend->id){$isFriend=true;}
+                if($id_auth->id!=$user->id){
+                    $isFriend   = false;
+                    $isPending  = false;
+                    foreach($friends as $friend){
+                        if($user->id == $friend->id){$isFriend=true;}
+                    }
+
+                    $search_requests=ctl_users::where('id',$user->id)->first();
+                    $resquet_pending= $search_requests->getFriendRequests();
+
+                    foreach($resquet_pending as $pending){
+                        if($id_auth->id == $pending->sender->id){$isPending=true;}
+                    }
+
+                    $buttons = "";
+
+                    if($isFriend){
+                        $buttons = '<button class="friends-dewl-button">Create Dewl</button>
+                        <button class="friends-remove-button">Remove</button>';
+                    }else if($isPending){
+                        $buttons = '<button class="btn btn-primary" disabled>Pending</button>';
+                    }else{
+                        $buttons = '<button class="friends-add-button" type="submit" formaction="/send_f_request">Add</button>';
+                    }
+
+                    $html       .='<div class="friends-info-card"><form action="#"> <input type="text" name="user_id" id="id_user" value="'.$user->id.'" hidden>'.$buttons.'<p class="friends-info-name">'.$user->name.'</p>
+                    </form></div>';
                 }
-
-                $search_requests=ctl_users::where('id',$user->id)->first();
-                $resquet_pending= $search_requests->getFriendRequests();
-
-                foreach($resquet_pending as $pending){
-                    if($id_auth->id == $pending->sender->id){$isPending=true;}
-                }
-
-                $buttons = "";
-
-                if($isFriend){
-                    $buttons = '<button class="friends-dewl-button">Create Dewl</button>
-                    <button class="friends-remove-button">Remove</button>';
-                }else if($isPending){
-                    $buttons = '<button class="pending-button" disabled>Pending</button>';
-                }else{
-                    $buttons = '<button class="friends-add-button" type="submit" formaction="/send_f_request">Add</button>';
-                }
-
-                $html       .='<div class="friends-info-card"><form action="#"> <input type="text" name="user_id" id="id_user" value="'.$user->id.'" hidden>'.$buttons.'<p class="friends-info-name">'.$user->name.'</p>
-               </form></div>';
             }
 
             echo $html;
