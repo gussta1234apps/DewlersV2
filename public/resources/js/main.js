@@ -230,3 +230,16 @@ let loadDoubleOrNothingPlayer=(title,pot,witness,id,name)=>{
     // $('#playerInput').val(name);
 
 }
+
+let addamount=(amount)=>{
+    if($('#amount').length==0){
+        console.log("no existe");
+    }else{
+        console.log("ya existe y se tratara de borrar");
+        $('#amount').remove();
+    }
+    $('<input>').attr({type:'hidden',name:'amount',value:amount,id:'amount'}).appendTo('#addstacksforms');
+
+        console.log('Se agrego e valor de :'+amount+'/n');
+        $('#addstacksforms').submit();
+}

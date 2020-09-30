@@ -28,7 +28,7 @@ class UserController extends Controller
     }
     public function addcoins(Request $request){
         $id = Auth::user();
-        $amount = $request->input('option');
+        //$amount = $request->input('option');
         $ownAmount = $request->input('ownAmount');
         $amount = $request->input('amount');
         $actualamount = DB::table('internalaccounts')->where('id','=',$id->id)->first();
@@ -45,7 +45,7 @@ class UserController extends Controller
             ->where('id','=',$id->id)
             ->update(['balance'=>$newAmount]);
 
-        return redirect('/transactionmanager');
+        return redirect('/dashboard');
     }
 
     public  function witness(){

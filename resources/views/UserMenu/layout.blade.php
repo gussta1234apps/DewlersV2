@@ -604,9 +604,9 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent2">
                     <div class="tab-pane fade show active" id="nav-current" role="tabpanel" aria-labelledby="nav-home-tab">
-                        
+
                         <div class="dewl-h" id="currentDewlInformation">
-                            
+
                             <table class="table table-borderless">
                                 <thead style="color: #08ADD5;">
                                 <tr>
@@ -1046,7 +1046,7 @@
         <div class="modal fade" id="addStacksModal" tabindex="-1" aria-labelledby="addStacksModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="">
+
                         <div class="modal-header" style="background-color: #23272b; color:white;">
                             <h5 class="modal-title" id="addStacksModalLabel">Add Stacks</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -1054,40 +1054,47 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <form action="/savecoins" method="post" id="addstacksforms">
+                                @csrf
                             <h5 class="text-center">Enter Stack Amount</h5>
                             <p class="text-center" style="font-size: 14px;font-weight: 500;">$1 = 20 Stacks</p>
-                            <input type="text" class="form-control">
+                            <input type="number" id="ownAmount" name="ownAmount" class="form-control" placeholder="Stacks" pattern="[0-9]">
                             <br>
                             <h6 class="text-center">Quick add</h6>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <button class="form-control btn btn-primary" style="margin-bottom: 5px">$10</button>
+                                    <button type="button" class="form-control btn btn-primary" style="margin-bottom: 5px" value="200" onclick="addamount(200);" >$10</button>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="form-control btn btn-primary" style="margin-bottom: 5px">$20</button>
+                                    <button type="button" class="form-control btn btn-primary" style="margin-bottom: 5px" value="400" onclick="addamount(400);">$20</button>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="form-control btn btn-primary" style="margin-bottom: 5px">$25</button>
+                                    <button type="button" class="form-control btn btn-primary" style="margin-bottom: 5px" value="500" onclick="addamount(500);">$25</button>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <button class="form-control btn btn-primary" style="margin-bottom: 5px">$30</button>
+                                    <button type="button" class="form-control btn btn-primary" style="margin-bottom: 5px" value="600" onclick="addamount(600);">$30</button>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="form-control btn btn-primary" style="margin-bottom: 5px">$50</button>
+                                    <button type="button" class="form-control btn btn-primary" style="margin-bottom: 5px" value="1000" onclick="addamount(1000);">$50</button>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="form-control btn btn-primary" style="margin-bottom: 5px">$100</button>
+                                    <button type="button" class="form-control btn btn-primary" style="margin-bottom: 5px" value="2000" onclick="addamount(2000);">$100</button>
                                 </div>
                             </div>
+{{--                                <input id="amount" name="amount" hidden>--}}
+                                <div class="text-center" style="margin-top: 30px;">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-success" value="Confirm">
+                                </div>
+                            </form>
+                        </div>
+{{--                        <div class="modal-footer text-center">--}}
+{{--                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+{{--                            <input type="button" class="btn btn-success" value="Confirm">--}}
+{{--                        </div>--}}
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="button" class="btn btn-success" value="Confirm">
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
