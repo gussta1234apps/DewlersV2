@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    
+
 
     <!-- Menu Button -->
     <div class="menu-bar">
@@ -1058,7 +1058,7 @@
                                 @csrf
                             <h5 class="text-center">Enter Stack Amount</h5>
                             <p class="text-center" style="font-size: 14px;font-weight: 500;">$1 = 20 Stacks</p>
-                            <input type="number" id="ownAmount" name="ownAmount" class="form-control" placeholder="Stacks" pattern="[0-9]">
+                            <input type="number" id="ownAmount" name="ownAmount" class="form-control" placeholder="Stacks" pattern="[0-9]" required>
                             <br>
                             <h6 class="text-center">Quick add</h6>
                             <div class="row">
@@ -1120,7 +1120,7 @@
                         <input type="hidden" id="playerID">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Title</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" name="tittle" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="tittle" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
