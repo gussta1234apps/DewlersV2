@@ -550,7 +550,25 @@
                                                                 @endif
                                                             </strong>
                                                         </div>
-                                                        <div class="col-1 current-card-column"><em class="fas fa-clock"></em></div>
+                                                        <div class="col-1 current-card-column">
+                                                        @switch($du->duelstate)
+                                                            @case(1)
+                                                            {{ HTML::image('img/Dewlers_iconos_Lo-P2.svg', '303', array('style' => 'width: 33px; high: 33px;')) }}{{--  pending oponnet --}}
+                                                            @break
+                                                            @case(2)
+                                                            {{ HTML::image('img/Dewlers_iconos_Lo-P2-Wi.svg', '303', array('style' => 'width: 33px; high: 33px;')) }}{{--  pending witness and opponent --}}
+                                                            @break
+                                                            @case(3)
+                                                            {{ HTML::image('img/Dewlers_iconos_Lo-Wi.svg', '303', array('style' => 'width: 33px; high: 33px;')) }}  {{--  pending witness --}}
+                                                            @break
+                                                            @case(4)
+                                                            {{ HTML::image('img/Dewlers_iconos_P1vP2.svg', '303', array('style' => 'width: 33px; high: 33px;')) }}  {{--  Dewling --}}
+                                                            @break
+                                                            @default
+                                                            {{ HTML::image('img/Dewlers_iconos_X2.svg', '303', array('style' => 'width: 33px; high: 33px;')) }}  {{--  Doble o nada --}}
+                                                        @endswitch
+                                                        
+                                                        </div>
                                                         <div class="col-4 current-card-column"><strong>{{$du->pot}} Stacks</strong></div>
                                                     </div>
                                                 </div>

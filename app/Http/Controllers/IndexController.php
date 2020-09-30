@@ -258,6 +258,34 @@ class IndexController extends Controller
         foreach($duels as $duel){
             $html.='<tr> <td colspan="4">
                     <div  ';
+            $imgUrl = '';
+            $tooltip='';
+
+            //- 
+            //- IMG and TOOLTIP validations
+            switch($duel->duelstate){
+                case 1 :
+                    $imgUrl = asset('resources/img/Dewlers iconos_Wai-P2.png'); //{{--  pending oponnet --}}
+                    $tooltip = 'data-toggle="tooltip" data-placement="top" title="Pending oponent"';
+                    break;
+                case 2:
+                    $imgUrl = asset('resources/img/Dewlers iconos_Wai-P2-Wi.png'); //}}{{--  pending witness and opponent --}}
+                    $tooltip = 'data-toggle="tooltip" data-placement="top" title="Pending witness and oponent"';
+                    break;
+                case 3:
+                     $imgUrl = asset('resources/img/Dewlers iconos_Lo-Wi.png'); //}}  //{{--  pending witness --}}
+                     $tooltip = 'data-toggle="tooltip" data-placement="top" title="Pending witness"';
+                     break;
+                case 4:
+                   $imgUrl = asset('resources/img/Dewlers iconos_P1vP2.png'); //}}  //{{--  Dewling --}}
+                   $tooltip = 'data-toggle="tooltip" data-placement="top" title="Dewling"';
+                   break;
+                default: 
+                    $imgUrl = asset('resources/img/Dewlers iconos_X2.png'); //}}  {{--  Doble o nada --}}
+                    $tooltip = 'data-toggle="tooltip" data-placement="top" title="Double or Nothing"';
+                break;
+            }
+
             //-                    
             if($duel->ctl_user_id_witness){ $html.='class="card-table-with-witness"'; }
             else{$html.='class="card-table-without-witness"';}
@@ -272,7 +300,7 @@ class IndexController extends Controller
                                 else{ $html.=$duel->ctlUser0->username; }
             $html.='            </strong>
                                 </div>
-                                <div class="col-1 current-card-column"><em class="fas fa-clock"></em></div>
+                                <div class="col-1 current-card-column"><img src="'.$imgUrl.'" width="40" height="40" '.$tooltip.'/></div>
                                 <div class="col-4 current-card-column"><strong>'.$duel->pot.' Stacks</strong></div>
                             </div>
                         </div>';
