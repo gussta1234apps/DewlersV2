@@ -132,7 +132,7 @@ class IndexController extends Controller
                 else if($result->stars==3){ $starsCount[2]++; }
                 else if($result->stars==2){ $starsCount[1]++; }
                 else if($result->stars==1){ $starsCount[0]++; }
-            }catch(Exception $e){ /* nothing */}
+            }catch(Exception $e){ /* nothing */ }
         }
 
         //- Hype rating avg
@@ -144,7 +144,6 @@ class IndexController extends Controller
         }
 
         //- Stars percent calc
-
         try{
             $starsPercent[0] = ($starsCount[0]*100)/$reviewsCount;
             $starsPercent[1] = ($starsCount[1]*100)/$reviewsCount;
@@ -287,7 +286,7 @@ class IndexController extends Controller
                         <div class="card-view-info center-mobil">
                             <br>
                             <form action="#" method="post">
-                                @csrf
+                            <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
                             <div class="row col-6 offset-3">
                                 <div class="col">
@@ -312,7 +311,7 @@ class IndexController extends Controller
                         <div class="card-view-info center-mobil">
                             <br>
                             <form action="#" method="post">
-                                @csrf
+                            <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
                             <div class="row col-6 offset-3">
                                 <div class="col center-mobil">
@@ -335,7 +334,7 @@ class IndexController extends Controller
                         <div class="card-view-info center-mobil">
                             <br>
                             <form action="#" method="post">
-                                @csrf
+                            <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
                             <div class="row col-8 offset-2">
                                 <div class="col center-mobil">
@@ -357,7 +356,7 @@ class IndexController extends Controller
                         <h4 class="card-view-title">You have been invited to continue Dewling in a Double or Nothing.</h4>
                         <br>
                         <form action="#" method="post" class="card-view-info center-mobil">
-                                @csrf
+                            <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
                             <div class="row col-6 offset-3">
                                 <div class="col center-mobil">
@@ -404,7 +403,7 @@ class IndexController extends Controller
                 else if($duel->ctl_user_id_challenger==$id_auth->id && $duel->duelstate==4 || $duel->duelstate==9)
                 {
                     $html.='<form action="#" method="GET" class="card-view-info center-mobil">
-                        @csrf
+                        <input type="hidden" name="_token" value="'.csrf_token().'">
                         <h4 class="card-view-cw-title">Choose Winner</h4>
                         <div class="row col-6 offset-3">
                             <div class="col center-mobil">
@@ -462,7 +461,7 @@ class IndexController extends Controller
                 Please select your Witness Percentage.
                 </h4>
                 <form action="#" method="post" class="choose-winner">
-                @csrf';
+                <input type="hidden" name="_token" value="'.csrf_token().'">';
 
                 if($witness->ctlUser1->review_avg<2.5)
                 {
