@@ -134,7 +134,6 @@ class IndexController extends Controller
                 else if($result->stars==1){ $starsCount[0]++; }
             }catch(Exception $e){ /* nothing */}
         }
-        $starsCount[3]+=1;$reviewsCount+=1;
 
         //- Hype rating avg
         try{
@@ -145,11 +144,16 @@ class IndexController extends Controller
         }
 
         //- Stars percent calc
-        $starsPercent[0] = ($starsCount[0]*100)/$reviewsCount;
-        $starsPercent[1] = ($starsCount[1]*100)/$reviewsCount;
-        $starsPercent[2] = ($starsCount[2]*100)/$reviewsCount;
-        $starsPercent[3] = ($starsCount[3]*100)/$reviewsCount;
-        $starsPercent[4] = ($starsCount[4]*100)/$reviewsCount;
+
+        try{
+            $starsPercent[0] = ($starsCount[0]*100)/$reviewsCount;
+            $starsPercent[1] = ($starsCount[1]*100)/$reviewsCount;
+            $starsPercent[2] = ($starsCount[2]*100)/$reviewsCount;
+            $starsPercent[3] = ($starsCount[3]*100)/$reviewsCount;
+            $starsPercent[4] = ($starsCount[4]*100)/$reviewsCount;
+        }catch(Exception $e){
+
+        }
 
         //- WINNER COUNT
         $winnerCount = count($record_winner);

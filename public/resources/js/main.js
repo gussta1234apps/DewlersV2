@@ -182,25 +182,18 @@ let createDewlValidations=()=>{
 }
 
 let updateCurrentDewls=()=>{
-    console.log("actualizando current");
     $.ajax({
         url:'/updateCurrentDewls',
         data:{
             getData:true
         }
     }).done(function(data){
-
         if(data!=currentDewls){
-            console.log("Se actualizó");
             $('#currentDewlInformation').html(data);
-        }
-        else{
-            console.log('no hay cambios');
         }
         currentDewls = data;
     });
 
-    console.log("actualizando witness");
     $.ajax({
         url:'/updateWitnessDewls',
         data:{
@@ -209,11 +202,7 @@ let updateCurrentDewls=()=>{
     }).done(function(data){
 
         if(data!=witnessDewls){
-            console.log("Se actualizó");
             $('#witnessDewls').html(data);
-        }
-        else{
-            console.log('no hay cambios');
         }
         witnessDewls = data;
     });
