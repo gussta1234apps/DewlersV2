@@ -615,7 +615,7 @@ body{
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
-    height: 80px;
+    /*height: 80px;*/
     font-size: 14px;
     margin-left: 10px;
 }
@@ -1490,10 +1490,10 @@ body{
         display: block !important;
     }
 
-    
+
 
     .card-style-identifier{
-        
+
         font-weight: 600;
         font-size: 12px;
     }
@@ -1616,7 +1616,7 @@ body{
 /* style identifier*/
 .card-style-identifier{
     float: right;
-    
+
     font-weight: 600;
     font-size: 14px;
 }

@@ -658,7 +658,7 @@
                                                             @default
                                                             {{ HTML::image('img/Dewlers_iconos_X2.svg', '303', array('style' => 'width: 33px; high: 33px;')) }}  {{--  Doble o nada --}}
                                                         @endswitch
-                                                        
+
                                                         </div>
                                                         <div class="col-4 current-card-column"><strong>{{$du->pot}} Stacks</strong></div>
                                                     </div>
@@ -1154,7 +1154,7 @@
                         <small id="emailHelp" class="form-text text-muted">10% of this amount goes to Dewlers</small>
                         <div class="form-group">
                             <label for="exampleInputEmail1" style="margin-top: 10px;">VS</label>
-                            <input type="text" class="form-control" autocomplete="off" list="players" onchange="prepareToCreateDewl();" id="playerInput" aria-describedby="challenger" placeholder="Enter Dewler's Name">
+                            <input type="text" class="form-control" autocomplete="off" list="players" onchange="prepareToCreateDewl();" id="playerInput" aria-describedby="challenger" placeholder="Enter Dewler's Name" required>
                             <datalist id="players">
                                 @foreach($challengeds as $friend)
                                     <option value="{{$friend->username}}" data-id="{{$friend->id}}">{{$friend->username}}</option>
@@ -1183,7 +1183,7 @@
                         <!-- End Select witness -->
                         <div class="form-group" style="margin-bottom: 0px !important;">
                             <label for="exampleInputEmail1" style="margin-top:10px;">Schedule Dewl</label>
-                            <input type="text" class="form-control" name="startdate" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date">
+                            <input type="text" class="form-control" name="startdate" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date" required>
                         </div>
                         <small id="emailHelp" class="form-text text-muted">Dewls expire after 24 hours of the scheduled date.</small>
                         <div class="text-center" style="margin-top: 25px;">
