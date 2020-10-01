@@ -11,6 +11,8 @@ $(document).ready(function(){
     } */
     updateCurrentDewls();
     setInterval(updateCurrentDewls,15000);
+
+
     $('.request-body').slideUp();
     showHome()
 
@@ -314,4 +316,14 @@ let addamount=(amount)=>{
 
         console.log('Se agrego e valor de :'+amount+'/n');
         $('#addstacksforms').submit();
+}
+
+
+let updateDewlViewState=(dewlID,state)=>{
+    $.ajax({
+        url:'/updateDewlViewState/' + dewlID + '/' + state,
+        data:{
+            updateViewState:true
+        }
+    });
 }
