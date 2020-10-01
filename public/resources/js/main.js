@@ -11,6 +11,8 @@ $(document).ready(function(){
     } */
     updateCurrentDewls();
     setInterval(updateCurrentDewls,15000);
+
+
     $('.request-body').slideUp();
     showHome()
 
