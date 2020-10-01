@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    <style>
+        body {
+        background-color: white !important;
+        }
+    </style>
     <!-- Scripts -->
 <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
     <script src="{{ asset('js/scripts.js') }}" defer></script>
