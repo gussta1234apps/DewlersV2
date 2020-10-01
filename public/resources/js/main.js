@@ -209,3 +209,12 @@ let updateCurrentDewls=()=>{
         witnessDewls = data;
     });
 }
+
+let updateDewlViewState=(dewlID,state)=>{
+    $.ajax({
+        url:'/updateDewlViewState/' + dewlID + '/' + state,
+        data:{
+            updateViewState:true
+        }
+    });
+}

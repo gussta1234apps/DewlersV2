@@ -233,6 +233,8 @@ class IndexController extends Controller
 
     //----------------- CURRENT DEWLS UPDATE FUNCTION -------------------
     public function updateCurrentDewls(){
+
+        
         $id_auth=Auth::user();
         $duels=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_challenger','=',$id_auth->id],['duelstate','!=',6],['duelstate','!=',8]])->orWhere([['ctl_user_id_challenged','=',$id_auth->id],['duelstate','!=',6],['duelstate','!=',8]])->orderBy('id', 'desc')->get(); //->orWhere([['ctl_user_id_witness','=',$id_auth->id],['duelstate','!=',6]])
 
@@ -256,6 +258,63 @@ class IndexController extends Controller
             <tbody>';
 
         foreach($duels as $duel){
+            $notificationAction = '';
+            $newStateToView = '';
+            $viewState = $duel->testFile;
+
+            //- si hay witness
+            if($duel->ctl_user_id_witness){
+                //- si soy retador
+                if($duel->ctl_user_id_challenger == $id_auth->id){
+                    //- no visto por todos
+                    if($viewState!=0){
+                        //- si ya lo vio el retado pero no el witness
+                        if($viewState==2){
+                            $newStateToView = 4;//- visto por retador y retado
+                        }
+                        else if($viewState==6)//- si ya lo vio el retado y el witness
+                        {
+                            $newStateToView = 0;//- visto por todos
+                        }
+                    }
+                }else{//- si soy retado
+                    //- si no lo han visto todos
+                    if($viewState!=0){
+                        //- si ya lo vio el retador pero no el witness
+                        if($viewState==1)
+                        {
+                            $newStateToView = 4;//- visto por retador y retado
+                        }
+                        else if($viewState==5)//- si ya lo vieron el retador y el witness
+                        {
+                            $newStateToView = 0;//- visto por todos
+                        }
+                    }
+                }
+            }else{
+                //- si soy retador
+                if($duel->ctl_user_id_challenger == $id_auth->id){
+                    //- no visto por todos
+                    if($viewState!=0){
+                        //- si ya lo vio el retado
+                        if($viewState==2){
+                            $newStateToView = 0;//- visto por todos
+                        }else{//- si no lo ha visto
+                            $newStateToView = 1;//- visto por retador
+                        }
+                    }
+                }else{//- si soy retado
+                    if($viewState!=0){
+                        //- si ya lo vio el retador
+                        if($viewState==1){
+                            $newStateToView = 0; //- visto por todos
+                        }else{//- si no lo ha visto
+                            $newStateToView = 2; //- visto por retado
+                        }
+                    }
+                }
+            }
+    
             $html.='<tr> <td colspan="4">
                     <div  ';
             $imgUrl = '';
@@ -472,7 +531,7 @@ class IndexController extends Controller
     //----------------- WITNESS DEWLS UPDATE FUNCTION -------------------
     public function updateWitnessDewls(){
         $id_auth=Auth::user();
-        $record_witness=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',6]])->orWhere([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',8]])->orderBy('id', 'desc')->get();
+        $record_witness=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','!=',6],['duelstate','!=',8]])->orderBy('id', 'desc')->get();
         
         $html = '<table class="table table-borderless">
             <thead style="color: #08ADD5;">
@@ -483,6 +542,23 @@ class IndexController extends Controller
             <tbody>';
 
         foreach($record_witness as $witness){
+            $notificationAction = '';
+            $newStateToView = '';
+            $viewState = $witness->testFile;
+
+            //- no ha sido visto por todos o por witness (me)
+            if($viewState!=0 || $viewState!=5 || $viewState!=6)
+            {
+                //- ha sido visto por retador
+                if($viewState==1){
+                    $newStateToView=5;//- visto por retador y witness
+                }
+                else if($viewState==2)//- ha sido visto por retado
+                {
+                    $newStateToView=6; //- visto por retado y witness
+                }
+            }
+
             $html.='<tr>
             <td colspan="4">
                 <div class="card-table">
