@@ -216,5 +216,7 @@ let updateDewlViewState=(dewlID,state)=>{
         data:{
             updateViewState:true
         }
+    }).done(function(data){
+        //console.log("update view state --> status: " + data);
     });
 }

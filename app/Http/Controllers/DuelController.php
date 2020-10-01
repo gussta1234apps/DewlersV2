@@ -62,7 +62,7 @@ class DuelController extends Controller
         $user_witness=$request->post("witness");
         $start= $request->post("startdate");
         $end='2020-02-10';
-        $file='this is a test file';
+        $file='1';
         $status=1;
         $witness_validate= $request->post('witness_validate');
 //        $user_winner=;
