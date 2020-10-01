@@ -322,6 +322,7 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-win" role="tab" aria-controls="nav-home" aria-selected="true" style="color: #08ADD5">All Wins</a>
                         <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-loss" role="tab" aria-controls="nav-profile" aria-selected="false" style="color: #CE3250">All Losses</a>
+                        <a class="nav-link" id="nav-record-witness-tab" data-toggle="tab" href="#nav-record-witness" role="tab" aria-controls="nav-record-witness" aria-selected="false" style="color: #0d95e8">As Witness</a>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -477,6 +478,45 @@
                             </table>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="nav-record-witness" role="tabpanel" aria-labelledby="nav-record-witness">
+                        <div class="dewl-h">
+                            <table class="table table-borderless">
+                                <tbody>
+                                @foreach($r_witness as $witness)
+                                <tr>
+                                        <td colspan="4">
+                                            <div class="card-table-with-witness">
+                                                <div class="short-desc">
+                                                    <div class="row ">
+                                                        <div class="col-md-4 current-card-column"><strong>{{$witness->ctlUser1->username}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$witness->pot}}</strong></div>
+                                                        <div class="col-md-3 current-card-column"><strong>{{$witness->startDate}}</strong></div>
+                                                        <div class="col-md-2 current-card-column">
+                                                            <button class="win-card-info-button" style="background-color: #0d95e8" data-toggle="collapse" href="#witness-card-{{$witness->id}}" role="button" aria-expanded="false" aria-controls="witness-card-{{$witness->id}}">
+                                                                More info
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="collapse detail" id="witness-card-{{$witness->id}}">
+                                                    <div class="center-mobil txt-blck all-width">
+                                                        <h4 class="card-view-title">{{$witness->tittle}}</h4>
+                                                        <p class="card-view-description">{{$witness->Description}}</p>
+                                                        <p class="card-view-date">Start Date: {{$witness->startDate}}</p>
+                                                        <p class="card-view-status">Status: {{$witness->duelstatus->description}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
                 </div>
 
             </div>
