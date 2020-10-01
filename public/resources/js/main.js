@@ -201,10 +201,7 @@ let createDewlValidations=()=>{
     }
 }
 let createDewlValidationsDON=()=>{
-
     var desc = $('#descriptionDON').val();
-
-
     // if(true){
     if(desc ==""){
         Swal.fire({
@@ -220,9 +217,7 @@ let createDewlValidationsDON=()=>{
 }
 
 let createreview=()=>{
-
     var rev = $('#txtarea').val();
-
     // if(true){
     if(rev ==""){
         Swal.fire({
@@ -237,12 +232,29 @@ let createreview=()=>{
     }
 }
 
-
 function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57))
         return false;
     return true;
+}
+
+
+let witnessvalidation=()=>{
+    var percent = $('.percentage').val();
+    // if(true){
+
+    if(percent ==""){
+        Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please add a percentage',
+            }
+        )
+        return false;
+    }else{
+        return true;
+    }
 }
 
 let updateCurrentDewls=()=>{

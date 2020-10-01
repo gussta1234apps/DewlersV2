@@ -902,7 +902,7 @@
                                 You have been invited as a Witness to this Dewl. <br>
                                 Please select your Witness Percentage.
                                 </h4>
-                                <form action="#" method="post" class="choose-winner">
+                                <form action="#" method="post" class="choose-winner" >
                                     @csrf
                                     @if($witness->ctlUser1->review_avg<2.5)
                                     <p style="border: 0px solid #761b18; color: #761b18;border-radius:5px;margin:5px;font-size:15px;font-weight:800;padding:3px;">
@@ -917,7 +917,7 @@
                                     <div class="row ">
                                         {{--<div class="row text-center">--}}
                                         <div class=" col-lg-12 ">
-                                            <input type="number" name="percentage" min="1" max="7" id="input{{$witness->id}}">
+                                            <input type="number" name="percentage" min="1" max="7" id="input{{$witness->id}}" required>
                                             <input type="text" value="{{$witness->id}}" name="id" hidden>
                                         </div>
                                     </div>
@@ -927,7 +927,7 @@
 
                                         <div class="row col-6 offset-3">
                                             <div class="col-6">
-                                                <button class="btn-primary btn-primary btn btn{{$witness->id}}" style="background-color: #00B6E3;" id="acept{{$witness->id}}" type="submit" formaction="/witn_validate">Accept</button>
+                                                <button class="btn-primary btn-primary btn btn{{$witness->id}}" style="background-color: #00B6E3;" id="acept{{$witness->id}}" type="submit" onsubmit="return witnessvalidation()" formaction="/witn_validate" >Accept</button>
                                             </div>
                                             <div class="col-6">
                                                 <button class="btn btn-danger" style="background-color: #D5130B" id="refuse{{$witness->id}}" type="submit" formaction="/nowith">Decline</button>

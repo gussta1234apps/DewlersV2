@@ -2,7 +2,22 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <!-- Scripts -->
+<!--<script src="{{ asset('js/app.js') }}" defer></script>-->
+    <script src="{{ asset('js/scripts.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--CSS IMPORT-->
+    <div class="right-top-icon" style="display: flex;align-items: center;justify-content: center;flex-direction: column;position: absolute;padding: 5px;background: white;top: 40px;right: 60px;width: 80px;height: 90px;">
+        <div class="menu-img-right-icon" style="background: url(../resources/img/DWlogo.png) no-repeat;background-position-x: 0%;background-position-y: 0%;background-size: auto;background-position: center;background-size: cover;margin: auto;margin-top: auto;margin-bottom: auto;margin-left: auto;margin-left: auto;margin-top: 0px;margin-bottom: 0px;width: 80px;height: 80px;
+}"></div>
+    </div>
+    <div class="row justify-content-center" style="margin-top: 80px;">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
@@ -57,11 +72,11 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+{{--                                @if (Route::has('password.request'))--}}
+{{--                                    <a class="btn btn-link" href="{{ route('password.request') }}">--}}
+{{--                                        {{ __('Forgot Your Password?') }}--}}
+{{--                                    </a>--}}
+{{--                                @endif--}}
                             </div>
                         </div>
                     </form>
