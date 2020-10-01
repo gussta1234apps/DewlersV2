@@ -173,11 +173,74 @@ let prepareWitnessToCreateDewl=()=>{
 }
 
 let createDewlValidations=()=>{
-    if(true){
-        return true;
-    }else{
+    var title = $('#exampleInputEmail1').val();
+    var desc = $('#descriptio').val();
+    var stacks = $('#pot').val();
+    var vs = $('#playerInput').val();
+    var checkb = $('#customCheck1')
+    var witnss = $('#witnessInput').val();
+    var tdate = $('#datepicker').val();
+   // if(true){
+    if((title=="")
+        || (desc =="" || desc.length < 20)
+        || (stacks =="")
+        || (vs =="")
+        || (checkb.is(':checked') && witnss == "")
+        || (tdate == "")){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please complete all fields',
+            }
+        )
         return false;
+    }else{
+        return true;
     }
+}
+let createDewlValidationsDON=()=>{
+
+    var desc = $('#descriptionDON').val();
+
+
+    // if(true){
+    if(desc ==""){
+        Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please complete all fields',
+            }
+        )
+        return false;
+    }else{
+        return true;
+    }
+}
+
+let createreview=()=>{
+
+    var rev = $('#txtarea').val();
+
+    // if(true){
+    if(rev ==""){
+        Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please add a review',
+            }
+        )
+        return false;
+    }else{
+        return true;
+    }
+}
+
+
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
 }
 
 let updateCurrentDewls=()=>{

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('resources/css/jquery.fancybox.css') }}">
     <link rel="stylesheet" href="{{ asset('resources/css/custom-fancy.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @stop
 @section('content')
     <!-- Container -->
@@ -1138,23 +1139,23 @@
                         <input type="hidden" id="playerID">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Title</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" name="tittle" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title" required>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="tittle" autocomplete="off" aria-describedby="xsxs" placeholder="Enter title" >
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
-                            <textarea name="description" id="descriptio" class="form-control" cols="30" rows="3" placeholder="Enter a description" maxlength="140" required=""></textarea>
+                            <textarea name="description" id="descriptio" class="form-control" cols="30" rows="3" placeholder="Enter a description" maxlength="140" ></textarea>
                         </div>
                         <label for="exampleInputEmail1">Stacks</label>
                         <div class="input-group ">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">$</span>
                             </div>
-                            <input type="number" id="pot" name="pot" class="form-control" placeholder="10.00" aria-label="pot" aria-describedby="pot" required="" min="10">
+                            <input type="number" id="pot" name="pot" class="form-control" placeholder="10" aria-label="pot" aria-describedby="pot"  min="10" onkeypress="return isNumberKey(event)">
                         </div>
                         <small id="emailHelp" class="form-text text-muted">10% of this amount goes to Dewlers</small>
                         <div class="form-group">
                             <label for="exampleInputEmail1" style="margin-top: 10px;">VS</label>
-                            <input type="text" class="form-control" autocomplete="off" list="players" onchange="prepareToCreateDewl();" id="playerInput" aria-describedby="challenger" placeholder="Enter Dewler's Name" required>
+                            <input type="text" class="form-control" autocomplete="off" list="players" onchange="prepareToCreateDewl();" id="playerInput" aria-describedby="challenger" placeholder="Enter Dewler's Name" >
                             <datalist id="players">
                                 @foreach($challengeds as $friend)
                                     <option value="{{$friend->username}}" data-id="{{$friend->id}}">{{$friend->username}}</option>
@@ -1183,7 +1184,7 @@
                         <!-- End Select witness -->
                         <div class="form-group" style="margin-bottom: 0px !important;">
                             <label for="exampleInputEmail1" style="margin-top:10px;">Schedule Dewl</label>
-                            <input type="text" class="form-control" name="startdate" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date" required>
+                            <input type="text" class="form-control" name="startdate" id="datepicker" aria-describedby="emailHelp" readonly placeholder="Select date" >
                         </div>
                         <small id="emailHelp" class="form-text text-muted">Dewls expire after 24 hours of the scheduled date.</small>
                         <div class="text-center" style="margin-top: 25px;">
@@ -1204,7 +1205,7 @@
     <div class="modal fade" id="CreateDoubleOrNothing"  aria-labelledby="doubleOrNothing" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/re_duel" method="post" id="donmodalform" onsubmit="return createDewlValidations()">
+                <form action="/re_duel" method="post" id="donmodalform" onsubmit="return createDewlValidationsDON()">
                     @csrf
                     <div class="modal-header" style="background-color: #23272b; color:white;">
                         <h5 class="modal-title" id="createDewlModalLabel">Create Dewl</h5>
@@ -1221,7 +1222,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
-                            <textarea name="description" id="descriptio" class="form-control" cols="30" rows="3" placeholder="Enter a description" maxlength="140" required=""></textarea>
+                            <textarea name="description" id="descriptionDON" class="form-control" cols="30" rows="3" placeholder="Enter a description" maxlength="140" ></textarea>
                         </div>
                         <label for="exampleInputEmail1">Stacks</label>
                         <div class="input-group ">
@@ -1295,7 +1296,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/send_rev" method="post" id="witness_review">
+                    <form action="/send_rev" method="post" id="witness_review" onsubmit="return createreview()">
                     @csrf
                     <!-- Star System -->
                         <div class="text-center underline" style="margin-top: 30px; ">
@@ -1332,7 +1333,7 @@
 
                             <div class="text-center">
                                 <h4>Leave a review</h4>
-                                <textarea id="txtarea" name="review" class="textareastyle" rows="10" style="margin-top:5px; max-width:90%; width:570px;"required></textarea>
+                                <textarea id="txtarea" name="review" class="textareastyle" rows="10" style="margin-top:5px; max-width:90%; width:570px;"></textarea>
                             </div>
                             <!-- End Start System -->
                             <div class="text-center" style="margin-top: 25px;">

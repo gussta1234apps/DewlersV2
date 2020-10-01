@@ -262,7 +262,7 @@ class IndexController extends Controller
             $imgUrl = '';
             $tooltip='';
 
-            //- 
+            //-
             //- IMG and TOOLTIP validations
             switch($duel->duelstate){
                 case 1 :
@@ -281,13 +281,13 @@ class IndexController extends Controller
                    $imgUrl = asset('resources/img/Dewlers iconos_P1vP2.png'); //}}  //{{--  Dewling --}}
                    $tooltip = 'data-toggle="tooltip" data-placement="top" title="Dewling"';
                    break;
-                default: 
+                default:
                     $imgUrl = asset('resources/img/Dewlers iconos_X2.png'); //}}  {{--  Doble o nada --}}
                     $tooltip = 'data-toggle="tooltip" data-placement="top" title="Double or Nothing"';
                 break;
             }
 
-            //-                    
+            //-
             if($duel->ctl_user_id_witness){ $html.='class="card-table-with-witness"'; }
             else{$html.='class="card-table-without-witness"';}
             //-
@@ -459,12 +459,12 @@ class IndexController extends Controller
     //----------------- WITNESS DEWLS UPDATE FUNCTION -------------------
     public function updateWitnessDewls(){
         $id_auth=Auth::user();
-        $record_witness=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',6]])->orWhere([['ctl_user_id_witness','=',$id_auth->id],['duelstate','=',8]])->orderBy('id', 'desc')->get();
-        
+        $record_witness=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','!=',6]])->orWhere([['ctl_user_id_witness','=',$id_auth->id],['duelstate','!=',8]])->orderBy('id', 'desc')->get();
+        $counter = count($record_witness);
         $html = '<table class="table table-borderless">
             <thead style="color: #08ADD5;">
                 <tr>
-                    <th colspan="4 center" style="color:#000"><strong>Serving as Witness</strong></th>
+                    <th colspan="4 center" style="color:#000"><strong>Serving as Witness '.$counter.'id'.$id_auth->id.'</strong></th>
                 </tr>
             </thead>
             <tbody>';
@@ -504,7 +504,7 @@ class IndexController extends Controller
                         '.$witness->ctlUser0->username.' is a sore loser
                     </p>';
                 }
-                
+
                 $html.='<div class="row ">
                         <div class=" col-lg-12 ">
                             <input type="number" name="percentage" min="1" max="7" id="input'.$witness->id.'">
