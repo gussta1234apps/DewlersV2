@@ -268,9 +268,20 @@ class IndexController extends Controller
                     if($viewState!=0 && $viewState!=6 && $viewState!=2){
                         if($viewState!=5){
                             $viewState=2;
+                        }else if ($viewState==3){
+                            $viewState=6;
                         }else{
                             $viewState=0;
                         }
+                    }
+                }else{
+                    if($viewState==3)
+                    {
+                        $newStateToView = 5;
+                    }
+                    else if($viewState==6)
+                    {
+                        $newStateToView = 0;
                     }
                 }
             }else{
@@ -527,7 +538,7 @@ class IndexController extends Controller
             $viewState = $witness->testFile;
 
             //- no ha sido visto por todos o por witness (me)
-            if($viewState!=0 && $viewState!=5 && $viewState!=6)
+            if($viewState!=0 && $viewState!=3 && $viewState!=5 && $viewState!=6)
             {
                 if($viewState==1){
                     $newStateToView=5;

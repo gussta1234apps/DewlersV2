@@ -319,7 +319,7 @@ class UserController extends Controller
                         $buttons = '<button class="friends-dewl-button">Create Dewl</button>
                         <button class="friends-remove-button">Remove</button>';
                     }else if($isPending){
-                        $buttons = '<button class="btn btn-primary" disabled>Pending</button>';
+                        $buttons = '<button class="friends-add-button" style="background-color:#0d95e8;" disabled>Pending</button>';
                     }else{
                         $buttons = '<button class="friends-add-button" type="submit" formaction="/send_f_request">Add</button>';
                     }
