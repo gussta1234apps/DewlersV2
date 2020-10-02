@@ -235,7 +235,7 @@ class IndexController extends Controller
     //----------------- CURRENT DEWLS UPDATE FUNCTION -------------------
     public function updateCurrentDewls(){
 
-        
+
         $id_auth=Auth::user();
         $duels=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_challenger','=',$id_auth->id],['duelstate','!=',6],['duelstate','!=',8]])->orWhere([['ctl_user_id_challenged','=',$id_auth->id],['duelstate','!=',6],['duelstate','!=',8]])->orderBy('id', 'desc')->get(); //->orWhere([['ctl_user_id_witness','=',$id_auth->id],['duelstate','!=',6]])
 
@@ -291,13 +291,13 @@ class IndexController extends Controller
                         $newStateToView=0;
                     }
                 }
-                
+
             }
 
             if($newStateToView!=-1){
                 $notificationAction = 'onclick="updateDewlViewState('.$duel->id.','.$newStateToView.');"';
             }
-    
+
             $html.='<tr> <td colspan="4">
                     <div  ';
             $imgUrl = '';
@@ -362,14 +362,14 @@ class IndexController extends Controller
                     <div class="col-1 current-card-column"><img src="'.$imgUrl.'" width="40" height="40" '.$tooltipClass.'/></div>
                     <script>'.$tooltipScript.'</script>';
             if($newStateToView!=-1){
-                $html.='<div class="col-4 current-card-column"><strong>'.$duel->pot.' '.$newStateToView.' Stacks&nbsp;&nbsp;
+                $html.='<div class="col-4 current-card-column"><strong>'.$duel->pot.'  Stacks&nbsp;&nbsp;
                 <i class="fas fa-exclamation notification-icon" style="font-size:22px;"></i></strong></div>';
             }else{
                     $html.='<div class="col-4 current-card-column"><strong>'.$duel->pot.' Stacks</strong></div>';
             }
-            $html.='</div></div>';   
-            
-                        
+            $html.='</div></div>';
+
+
             //If your the challenged and havent accepted the  dewl
             if($duel->ctl_user_id_challenged == $id_auth->id and $duel->duelstate==1)
             {
@@ -381,7 +381,7 @@ class IndexController extends Controller
                             <form action="#" method="post">
                             <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
-                            <div class="row col-6 offset-3">
+                            <div class="row col-6 offset-3"  style="padding:0;">
                                 <div class="col">
                                     <button class="first-player-button" id="acept'.$duel->id.'" type="submit" formaction="/acept_duel">Accept</button>
                                 </div>
@@ -406,7 +406,7 @@ class IndexController extends Controller
                             <form action="#" method="post">
                             <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
-                            <div class="row col-6 offset-3">
+                            <div class="row col-6 offset-3"  style="padding:0;">
                                 <div class="col center-mobil">
                                     <button class="first-player-button" id="acept'.$duel->id.'" type="submit" formaction="/acept_duel">Accept</button>
                                 </div>
@@ -451,7 +451,7 @@ class IndexController extends Controller
                         <form action="#" method="post" class="card-view-info center-mobil">
                             <input type="hidden" name="_token" value="'.csrf_token().'">
                                 <input type="text" value="'.$duel->id.'" name="id" hidden>
-                            <div class="row col-6 offset-3">
+                            <div class="row col-6 offset-3"  style="padding:0;">
                                 <div class="col center-mobil">
                                     <button class="first-player-button" id="acept'.$duel->id.'" type="submit" formaction="/acept_duel">Accept</button>
                                 </div>
@@ -477,7 +477,7 @@ class IndexController extends Controller
                     {
                         $html.='<div class="card-view-info  center-mobil">
                             <div class="row">
-                                <div class="col-6 offset-3">
+                                <div class="col-6 offset-3"  style="padding:0;">
                                     <div class="row">
                                         <div class="col center-mobil">
                                             <h5 class="witness-info-title">Witness</h5>
@@ -498,7 +498,7 @@ class IndexController extends Controller
                     $html.='<form action="#" method="GET" class="card-view-info center-mobil">
                         <input type="hidden" name="_token" value="'.csrf_token().'">
                         <h4 class="card-view-cw-title">Choose Winner</h4>
-                        <div class="row col-6 offset-3">
+                        <div class="row col-6 offset-3"  style="padding:0;">
                             <div class="col center-mobil">
                                 <button class="first-player-button" type="submit" formaction="/update_balance/'.$duel->id.'/'.$duel->ctl_user_id_challenged.'/'.$duel->ctl_user_id_challenger.'">'.$duel->ctlUser1->username.'</button>
                             </div>
@@ -524,11 +524,11 @@ class IndexController extends Controller
     public function updateWitnessDewls(){
         $id_auth=Auth::user();
         $record_witness=duels::with('ctlUser0','ctlUser3', 'duelstatus')->where([['ctl_user_id_witness','=',$id_auth->id],['duelstate','!=',6],['duelstate','!=',8]])->orderBy('id', 'desc')->get();
-        
+
         $html = '<table class="table table-borderless">
             <thead style="color: #08ADD5;">
                 <tr>
-                    <th colspan="4 center" style="color:#000"><strong>Serving as Witness '.$counter.'id'.$id_auth->id.'</strong></th>
+                    <th colspan="4 center" style="color:#000"><strong>Serving as Witness </strong></th>
                 </tr>
             </thead>
             <tbody>';
@@ -604,7 +604,7 @@ class IndexController extends Controller
                     </div>
                     <br>
                     <div class="row text-center">
-                        <div class="row col-6 offset-3">
+                        <div class="row col-6 offset-3"  style="padding:0;">
                             <div class="col-6">
                                 <button class="btn-primary btn-primary btn btn'.$witness->id.'" style="background-color: #00B6E3;" id="acept'.$witness->id.'" type="submit" formaction="/witn_validate">Accept</button>
                             </div>
@@ -617,11 +617,13 @@ class IndexController extends Controller
             }
             else if($witness->duelstate==1)
             {
+                $wpot = ($witness->witness_comision/100)*$witness->pot;
                 $html.='<div class="center-mobil txt-blck all-width">
                     <h4 class="card-view-title">'.$witness->tittle.'</h4>
                     <p class="card-view-description">'.$witness->Description.'</p>
                     <p class="card-view-date">Start Date: '.$witness->startDate.'</p>
                     <p class="card-view-status">Status: '.$witness->duelstatus->description.'</p>
+                     <p class="card-view-status">Stacks for me: '.$wpot.' Stacks</p>
                 </div>';
             }
             else

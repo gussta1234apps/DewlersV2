@@ -477,6 +477,7 @@
                                                         <p class="card-view-description">{{$loss->Description}}</p>
                                                         <p class="card-view-date">Start Date: {{$loss->startDate}}</p>
                                                         <p class="card-view-status">Status: {{$loss->duelstatus->description}}</p>
+
 {{--                                                        <button class="loss-button">Double or Nothing</button>--}}
 {{--                                                        <button class="loss-button" data-toggle="modal" data-target="#createwitnessreview{{$loss->id}}">Review</button>--}}
                                                         @if($loss->loser_review==0 and $loss->don==1)
@@ -596,6 +597,7 @@
                                                         <p class="card-view-description">{{$witness->Description}}</p>
                                                         <p class="card-view-date">Start Date: {{$witness->startDate}}</p>
                                                         <p class="card-view-status">Status: {{$witness->duelstatus->description}}</p>
+                                                        <p class="card-view-status">Stacks for me: {{$witness->witness_comision}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -834,7 +836,7 @@
                                                                 <form action="#" method="GET" class="card-view-info center-mobil">
                                                                     @csrf
                                                                     <h4 class="card-view-cw-title">Choose Winner</h4>
-                                                                    <div class="row col-6 offset-3">
+                                                                    <div class="row col-6 offset-3"  style="padding:0;">
                                                                         <div class="col center-mobil">
                                                                             <button class="first-player-button" type="submit" formaction="/update_balance/{{$du->id}}/{{$du->ctl_user_id_challenged}}/{{$du->ctl_user_id_challenger}}">{{$du->ctlUser1->username}}</button>
                                                                         </div>
