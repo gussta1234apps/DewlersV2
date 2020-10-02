@@ -45,6 +45,9 @@ class UserController extends Controller
             ->where('id','=',$id->id)
             ->update(['balance'=>$newAmount]);
 
+        DB::table('internalaccountmovements')
+            ->insert(['registerDate'=>date("Y-m-d") ,])
+
         return redirect('/dashboard');
     }
 

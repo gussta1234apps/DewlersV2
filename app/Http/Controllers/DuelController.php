@@ -187,6 +187,7 @@ class DuelController extends Controller
     public function gamewinner($idduel,$idwinner,$idlosser){//      PLAYERS IDS
         $id_winner=$idwinner;
         $id_loser=$idlosser;
+        $id_auth=Auth::user();
         $user=Auth::user();
 //        ----------------------------------------------------------------------------------------------
 
@@ -197,6 +198,19 @@ class DuelController extends Controller
         //        POT DEL DUELO
         $duels_pot_data=duels::where('id','=',$duel_id)->first();
         $pot=$duels_pot_data->pot;
+
+        //- View state set
+        $newStateCondition = false;
+        $newViewState = $duels_pot_data->testFile;
+        if($duels_pot_data->ctl_user_id_witness){
+            if($duels_pot_data->ctl_user_id_witness==$id_auth->id){
+                $newViewState = 3;
+                $newStateCondition = true;
+            }
+        }else{
+            $newViewState = 1;
+            $newStateCondition = true;
+        }
 
         //witness comision
 
@@ -224,9 +238,9 @@ class DuelController extends Controller
 
         if($duels_pot_data->duelstate==9){
 
-            DB::table('duels')->where('id', $duel_id)->update(['ctl_user_id_winner'=>$id_winner,'ctl_user_id_loser'=>$id_loser, 'duelstate'=>8, 'status'=>2,'don'=>2]);
+            DB::table('duels')->where('id', $duel_id)->update(['ctl_user_id_winner'=>$id_winner,'ctl_user_id_loser'=>$id_loser, 'duelstate'=>8, 'status'=>2,'don'=>2, 'testFile'=>$newViewState]);
         }else{
-            DB::table('duels')->where('id', $duel_id)->update(['ctl_user_id_winner'=>$id_winner,'ctl_user_id_loser'=>$id_loser, 'duelstate'=>6, 'status'=>0,'don'=>1]);
+            DB::table('duels')->where('id', $duel_id)->update(['ctl_user_id_winner'=>$id_winner,'ctl_user_id_loser'=>$id_loser, 'duelstate'=>6, 'status'=>0,'don'=>1, 'testFile'=>$newViewState]);
         }
 
 
