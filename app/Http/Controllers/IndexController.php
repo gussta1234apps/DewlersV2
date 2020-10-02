@@ -260,60 +260,42 @@ class IndexController extends Controller
 
         foreach($duels as $duel){
             $notificationAction = '';
-            $newStateToView = '';
+            $newStateToView = -1;
             $viewState = $duel->testFile;
 
             //- si hay witness
             if($duel->ctl_user_id_witness){
-                //- si soy retador
-                if($duel->ctl_user_id_challenger == $id_auth->id){
-                    //- no visto por todos
-                    if($viewState!=0){
-                        //- si ya lo vio el retado pero no el witness
-                        if($viewState==2){
-                            $newStateToView = 4;//- visto por retador y retado
-                        }
-                        else if($viewState==6)//- si ya lo vio el retado y el witness
-                        {
-                            $newStateToView = 0;//- visto por todos
+                if($duel->ctl_user_id_challenger != $id_auth->id){
+                    if($viewState!=0 && $viewState!=6 && $viewState!=2){
+                        if($viewState!=5){
+                            $viewState=2;
+                        }else if ($viewState==3){
+                            $viewState=6;
+                        }else{
+                            $viewState=0;
                         }
                     }
-                }else{//- si soy retado
-                    //- si no lo han visto todos
-                    if($viewState!=0){
-                        //- si ya lo vio el retador pero no el witness
-                        if($viewState==1)
-                        {
-                            $newStateToView = 4;//- visto por retador y retado
-                        }
-                        else if($viewState==5)//- si ya lo vieron el retador y el witness
-                        {
-                            $newStateToView = 0;//- visto por todos
-                        }
+                }else{
+                    if($viewState==3)
+                    {
+                        $newStateToView = 5;
+                    }
+                    else if($viewState==6)
+                    {
+                        $newStateToView = 0;
                     }
                 }
             }else{
-                //- si soy retador
-                if($duel->ctl_user_id_challenger == $id_auth->id){
-                    //- no visto por todos
-                    if($viewState!=0){
-                        //- si ya lo vio el retado
-                        if($viewState==2){
-                            $newStateToView = 0;//- visto por todos
-                        }else{//- si no lo ha visto
-                            $newStateToView = 1;//- visto por retador
-                        }
-                    }
-                }else{//- si soy retado
-                    if($viewState!=0){
-                        //- si ya lo vio el retador
-                        if($viewState==1){
-                            $newStateToView = 0; //- visto por todos
-                        }else{//- si no lo ha visto
-                            $newStateToView = 2; //- visto por retado
-                        }
+                if($duel->ctl_user_id_challenger != $id_auth->id){
+                    if($viewState==1){
+                        $newStateToView=0;
                     }
                 }
+                
+            }
+
+            if($newStateToView!=-1){
+                $notificationAction = 'onclick="updateDewlViewState('.$duel->id.','.$newStateToView.');"';
             }
     
             $html.='<tr> <td colspan="4">
@@ -365,20 +347,29 @@ class IndexController extends Controller
             //-
             $html.='>
                 <div class="short-desc">
-                    <div class="row"  data-toggle="collapse" href="#card-current-'.$duel->id.'" role="button" aria-expanded="false" aria-controls="card-current-'.$duel->id.'">
-                        <div class="col-2 current-card-column"><h4 class="vs-text-without-witness">VS</h4></div>
-                            <div class="col-4 current-card-column">
-                                <strong>';
-                                if($duel->ctl_user_id_challenger == $id_auth->id){ $html.=$duel->ctlUser1->username; }
-                                else{ $html.=$duel->ctlUser0->username; }
-            $html.='            </strong>
-                                </div>
-                                <div class="col-1 current-card-column"><img src="'.$imgUrl.'" width="40" height="40" '.$tooltipClass.'/></div>
-                                <script>'.$tooltipScript.'</script>
-                                <div class="col-4 current-card-column"><strong>'.$duel->pot.' Stacks</strong></div>
-                            </div>
-                        </div>';
+                <div class="row"  data-toggle="collapse" href="#card-current-'.$duel->id.'" role="button" aria-expanded="false" aria-controls="card-current-'.$duel->id.'"';
 
+            if($newStateToView!=-1){$html.=$notificationAction;}
+            $html.='><div class="col-2 current-card-column"><h4 class="vs-text-without-witness">VS</h4></div>
+                    <div class="col-4 current-card-column">
+                    <strong>';
+
+            if($duel->ctl_user_id_challenger == $id_auth->id){ $html.=$duel->ctlUser1->username; }
+            else{ $html.=$duel->ctlUser0->username; }
+
+            $html.='</strong>
+                    </div>
+                    <div class="col-1 current-card-column"><img src="'.$imgUrl.'" width="40" height="40" '.$tooltipClass.'/></div>
+                    <script>'.$tooltipScript.'</script>';
+            if($newStateToView!=-1){
+                $html.='<div class="col-4 current-card-column"><strong>'.$duel->pot.' '.$newStateToView.' Stacks&nbsp;&nbsp;
+                <i class="fas fa-exclamation notification-icon" style="font-size:22px;"></i></strong></div>';
+            }else{
+                    $html.='<div class="col-4 current-card-column"><strong>'.$duel->pot.' Stacks</strong></div>';
+            }
+            $html.='</div></div>';   
+            
+                        
             //If your the challenged and havent accepted the  dewl
             if($duel->ctl_user_id_challenged == $id_auth->id and $duel->duelstate==1)
             {
@@ -544,32 +535,42 @@ class IndexController extends Controller
 
         foreach($record_witness as $witness){
             $notificationAction = '';
-            $newStateToView = '';
+            $newStateToView = -1;
             $viewState = $witness->testFile;
 
             //- no ha sido visto por todos o por witness (me)
-            if($viewState!=0 || $viewState!=5 || $viewState!=6)
+            if($viewState!=0 && $viewState!=3 && $viewState!=5 && $viewState!=6)
             {
-                //- ha sido visto por retador
                 if($viewState==1){
-                    $newStateToView=5;//- visto por retador y witness
+                    $newStateToView=5;
+                }else if($viewState==4){
+                    $newStateToView=0;
                 }
-                else if($viewState==2)//- ha sido visto por retado
-                {
-                    $newStateToView=6; //- visto por retado y witness
-                }
+            }
+
+            if($newStateToView!=-1){
+                $notificationAction = 'onclick="updateDewlViewState('.$witness->id.','.$newStateToView.');"';
             }
 
             $html.='<tr>
             <td colspan="4">
-                <div class="card-table">
-                    <div class="short-desc">
+                <div class="card-table" ';
+            if($newStateToView!=-1){
+                $html.=$notificationAction;
+            }
+            $html.='><div class="short-desc">
                         <div class="row"  data-toggle="collapse" href="#witness-collapse-'.$witness->id.'" role="button" aria-expanded="false" aria-controls="witness-collapse-'.$witness->id.'">
                             <div class="col-md-5 current-card-column"><strong>'.$witness->ctlUser0->username.' VS '.$witness->ctlUser1->username.'</strong></div>
-                            <div class="col-md-3 col-7 current-card-column"><strong>'.$witness->pot.' stacks</strong></div>
-                            <div class="col-md-2 col-3 current-card-column"><strong>DATA</strong></div>
-                            <div class="col-md-1 col-2 current-card-column"><i class="fas fa-exclamation notification-icon"></i></div>
-                        </div>
+                            <div class="col-md-3 col-7 current-card-column"><strong>'.$witness->startDate.'</strong></div>';
+            if($newStateToView!=-1)
+            {
+                $html.='<div class="col-md-2 col-5 current-card-column"><strong>'.$witness->pot.' stacks &nbsp;&nbsp;<i class="fas fa-exclamation notification-icon"></i></strong></div>';
+            }
+            else{
+                $html.='<div class="col-md-2 col-5 current-card-column"><strong>'.$witness->pot.' stacks</strong></div>';
+            }
+
+            $html.='            </div>
                     </div>
                     <div class="collapse detail" id="witness-collapse-'.$witness->id.'">
                         <div class="center-mobil text-center chwin-content">';
@@ -691,5 +692,17 @@ class IndexController extends Controller
         </table>';
 
         echo $html;
+    }
+
+    public function updateViewStateDewl($dewlID,$state){
+        $success = true;
+        try{
+            DB::table('duels')
+            ->where('id','=',$dewlID)
+            ->update(['testFile'=>$state]);
+            echo "success";
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
     }
 }

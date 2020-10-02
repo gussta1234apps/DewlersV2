@@ -68,6 +68,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get( '/searchDewler/{dewlerName}','UserController@searchDewler');
     Route::get('/updateCurrentDewls','IndexController@updateCurrentDewls');
     Route::get('/updateWitnessDewls','IndexController@updateWitnessDewls');
+    Route::get('/updateDewlViewState/{dewlID}/{state}','IndexController@updateViewStateDewl');
     //-
     //myaccount
     Route::get('/myaccount','UserController@myaccount');

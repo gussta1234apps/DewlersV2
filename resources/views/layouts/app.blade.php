@@ -9,6 +9,7 @@
     <title>Dewlers</title>
 
 {{--    <title>Dewlers</title>--}}
+    <link rel="icon" type="image/png" href="{{asset('resources/img/DWlogo.png')}}">
 
     <!-- Scripts -->
     <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
